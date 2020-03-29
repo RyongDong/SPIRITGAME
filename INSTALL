@@ -1,0 +1,9 @@
+Building Nuggets
+
+See doc/readme-qt.rst for instructions on building Nuggets-QT,
+the intended-for-end-users, nice-graphical-interface, reference
+implementation of Junkcoin.
+
+See doc/build-*.txt for instructions on building nuggetsd,
+the intended-for-services, no-graphical-interface, reference
+implementation of Nuggets.
