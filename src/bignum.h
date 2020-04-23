@@ -377,4 +377,96 @@ public:
     CBigNum& operator+=(const CBigNum& b)
     {
         if (!BN_add(this, this, &b))
-            throw bignum_error("CBigNum::ope
+            throw bignum_error("CBigNum::operator+= : BN_add failed");
+        return *this;
+    }
+
+    CBigNum& operator-=(const CBigNum& b)
+    {
+        *this = *this - b;
+        return *this;
+    }
+
+    CBigNum& operator*=(const CBigNum& b)
+    {
+        CAutoBN_CTX pctx;
+        if (!BN_mul(this, this, &b, pctx))
+            throw bignum_error("CBigNum::operator*= : BN_mul failed");
+        return *this;
+    }
+
+    CBigNum& operator/=(const CBigNum& b)
+    {
+        *this = *this / b;
+        return *this;
+    }
+
+    CBigNum& operator%=(const CBigNum& b)
+    {
+        *this = *this % b;
+        return *this;
+    }
+
+    CBigNum& operator<<=(unsigned int shift)
+    {
+        if (!BN_lshift(this, this, shift))
+            throw bignum_error("CBigNum:operator<<= : BN_lshift failed");
+        return *this;
+    }
+
+    CBigNum& operator>>=(unsigned int shift)
+    {
+        // Note: BN_rshift segfaults on 64-bit if 2^shift is greater than the number
+        //   if built on ubuntu 9.04 or 9.10, probably depends on version of openssl
+        CBigNum a = 1;
+        a <<= shift;
+        if (BN_cmp(&a, this) > 0)
+        {
+            *this = 0;
+            return *this;
+        }
+
+        if (!BN_rshift(this, this, shift))
+            throw bignum_error("CBigNum:operator>>= : BN_rshift failed");
+        return *this;
+    }
+
+
+    CBigNum& operator++()
+    {
+        // prefix operator
+        if (!BN_add(this, this, BN_value_one()))
+            throw bignum_error("CBigNum::operator++ : BN_add failed");
+        return *this;
+    }
+
+    const CBigNum operator++(int)
+    {
+        // postfix operator
+        const CBigNum ret = *this;
+        ++(*this);
+        return ret;
+    }
+
+    CBigNum& operator--()
+    {
+        // prefix operator
+        CBigNum r;
+        if (!BN_sub(&r, this, BN_value_one()))
+            throw bignum_error("CBigNum::operator-- : BN_sub failed");
+        *this = r;
+        return *this;
+    }
+
+    const CBigNum operator--(int)
+    {
+        // postfix operator
+        const CBigNum ret = *this;
+        --(*this);
+        return ret;
+    }
+
+
+    friend inline const CBigNum operator-(const CBigNum& a, const CBigNum& b);
+    friend inline const CBigNum operator/(const CBigNum& a, const CBigNum& b);
+    friend inline const C
