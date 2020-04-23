@@ -300,4 +300,81 @@ public:
             fNegative = true;
             psz++;
         }
-        if (psz[
+        if (psz[0] == '0' && tolower(psz[1]) == 'x')
+            psz += 2;
+        while (isspace(*psz))
+            psz++;
+
+        // hex string to bignum
+        static signed char phexdigit[256] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,1,2,3,4,5,6,7,8,9,0,0,0,0,0,0, 0,0xa,0xb,0xc,0xd,0xe,0xf,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0xa,0xb,0xc,0xd,0xe,0xf,0,0,0,0,0,0,0,0,0 };
+        *this = 0;
+        while (isxdigit(*psz))
+        {
+            *this <<= 4;
+            int n = phexdigit[(unsigned char)*psz++];
+            *this += n;
+        }
+        if (fNegative)
+            *this = 0 - *this;
+    }
+
+    std::string ToString(int nBase=10) const
+    {
+        CAutoBN_CTX pctx;
+        CBigNum bnBase = nBase;
+        CBigNum bn0 = 0;
+        std::string str;
+        CBigNum bn = *this;
+        BN_set_negative(&bn, false);
+        CBigNum dv;
+        CBigNum rem;
+        if (BN_cmp(&bn, &bn0) == 0)
+            return "0";
+        while (BN_cmp(&bn, &bn0) > 0)
+        {
+            if (!BN_div(&dv, &rem, &bn, &bnBase, pctx))
+                throw bignum_error("CBigNum::ToString() : BN_div failed");
+            bn = dv;
+            unsigned int c = rem.getulong();
+            str += "0123456789abcdef"[c];
+        }
+        if (BN_is_negative(this))
+            str += "-";
+        reverse(str.begin(), str.end());
+        return str;
+    }
+
+    std::string GetHex() const
+    {
+        return ToString(16);
+    }
+
+    unsigned int GetSerializeSize(int nType=0, int nVersion=PROTOCOL_VERSION) const
+    {
+        return ::GetSerializeSize(getvch(), nType, nVersion);
+    }
+
+    template<typename Stream>
+    void Serialize(Stream& s, int nType=0, int nVersion=PROTOCOL_VERSION) const
+    {
+        ::Serialize(s, getvch(), nType, nVersion);
+    }
+
+    template<typename Stream>
+    void Unserialize(Stream& s, int nType=0, int nVersion=PROTOCOL_VERSION)
+    {
+        std::vector<unsigned char> vch;
+        ::Unserialize(s, vch, nType, nVersion);
+        setvch(vch);
+    }
+
+
+    bool operator!() const
+    {
+        return BN_is_zero(this);
+    }
+
+    CBigNum& operator+=(const CBigNum& b)
+    {
+        if (!BN_add(this, this, &b))
+            throw bignum_error("CBigNum::ope
