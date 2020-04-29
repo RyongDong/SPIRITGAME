@@ -66,4 +66,9 @@ public:
      * @returns Result of the call.
      * @throws an exception (json_spirit::Value) when an error happens.
      */
-    json_spirit::Va
+    json_spirit::Value execute(const std::string &method, const json_spirit::Array &params) const;
+};
+
+extern const CRPCTable tableRPC;
+
+#endif
