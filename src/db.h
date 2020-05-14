@@ -146,4 +146,83 @@ protected:
         // Write
         int ret = pdb->put(activeTxn, &datKey, &datValue, (fOverwrite ? 0 : DB_NOOVERWRITE));
 
-        // Clear memory in case it was a private 
+        // Clear memory in case it was a private key
+        memset(datKey.get_data(), 0, datKey.get_size());
+        memset(datValue.get_data(), 0, datValue.get_size());
+        return (ret == 0);
+    }
+
+    template<typename K>
+    bool Erase(const K& key)
+    {
+        if (!pdb)
+            return false;
+        if (fReadOnly)
+            assert(!"Erase called on database in read-only mode");
+
+        // Key
+        CDataStream ssKey(SER_DISK, CLIENT_VERSION);
+        ssKey.reserve(1000);
+        ssKey << key;
+        Dbt datKey(&ssKey[0], ssKey.size());
+
+        // Erase
+        int ret = pdb->del(activeTxn, &datKey, 0);
+
+        // Clear memory
+        memset(datKey.get_data(), 0, datKey.get_size());
+        return (ret == 0 || ret == DB_NOTFOUND);
+    }
+
+    template<typename K>
+    bool Exists(const K& key)
+    {
+        if (!pdb)
+            return false;
+
+        // Key
+        CDataStream ssKey(SER_DISK, CLIENT_VERSION);
+        ssKey.reserve(1000);
+        ssKey << key;
+        Dbt datKey(&ssKey[0], ssKey.size());
+
+        // Exists
+        int ret = pdb->exists(activeTxn, &datKey, 0);
+
+        // Clear memory
+        memset(datKey.get_data(), 0, datKey.get_size());
+        return (ret == 0);
+    }
+
+    Dbc* GetCursor()
+    {
+        if (!pdb)
+            return NULL;
+        Dbc* pcursor = NULL;
+        int ret = pdb->cursor(NULL, &pcursor, 0);
+        if (ret != 0)
+            return NULL;
+        return pcursor;
+    }
+
+    int ReadAtCursor(Dbc* pcursor, CDataStream& ssKey, CDataStream& ssValue, unsigned int fFlags=DB_NEXT)
+    {
+        // Read at cursor
+        Dbt datKey;
+        if (fFlags == DB_SET || fFlags == DB_SET_RANGE || fFlags == DB_GET_BOTH || fFlags == DB_GET_BOTH_RANGE)
+        {
+            datKey.set_data(&ssKey[0]);
+            datKey.set_size(ssKey.size());
+        }
+        Dbt datValue;
+        if (fFlags == DB_GET_BOTH || fFlags == DB_GET_BOTH_RANGE)
+        {
+            datValue.set_data(&ssValue[0]);
+            datValue.set_size(ssValue.size());
+        }
+        datKey.set_flags(DB_DBT_MALLOC);
+        datValue.set_flags(DB_DBT_MALLOC);
+        int ret = pcursor->get(&datKey, &datValue, fFlags);
+        if (ret != 0)
+            return ret;
+        else if (datKey.get_data() == NULL || datValue.g
