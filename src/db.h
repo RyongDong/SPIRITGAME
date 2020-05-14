@@ -225,4 +225,89 @@ protected:
         int ret = pcursor->get(&datKey, &datValue, fFlags);
         if (ret != 0)
             return ret;
-        else if (datKey.get_data() == NULL || datValue.g
+        else if (datKey.get_data() == NULL || datValue.get_data() == NULL)
+            return 99999;
+
+        // Convert to streams
+        ssKey.SetType(SER_DISK);
+        ssKey.clear();
+        ssKey.write((char*)datKey.get_data(), datKey.get_size());
+        ssValue.SetType(SER_DISK);
+        ssValue.clear();
+        ssValue.write((char*)datValue.get_data(), datValue.get_size());
+
+        // Clear and free memory
+        memset(datKey.get_data(), 0, datKey.get_size());
+        memset(datValue.get_data(), 0, datValue.get_size());
+        free(datKey.get_data());
+        free(datValue.get_data());
+        return 0;
+    }
+
+public:
+    bool TxnBegin()
+    {
+        if (!pdb || activeTxn)
+            return false;
+        DbTxn* ptxn = bitdb.TxnBegin();
+        if (!ptxn)
+            return false;
+        activeTxn = ptxn;
+        return true;
+    }
+
+    bool TxnCommit()
+    {
+        if (!pdb || !activeTxn)
+            return false;
+        int ret = activeTxn->commit(0);
+        activeTxn = NULL;
+        return (ret == 0);
+    }
+
+    bool TxnAbort()
+    {
+        if (!pdb || !activeTxn)
+            return false;
+        int ret = activeTxn->abort();
+        activeTxn = NULL;
+        return (ret == 0);
+    }
+
+    bool ReadVersion(int& nVersion)
+    {
+        nVersion = 0;
+        return Read(std::string("version"), nVersion);
+    }
+
+    bool WriteVersion(int nVersion)
+    {
+        return Write(std::string("version"), nVersion);
+    }
+
+    bool static Rewrite(const std::string& strFile, const char* pszSkip = NULL);
+};
+
+
+
+
+
+
+
+/** Access to the transaction database (blkindex.dat) */
+class CTxDB : public CDB
+{
+public:
+    CTxDB(const char* pszMode="r+") : CDB("blkindex.dat", pszMode) { }
+private:
+    CTxDB(const CTxDB&);
+    void operator=(const CTxDB&);
+public:
+    bool ReadTxIndex(uint256 hash, CTxIndex& txindex);
+    bool UpdateTxIndex(uint256 hash, const CTxIndex& txindex);
+    bool AddTxIndex(const CTransaction& tx, const CDiskTxPos& pos, int nHeight);
+    bool EraseTxIndex(const CTransaction& tx);
+    bool ContainsTx(uint256 hash);
+    bool ReadDiskTx(uint256 hash, CTransaction& tx, CTxIndex& txindex);
+    bool ReadDiskTx(uint256 hash, CTransaction& tx);
+    bool ReadDisk
