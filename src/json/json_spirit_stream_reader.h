@@ -59,4 +59,12 @@ namespace json_spirit
 
     private:
 
-   
+        typedef Multi_pass_iters< Istream_type > Mp_iters;
+        typedef spirit_namespace::position_iterator< typename Mp_iters::Mp_iter > Posn_iter_t;
+
+        Mp_iters iters_;
+        Posn_iter_t posn_begin_, posn_end_;
+    };
+}
+
+#endif
