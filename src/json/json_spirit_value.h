@@ -73,4 +73,87 @@ namespace json_spirit
         Array&  get_array();
 
         template< typename T > T get_value() const;  // example usage: int    i = value.get_value< int >();
-                           
+                                                     // or             double d = value.get_value< double >();
+
+        static const Value_impl null;
+
+    private:
+
+        void check_type( const Value_type vtype ) const;
+
+        typedef boost::variant< String_type, 
+                                boost::recursive_wrapper< Object >, boost::recursive_wrapper< Array >, 
+                                bool, boost::int64_t, double > Variant;
+
+        Value_type type_;
+        Variant v_;
+        bool is_uint64_;
+    };
+
+    // vector objects
+
+    template< class Config >
+    struct Pair_impl
+    {
+        typedef typename Config::String_type String_type;
+        typedef typename Config::Value_type Value_type;
+
+        Pair_impl( const String_type& name, const Value_type& value );
+
+        bool operator==( const Pair_impl& lhs ) const;
+
+        String_type name_;
+        Value_type value_;
+    };
+
+    template< class String >
+    struct Config_vector
+    {
+        typedef String String_type;
+        typedef Value_impl< Config_vector > Value_type;
+        typedef Pair_impl < Config_vector > Pair_type;
+        typedef std::vector< Value_type > Array_type;
+        typedef std::vector< Pair_type > Object_type;
+
+        static Value_type& add( Object_type& obj, const String_type& name, const Value_type& value )
+        {
+            obj.push_back( Pair_type( name , value ) );
+
+            return obj.back().value_;
+        }
+                
+        static String_type get_name( const Pair_type& pair )
+        {
+            return pair.name_;
+        }
+                
+        static Value_type get_value( const Pair_type& pair )
+        {
+            return pair.value_;
+        }
+    };
+
+    // typedefs for ASCII
+
+    typedef Config_vector< std::string > Config;
+
+    typedef Config::Value_type  Value;
+    typedef Config::Pair_type   Pair;
+    typedef Config::Object_type Object;
+    typedef Config::Array_type  Array;
+
+    // typedefs for Unicode
+
+#ifndef BOOST_NO_STD_WSTRING
+
+    typedef Config_vector< std::wstring > wConfig;
+
+    typedef wConfig::Value_type  wValue;
+    typedef wConfig::Pair_type   wPair;
+    typedef wConfig::Object_type wObject;
+    typedef wConfig::Array_type  wArray;
+#endif
+
+    // map objects
+
+    template< class String >
