@@ -243,4 +243,103 @@ namespace json_spirit
     Value_impl< Config >::Value_impl( const Array& value )
     :   type_( array_type )
     ,   v_( value )
-    ,   is_u
+    ,   is_uint64_( false )
+    {
+    }
+
+    template< class Config >
+    Value_impl< Config >::Value_impl( bool value )
+    :   type_( bool_type )
+    ,   v_( value )
+    ,   is_uint64_( false )
+    {
+    }
+
+    template< class Config >
+    Value_impl< Config >::Value_impl( int value )
+    :   type_( int_type )
+    ,   v_( static_cast< boost::int64_t >( value ) )
+    ,   is_uint64_( false )
+    {
+    }
+
+    template< class Config >
+    Value_impl< Config >::Value_impl( boost::int64_t value )
+    :   type_( int_type )
+    ,   v_( value )
+    ,   is_uint64_( false )
+    {
+    }
+
+    template< class Config >
+    Value_impl< Config >::Value_impl( boost::uint64_t value )
+    :   type_( int_type )
+    ,   v_( static_cast< boost::int64_t >( value ) )
+    ,   is_uint64_( true )
+    {
+    }
+
+    template< class Config >
+    Value_impl< Config >::Value_impl( double value )
+    :   type_( real_type )
+    ,   v_( value )
+    ,   is_uint64_( false )
+    {
+    }
+
+    template< class Config >
+    Value_impl< Config >::Value_impl( const Value_impl< Config >& other )
+    :   type_( other.type() )
+    ,   v_( other.v_ )
+    ,   is_uint64_( other.is_uint64_ )
+    {
+    }
+
+    template< class Config >
+    Value_impl< Config >& Value_impl< Config >::operator=( const Value_impl& lhs )
+    {
+        Value_impl tmp( lhs );
+
+        std::swap( type_, tmp.type_ );
+        std::swap( v_, tmp.v_ );
+        std::swap( is_uint64_, tmp.is_uint64_ );
+
+        return *this;
+    }
+
+    template< class Config >
+    bool Value_impl< Config >::operator==( const Value_impl& lhs ) const
+    {
+        if( this == &lhs ) return true;
+
+        if( type() != lhs.type() ) return false;
+
+        return v_ == lhs.v_; 
+    }
+
+    template< class Config >
+    Value_type Value_impl< Config >::type() const
+    {
+        return type_;
+    }
+
+    template< class Config >
+    bool Value_impl< Config >::is_uint64() const
+    {
+        return is_uint64_;
+    }
+
+    template< class Config >
+    bool Value_impl< Config >::is_null() const
+    {
+        return type() == null_type;
+    }
+
+    template< class Config >
+    void Value_impl< Config >::check_type( const Value_type vtype ) const
+    {
+        if( type() != vtype ) 
+        {
+            std::ostringstream os;
+
+            /////
