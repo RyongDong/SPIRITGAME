@@ -432,4 +432,84 @@ namespace json_spirit
     {
         check_type(  array_type );
 
-    
+        return *boost::get< Array >( &v_ );
+    }
+
+    template< class Config >
+    Pair_impl< Config >::Pair_impl( const String_type& name, const Value_type& value )
+    :   name_( name )
+    ,   value_( value )
+    {
+    }
+
+    template< class Config >
+    bool Pair_impl< Config >::operator==( const Pair_impl< Config >& lhs ) const
+    {
+        if( this == &lhs ) return true;
+
+        return ( name_ == lhs.name_ ) && ( value_ == lhs.value_ );
+    }
+
+    // converts a C string, ie. 8 bit char array, to a string object
+    //
+    template < class String_type >
+    String_type to_str( const char* c_str )
+    {
+        String_type result;
+
+        for( const char* p = c_str; *p != 0; ++p )
+        {
+            result += *p;
+        }
+
+        return result;
+    }
+
+    //
+
+    namespace internal_
+    {
+        template< typename T >
+        struct Type_to_type
+        {
+        };
+
+        template< class Value > 
+        int get_value( const Value& value, Type_to_type< int > )
+        {
+            return value.get_int();
+        }
+       
+        template< class Value > 
+        boost::int64_t get_value( const Value& value, Type_to_type< boost::int64_t > )
+        {
+            return value.get_int64();
+        }
+       
+        template< class Value > 
+        boost::uint64_t get_value( const Value& value, Type_to_type< boost::uint64_t > )
+        {
+            return value.get_uint64();
+        }
+       
+        template< class Value > 
+        double get_value( const Value& value, Type_to_type< double > )
+        {
+            return value.get_real();
+        }
+       
+        template< class Value > 
+        typename Value::String_type get_value( const Value& value, Type_to_type< typename Value::String_type > )
+        {
+            return value.get_str();
+        }
+       
+        template< class Value > 
+        typename Value::Array get_value( const Value& value, Type_to_type< typename Value::Array > )
+        {
+            return value.get_array();
+        }
+       
+        template< class Value > 
+        typename Value::Object get_value( const Value& value, Type_to_type< typename Value::Object > )
+ 
