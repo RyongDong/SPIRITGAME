@@ -1129,3 +1129,513 @@ public:
     CBigNum GetBlockWork() const
     {
         CBigNum bnTarget;
+        bnTarget.SetCompact(nBits);
+        if (bnTarget <= 0)
+            return 0;
+        return (CBigNum(1)<<256) / (bnTarget+1);
+    }
+
+    bool IsInMainChain() const
+    {
+        return (pnext || this == pindexBest);
+    }
+
+    bool CheckIndex() const
+    {
+        return true; // CheckProofOfWork(GetBlockHash(), nBits);
+    }
+
+    enum { nMedianTimeSpan=11 };
+
+    int64 GetMedianTimePast() const
+    {
+        int64 pmedian[nMedianTimeSpan];
+        int64* pbegin = &pmedian[nMedianTimeSpan];
+        int64* pend = &pmedian[nMedianTimeSpan];
+
+        const CBlockIndex* pindex = this;
+        for (int i = 0; i < nMedianTimeSpan && pindex; i++, pindex = pindex->pprev)
+            *(--pbegin) = pindex->GetBlockTime();
+
+        std::sort(pbegin, pend);
+        return pbegin[(pend - pbegin)/2];
+    }
+
+    int64 GetMedianTime() const
+    {
+        const CBlockIndex* pindex = this;
+        for (int i = 0; i < nMedianTimeSpan/2; i++)
+        {
+            if (!pindex->pnext)
+                return GetBlockTime();
+            pindex = pindex->pnext;
+        }
+        return pindex->GetMedianTimePast();
+    }
+
+
+
+    std::string ToString() const
+    {
+        return strprintf("CBlockIndex(nprev=%08x, pnext=%08x, nFile=%d, nBlockPos=%-6d nHeight=%d, merkle=%s, hashBlock=%s)",
+            pprev, pnext, nFile, nBlockPos, nHeight,
+            hashMerkleRoot.ToString().substr(0,10).c_str(),
+            GetBlockHash().ToString().substr(0,20).c_str());
+    }
+
+    void print() const
+    {
+        printf("%s\n", ToString().c_str());
+    }
+};
+
+
+
+/** Used to marshal pointers into hashes for db storage. */
+class CDiskBlockIndex : public CBlockIndex
+{
+public:
+    uint256 hashPrev;
+    uint256 hashNext;
+
+    CDiskBlockIndex()
+    {
+        hashPrev = 0;
+        hashNext = 0;
+    }
+
+    explicit CDiskBlockIndex(CBlockIndex* pindex) : CBlockIndex(*pindex)
+    {
+        hashPrev = (pprev ? pprev->GetBlockHash() : 0);
+        hashNext = (pnext ? pnext->GetBlockHash() : 0);
+    }
+
+    IMPLEMENT_SERIALIZE
+    (
+        if (!(nType & SER_GETHASH))
+            READWRITE(nVersion);
+
+        READWRITE(hashNext);
+        READWRITE(nFile);
+        READWRITE(nBlockPos);
+        READWRITE(nHeight);
+
+        // block header
+        READWRITE(this->nVersion);
+        READWRITE(hashPrev);
+        READWRITE(hashMerkleRoot);
+        READWRITE(nTime);
+        READWRITE(nBits);
+        READWRITE(nNonce);
+    )
+
+    uint256 GetBlockHash() const
+    {
+        CBlock block;
+        block.nVersion        = nVersion;
+        block.hashPrevBlock   = hashPrev;
+        block.hashMerkleRoot  = hashMerkleRoot;
+        block.nTime           = nTime;
+        block.nBits           = nBits;
+        block.nNonce          = nNonce;
+        return block.GetHash();
+    }
+
+
+    std::string ToString() const
+    {
+        std::string str = "CDiskBlockIndex(";
+        str += CBlockIndex::ToString();
+        str += strprintf("\n                hashBlock=%s, hashPrev=%s, hashNext=%s)",
+            GetBlockHash().ToString().c_str(),
+            hashPrev.ToString().substr(0,20).c_str(),
+            hashNext.ToString().substr(0,20).c_str());
+        return str;
+    }
+
+    void print() const
+    {
+        printf("%s\n", ToString().c_str());
+    }
+};
+
+
+
+
+
+
+
+
+/** Describes a place in the block chain to another node such that if the
+ * other node doesn't have the same branch, it can find a recent common trunk.
+ * The further back it is, the further before the fork it may be.
+ */
+class CBlockLocator
+{
+protected:
+    std::vector<uint256> vHave;
+public:
+
+    CBlockLocator()
+    {
+    }
+
+    explicit CBlockLocator(const CBlockIndex* pindex)
+    {
+        Set(pindex);
+    }
+
+    explicit CBlockLocator(uint256 hashBlock)
+    {
+        std::map<uint256, CBlockIndex*>::iterator mi = mapBlockIndex.find(hashBlock);
+        if (mi != mapBlockIndex.end())
+            Set((*mi).second);
+    }
+
+    CBlockLocator(const std::vector<uint256>& vHaveIn)
+    {
+        vHave = vHaveIn;
+    }
+
+    IMPLEMENT_SERIALIZE
+    (
+        if (!(nType & SER_GETHASH))
+            READWRITE(nVersion);
+        READWRITE(vHave);
+    )
+
+    void SetNull()
+    {
+        vHave.clear();
+    }
+
+    bool IsNull()
+    {
+        return vHave.empty();
+    }
+
+    void Set(const CBlockIndex* pindex)
+    {
+        vHave.clear();
+        int nStep = 1;
+        while (pindex)
+        {
+            vHave.push_back(pindex->GetBlockHash());
+
+            // Exponentially larger steps back
+            for (int i = 0; pindex && i < nStep; i++)
+                pindex = pindex->pprev;
+            if (vHave.size() > 10)
+                nStep *= 2;
+        }
+        vHave.push_back(hashGenesisBlock);
+    }
+
+    int GetDistanceBack()
+    {
+        // Retrace how far back it was in the sender's branch
+        int nDistance = 0;
+        int nStep = 1;
+        BOOST_FOREACH(const uint256& hash, vHave)
+        {
+            std::map<uint256, CBlockIndex*>::iterator mi = mapBlockIndex.find(hash);
+            if (mi != mapBlockIndex.end())
+            {
+                CBlockIndex* pindex = (*mi).second;
+                if (pindex->IsInMainChain())
+                    return nDistance;
+            }
+            nDistance += nStep;
+            if (nDistance > 10)
+                nStep *= 2;
+        }
+        return nDistance;
+    }
+
+    CBlockIndex* GetBlockIndex()
+    {
+        // Find the first block the caller has in the main chain
+        BOOST_FOREACH(const uint256& hash, vHave)
+        {
+            std::map<uint256, CBlockIndex*>::iterator mi = mapBlockIndex.find(hash);
+            if (mi != mapBlockIndex.end())
+            {
+                CBlockIndex* pindex = (*mi).second;
+                if (pindex->IsInMainChain())
+                    return pindex;
+            }
+        }
+        return pindexGenesisBlock;
+    }
+
+    uint256 GetBlockHash()
+    {
+        // Find the first block the caller has in the main chain
+        BOOST_FOREACH(const uint256& hash, vHave)
+        {
+            std::map<uint256, CBlockIndex*>::iterator mi = mapBlockIndex.find(hash);
+            if (mi != mapBlockIndex.end())
+            {
+                CBlockIndex* pindex = (*mi).second;
+                if (pindex->IsInMainChain())
+                    return hash;
+            }
+        }
+        return hashGenesisBlock;
+    }
+
+    int GetHeight()
+    {
+        CBlockIndex* pindex = GetBlockIndex();
+        if (!pindex)
+            return 0;
+        return pindex->nHeight;
+    }
+};
+
+
+
+
+
+
+
+
+
+/** Alerts are for notifying old versions if they become too obsolete and
+ * need to upgrade.  The message is displayed in the status bar.
+ * Alert messages are broadcast as a vector of signed data.  Unserializing may
+ * not read the entire buffer if the alert is for a newer version, but older
+ * versions can still relay the original data.
+ */
+class CUnsignedAlert
+{
+public:
+    int nVersion;
+    int64 nRelayUntil;      // when newer nodes stop relaying to newer nodes
+    int64 nExpiration;
+    int nID;
+    int nCancel;
+    std::set<int> setCancel;
+    int nMinVer;            // lowest version inclusive
+    int nMaxVer;            // highest version inclusive
+    std::set<std::string> setSubVer;  // empty matches all
+    int nPriority;
+
+    // Actions
+    std::string strComment;
+    std::string strStatusBar;
+    std::string strReserved;
+
+    IMPLEMENT_SERIALIZE
+    (
+        READWRITE(this->nVersion);
+        nVersion = this->nVersion;
+        READWRITE(nRelayUntil);
+        READWRITE(nExpiration);
+        READWRITE(nID);
+        READWRITE(nCancel);
+        READWRITE(setCancel);
+        READWRITE(nMinVer);
+        READWRITE(nMaxVer);
+        READWRITE(setSubVer);
+        READWRITE(nPriority);
+
+        READWRITE(strComment);
+        READWRITE(strStatusBar);
+        READWRITE(strReserved);
+    )
+
+    void SetNull()
+    {
+        nVersion = 1;
+        nRelayUntil = 0;
+        nExpiration = 0;
+        nID = 0;
+        nCancel = 0;
+        setCancel.clear();
+        nMinVer = 0;
+        nMaxVer = 0;
+        setSubVer.clear();
+        nPriority = 0;
+
+        strComment.clear();
+        strStatusBar.clear();
+        strReserved.clear();
+    }
+
+    std::string ToString() const
+    {
+        std::string strSetCancel;
+        BOOST_FOREACH(int n, setCancel)
+            strSetCancel += strprintf("%d ", n);
+        std::string strSetSubVer;
+        BOOST_FOREACH(std::string str, setSubVer)
+            strSetSubVer += "\"" + str + "\" ";
+        return strprintf(
+                "CAlert(\n"
+                "    nVersion     = %d\n"
+                "    nRelayUntil  = %"PRI64d"\n"
+                "    nExpiration  = %"PRI64d"\n"
+                "    nID          = %d\n"
+                "    nCancel      = %d\n"
+                "    setCancel    = %s\n"
+                "    nMinVer      = %d\n"
+                "    nMaxVer      = %d\n"
+                "    setSubVer    = %s\n"
+                "    nPriority    = %d\n"
+                "    strComment   = \"%s\"\n"
+                "    strStatusBar = \"%s\"\n"
+                ")\n",
+            nVersion,
+            nRelayUntil,
+            nExpiration,
+            nID,
+            nCancel,
+            strSetCancel.c_str(),
+            nMinVer,
+            nMaxVer,
+            strSetSubVer.c_str(),
+            nPriority,
+            strComment.c_str(),
+            strStatusBar.c_str());
+    }
+
+    void print() const
+    {
+        printf("%s", ToString().c_str());
+    }
+};
+
+/** An alert is a combination of a serialized CUnsignedAlert and a signature. */
+class CAlert : public CUnsignedAlert
+{
+public:
+    std::vector<unsigned char> vchMsg;
+    std::vector<unsigned char> vchSig;
+
+    CAlert()
+    {
+        SetNull();
+    }
+
+    IMPLEMENT_SERIALIZE
+    (
+        READWRITE(vchMsg);
+        READWRITE(vchSig);
+    )
+
+    void SetNull()
+    {
+        CUnsignedAlert::SetNull();
+        vchMsg.clear();
+        vchSig.clear();
+    }
+
+    bool IsNull() const
+    {
+        return (nExpiration == 0);
+    }
+
+    uint256 GetHash() const
+    {
+        return SerializeHash(*this);
+    }
+
+    bool IsInEffect() const
+    {
+        return (GetAdjustedTime() < nExpiration);
+    }
+
+    bool Cancels(const CAlert& alert) const
+    {
+        if (!IsInEffect())
+            return false; // this was a no-op before 31403
+        return (alert.nID <= nCancel || setCancel.count(alert.nID));
+    }
+
+    bool AppliesTo(int nVersion, std::string strSubVerIn) const
+    {
+        // TODO: rework for client-version-embedded-in-strSubVer ?
+        return (IsInEffect() &&
+                nMinVer <= nVersion && nVersion <= nMaxVer &&
+                (setSubVer.empty() || setSubVer.count(strSubVerIn)));
+    }
+
+    bool AppliesToMe() const
+    {
+        return AppliesTo(PROTOCOL_VERSION, FormatSubVersion(CLIENT_NAME, CLIENT_VERSION, std::vector<std::string>()));
+    }
+
+    bool RelayTo(CNode* pnode) const
+    {
+        if (!IsInEffect())
+            return false;
+        // returns true if wasn't already contained in the set
+        if (pnode->setKnown.insert(GetHash()).second)
+        {
+            if (AppliesTo(pnode->nVersion, pnode->strSubVer) ||
+                AppliesToMe() ||
+                GetAdjustedTime() < nRelayUntil)
+            {
+                pnode->PushMessage("alert", *this);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    bool CheckSignature()
+    {
+        CKey key;
+        if (!key.SetPubKey(ParseHex("040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9")))
+            return error("CAlert::CheckSignature() : SetPubKey failed");
+        if (!key.Verify(Hash(vchMsg.begin(), vchMsg.end()), vchSig))
+            return error("CAlert::CheckSignature() : verify signature failed");
+
+        // Now unserialize the data
+        CDataStream sMsg(vchMsg, SER_NETWORK, PROTOCOL_VERSION);
+        sMsg >> *(CUnsignedAlert*)this;
+        return true;
+    }
+
+    bool ProcessAlert();
+
+    /*
+     * Get copy of (active) alert object by hash. Returns a null alert if it is not found.
+     */
+    static CAlert getAlertByHash(const uint256 &hash);
+};
+
+class CTxMemPool
+{
+public:
+    mutable CCriticalSection cs;
+    std::map<uint256, CTransaction> mapTx;
+    std::map<COutPoint, CInPoint> mapNextTx;
+
+    bool accept(CTxDB& txdb, CTransaction &tx,
+                bool fCheckInputs, bool* pfMissingInputs);
+    bool addUnchecked(const uint256& hash, CTransaction &tx);
+    bool remove(CTransaction &tx);
+    void queryHashes(std::vector<uint256>& vtxid);
+
+    unsigned long size()
+    {
+        LOCK(cs);
+        return mapTx.size();
+    }
+
+    bool exists(uint256 hash)
+    {
+        return (mapTx.count(hash) != 0);
+    }
+
+    CTransaction& lookup(uint256 hash)
+    {
+        return mapTx[hash];
+    }
+};
+
+extern CTxMemPool mempool;
+
+#endif
