@@ -512,4 +512,23 @@ namespace json_spirit
        
         template< class Value > 
         typename Value::Object get_value( const Value& value, Type_to_type< typename Value::Object > )
- 
+        {
+            return value.get_obj();
+        }
+       
+        template< class Value > 
+        bool get_value( const Value& value, Type_to_type< bool > )
+        {
+            return value.get_bool();
+        }
+    }
+
+    template< class Config >
+    template< typename T > 
+    T Value_impl< Config >::get_value() const
+    {
+        return internal_::get_value( *this, internal_::Type_to_type< T >() );
+    }
+}
+
+#endif
