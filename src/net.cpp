@@ -109,4 +109,84 @@ bool GetLocal(CService& addr, const CNetAddr *paddrPeer)
     int nBestReachability = -1;
     {
         LOCK(cs_mapLocalHost);
-        for (map<CNetAddr, LocalServiceInfo>::iterator it = mapLocalHost.begin(); it != mapLo
+        for (map<CNetAddr, LocalServiceInfo>::iterator it = mapLocalHost.begin(); it != mapLocalHost.end(); it++)
+        {
+            int nScore = (*it).second.nScore;
+            int nReachability = (*it).first.GetReachabilityFrom(paddrPeer);
+            if (nReachability > nBestReachability || (nReachability == nBestReachability && nScore > nBestScore))
+            {
+                addr = CService((*it).first, (*it).second.nPort);
+                nBestReachability = nReachability;
+                nBestScore = nScore;
+            }
+        }
+    }
+    return nBestScore >= 0;
+}
+
+// get best local address for a particular peer as a CAddress
+CAddress GetLocalAddress(const CNetAddr *paddrPeer)
+{
+    CAddress ret(CService("0.0.0.0",0),0);
+    CService addr;
+    if (GetLocal(addr, paddrPeer))
+    {
+        ret = CAddress(addr);
+        ret.nServices = nLocalServices;
+        ret.nTime = GetAdjustedTime();
+    }
+    return ret;
+}
+
+bool RecvLine(SOCKET hSocket, string& strLine)
+{
+    strLine = "";
+    loop
+    {
+        char c;
+        int nBytes = recv(hSocket, &c, 1, 0);
+        if (nBytes > 0)
+        {
+            if (c == '\n')
+                continue;
+            if (c == '\r')
+                return true;
+            strLine += c;
+            if (strLine.size() >= 9000)
+                return true;
+        }
+        else if (nBytes <= 0)
+        {
+            if (fShutdown)
+                return false;
+            if (nBytes < 0)
+            {
+                int nErr = WSAGetLastError();
+                if (nErr == WSAEMSGSIZE)
+                    continue;
+                if (nErr == WSAEWOULDBLOCK || nErr == WSAEINTR || nErr == WSAEINPROGRESS)
+                {
+                    Sleep(10);
+                    continue;
+                }
+            }
+            if (!strLine.empty())
+                return true;
+            if (nBytes == 0)
+            {
+                // socket closed
+                printf("socket closed\n");
+                return false;
+            }
+            else
+            {
+                // socket error
+                int nErr = WSAGetLastError();
+                printf("recv failed: %d\n", nErr);
+                return false;
+            }
+        }
+    }
+}
+
+// used when scores of local addresses may h
