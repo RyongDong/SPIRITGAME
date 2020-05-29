@@ -289,4 +289,66 @@ bool SeenLocal(const CService& addr)
 /** check whether a given address is potentially local */
 bool IsLocal(const CService& addr)
 {
-    LOC
+    LOCK(cs_mapLocalHost);
+    return mapLocalHost.count(addr) > 0;
+}
+
+/** check whether a given address is in a network we can probably connect to */
+bool IsReachable(const CNetAddr& addr)
+{
+    LOCK(cs_mapLocalHost);
+    enum Network net = addr.GetNetwork();
+    return vfReachable[net] && !vfLimited[net];
+}
+
+bool GetMyExternalIP2(const CService& addrConnect, const char* pszGet, const char* pszKeyword, CNetAddr& ipRet)
+{
+    SOCKET hSocket;
+    if (!ConnectSocket(addrConnect, hSocket))
+        return error("GetMyExternalIP() : connection to %s failed", addrConnect.ToString().c_str());
+
+    send(hSocket, pszGet, strlen(pszGet), MSG_NOSIGNAL);
+
+    string strLine;
+    while (RecvLine(hSocket, strLine))
+    {
+        if (strLine.empty()) // HTTP response is separated from headers by blank line
+        {
+            loop
+            {
+                if (!RecvLine(hSocket, strLine))
+                {
+                    closesocket(hSocket);
+                    return false;
+                }
+                if (pszKeyword == NULL)
+                    break;
+                if (strLine.find(pszKeyword) != string::npos)
+                {
+                    strLine = strLine.substr(strLine.find(pszKeyword) + strlen(pszKeyword));
+                    break;
+                }
+            }
+            closesocket(hSocket);
+            if (strLine.find("<") != string::npos)
+                strLine = strLine.substr(0, strLine.find("<"));
+            strLine = strLine.substr(strspn(strLine.c_str(), " \t\n\r"));
+            while (strLine.size() > 0 && isspace(strLine[strLine.size()-1]))
+                strLine.resize(strLine.size()-1);
+            CService addr(strLine,0,true);
+            printf("GetMyExternalIP() received [%s] %s\n", strLine.c_str(), addr.ToString().c_str());
+            if (!addr.IsValid() || !addr.IsRoutable())
+                return false;
+            ipRet.SetIP(addr);
+            return true;
+        }
+    }
+    closesocket(hSocket);
+    return error("GetMyExternalIP() : connection closed");
+}
+
+// We now get our external IP from the IRC server first and only use this as a backup
+bool GetMyExternalIP(CNetAddr& ipRet)
+{
+    CService addrConnect;
+    const char* pszG
