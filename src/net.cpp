@@ -189,4 +189,104 @@ bool RecvLine(SOCKET hSocket, string& strLine)
     }
 }
 
-// used when scores of local addresses may h
+// used when scores of local addresses may have changed
+// pushes better local address to peers
+void static AdvertizeLocal()
+{
+    LOCK(cs_vNodes);
+    BOOST_FOREACH(CNode* pnode, vNodes)
+    {
+        if (pnode->fSuccessfullyConnected)
+        {
+            CAddress addrLocal = GetLocalAddress(&pnode->addr);
+            if (addrLocal.IsRoutable() && (CService)addrLocal != (CService)pnode->addrLocal)
+            {
+                pnode->PushAddress(addrLocal);
+                pnode->addrLocal = addrLocal;
+            }
+        }
+    }
+}
+
+void SetReachable(enum Network net, bool fFlag)
+{
+    LOCK(cs_mapLocalHost);
+    vfReachable[net] = fFlag;
+    if (net == NET_IPV6 && fFlag)
+        vfReachable[NET_IPV4] = true;
+}
+
+// learn a new local address
+bool AddLocal(const CService& addr, int nScore)
+{
+    if (!addr.IsRoutable())
+        return false;
+
+    if (!fDiscover && nScore < LOCAL_MANUAL)
+        return false;
+
+    if (IsLimited(addr))
+        return false;
+
+    printf("AddLocal(%s,%i)\n", addr.ToString().c_str(), nScore);
+
+    {
+        LOCK(cs_mapLocalHost);
+        bool fAlready = mapLocalHost.count(addr) > 0;
+        LocalServiceInfo &info = mapLocalHost[addr];
+        if (!fAlready || nScore >= info.nScore) {
+            info.nScore = nScore;
+            info.nPort = addr.GetPort() + (fAlready ? 1 : 0);
+        }
+        SetReachable(addr.GetNetwork());
+    }
+
+    AdvertizeLocal();
+
+    return true;
+}
+
+bool AddLocal(const CNetAddr &addr, int nScore)
+{
+    return AddLocal(CService(addr, GetListenPort()), nScore);
+}
+
+/** Make a particular network entirely off-limits (no automatic connects to it) */
+void SetLimited(enum Network net, bool fLimited)
+{
+    if (net == NET_UNROUTABLE)
+        return;
+    LOCK(cs_mapLocalHost);
+    vfLimited[net] = fLimited;
+}
+
+bool IsLimited(enum Network net)
+{
+    LOCK(cs_mapLocalHost);
+    return vfLimited[net];
+}
+
+bool IsLimited(const CNetAddr &addr)
+{
+    return IsLimited(addr.GetNetwork());
+}
+
+/** vote for a local address */
+bool SeenLocal(const CService& addr)
+{
+    {
+        LOCK(cs_mapLocalHost);
+        if (mapLocalHost.count(addr) == 0)
+            return false;
+        mapLocalHost[addr].nScore++;
+    }
+
+    AdvertizeLocal();
+
+    return true;
+}
+
+/** check whether a given address is potentially local */
+bool IsLocal(const CService& addr)
+{
+    LOC
