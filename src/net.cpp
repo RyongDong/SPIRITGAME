@@ -426,4 +426,88 @@ void ThreadGetMyExternalIP(void* parg)
 
 void AddressCurrentlyConnected(const CService& addr)
 {
-    add
+    addrman.Connected(addr);
+}
+
+
+
+
+
+
+
+CNode* FindNode(const CNetAddr& ip)
+{
+    {
+        LOCK(cs_vNodes);
+        BOOST_FOREACH(CNode* pnode, vNodes)
+            if ((CNetAddr)pnode->addr == ip)
+                return (pnode);
+    }
+    return NULL;
+}
+
+CNode* FindNode(std::string addrName)
+{
+    LOCK(cs_vNodes);
+    BOOST_FOREACH(CNode* pnode, vNodes)
+        if (pnode->addrName == addrName)
+            return (pnode);
+    return NULL;
+}
+
+CNode* FindNode(const CService& addr)
+{
+    {
+        LOCK(cs_vNodes);
+        BOOST_FOREACH(CNode* pnode, vNodes)
+            if ((CService)pnode->addr == addr)
+                return (pnode);
+    }
+    return NULL;
+}
+
+CNode* ConnectNode(CAddress addrConnect, const char *pszDest, int64 nTimeout)
+{
+    if (pszDest == NULL) {
+        if (IsLocal(addrConnect))
+            return NULL;
+
+        // Look for an existing connection
+        CNode* pnode = FindNode((CService)addrConnect);
+        if (pnode)
+        {
+            if (nTimeout != 0)
+                pnode->AddRef(nTimeout);
+            else
+                pnode->AddRef();
+            return pnode;
+        }
+    }
+
+
+    /// debug print
+    printf("trying connection %s lastseen=%.1fhrs\n",
+        pszDest ? pszDest : addrConnect.ToString().c_str(),
+        pszDest ? 0 : (double)(GetAdjustedTime() - addrConnect.nTime)/3600.0);
+
+    // Connect
+    SOCKET hSocket;
+    if (pszDest ? ConnectSocketByName(addrConnect, hSocket, pszDest, GetDefaultPort()) : ConnectSocket(addrConnect, hSocket))
+    {
+        addrman.Attempt(addrConnect);
+
+        /// debug print
+        printf("connected %s\n", pszDest ? pszDest : addrConnect.ToString().c_str());
+
+        // Set to nonblocking
+#ifdef WIN32
+        u_long nOne = 1;
+        if (ioctlsocket(hSocket, FIONBIO, &nOne) == SOCKET_ERROR)
+            printf("ConnectSocket() : ioctlsocket nonblocking setting failed, error %d\n", WSAGetLastError());
+#else
+        if (fcntl(hSocket, F_SETFL, O_NONBLOCK) == SOCKET_ERROR)
+            printf("ConnectSocket() : fcntl nonblocking setting failed, error %d\n", errno);
+#endif
+
+        // Add node
+        CNode* pnode = new CNode(hSocket, addrConnect, pszDest ? pszDest : "", false);
