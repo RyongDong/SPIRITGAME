@@ -511,3 +511,91 @@ CNode* ConnectNode(CAddress addrConnect, const char *pszDest, int64 nTimeout)
 
         // Add node
         CNode* pnode = new CNode(hSocket, addrConnect, pszDest ? pszDest : "", false);
+        if (nTimeout != 0)
+            pnode->AddRef(nTimeout);
+        else
+            pnode->AddRef();
+
+        {
+            LOCK(cs_vNodes);
+            vNodes.push_back(pnode);
+        }
+
+        pnode->nTimeConnected = GetTime();
+        return pnode;
+    }
+    else
+    {
+        return NULL;
+    }
+}
+
+void CNode::CloseSocketDisconnect()
+{
+    fDisconnect = true;
+    if (hSocket != INVALID_SOCKET)
+    {
+        printf("disconnecting node %s\n", addrName.c_str());
+        closesocket(hSocket);
+        hSocket = INVALID_SOCKET;
+        vRecv.clear();
+    }
+}
+
+void CNode::Cleanup()
+{
+}
+
+
+void CNode::PushVersion()
+{
+    /// when NTP implemented, change to just nTime = GetAdjustedTime()
+    int64 nTime = (fInbound ? GetAdjustedTime() : GetTime());
+    CAddress addrYou = (addr.IsRoutable() && !IsProxy(addr) ? addr : CAddress(CService("0.0.0.0",0)));
+    CAddress addrMe = GetLocalAddress(&addr);
+    RAND_bytes((unsigned char*)&nLocalHostNonce, sizeof(nLocalHostNonce));
+    printf("send version message: version %d, blocks=%d, us=%s, them=%s, peer=%s\n", PROTOCOL_VERSION, nBestHeight, addrMe.ToString().c_str(), addrYou.ToString().c_str(), addr.ToString().c_str());
+    PushMessage("version", PROTOCOL_VERSION, nLocalServices, nTime, addrYou, addrMe,
+                nLocalHostNonce, FormatSubVersion(CLIENT_NAME, CLIENT_VERSION, std::vector<string>()), nBestHeight);
+}
+
+
+
+
+
+std::map<CNetAddr, int64> CNode::setBanned;
+CCriticalSection CNode::cs_setBanned;
+
+void CNode::ClearBanned()
+{
+    setBanned.clear();
+}
+
+bool CNode::IsBanned(CNetAddr ip)
+{
+    bool fResult = false;
+    {
+        LOCK(cs_setBanned);
+        std::map<CNetAddr, int64>::iterator i = setBanned.find(ip);
+        if (i != setBanned.end())
+        {
+            int64 t = (*i).second;
+            if (GetTime() < t)
+                fResult = true;
+        }
+    }
+    return fResult;
+}
+
+bool CNode::Misbehaving(int howmuch)
+{
+    if (addr.IsLocal())
+    {
+        printf("Warning: local node %s misbehaving\n", addrName.c_str());
+        return false;
+    }
+
+    nMisbehavior += howmuch;
+    if (nMisbehavior >= GetArg("-banscore", 100))
+    {
+        int64 banTime = GetTime()+GetArg("-bantime
