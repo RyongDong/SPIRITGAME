@@ -689,4 +689,66 @@ void ThreadSocketHandler2(void* parg)
 
                     // close socket and cleanup
                     pnode->CloseSocketDisconnect();
-             
+                    pnode->Cleanup();
+
+                    // hold in disconnected pool until all refs are released
+                    pnode->nReleaseTime = max(pnode->nReleaseTime, GetTime() + 15 * 60);
+                    if (pnode->fNetworkNode || pnode->fInbound)
+                        pnode->Release();
+                    vNodesDisconnected.push_back(pnode);
+                }
+            }
+
+            // Delete disconnected nodes
+            list<CNode*> vNodesDisconnectedCopy = vNodesDisconnected;
+            BOOST_FOREACH(CNode* pnode, vNodesDisconnectedCopy)
+            {
+                // wait until threads are done using it
+                if (pnode->GetRefCount() <= 0)
+                {
+                    bool fDelete = false;
+                    {
+                        TRY_LOCK(pnode->cs_vSend, lockSend);
+                        if (lockSend)
+                        {
+                            TRY_LOCK(pnode->cs_vRecv, lockRecv);
+                            if (lockRecv)
+                            {
+                                TRY_LOCK(pnode->cs_mapRequests, lockReq);
+                                if (lockReq)
+                                {
+                                    TRY_LOCK(pnode->cs_inventory, lockInv);
+                                    if (lockInv)
+                                        fDelete = true;
+                                }
+                            }
+                        }
+                    }
+                    if (fDelete)
+                    {
+                        vNodesDisconnected.remove(pnode);
+                        delete pnode;
+                    }
+                }
+            }
+        }
+        if (vNodes.size() != nPrevNodeCount)
+        {
+            nPrevNodeCount = vNodes.size();
+            uiInterface.NotifyNumConnectionsChanged(vNodes.size());
+        }
+
+
+        //
+        // Find which sockets have data to receive
+        //
+        struct timeval timeout;
+        timeout.tv_sec  = 0;
+        timeout.tv_usec = 50000; // frequency to poll pnode->vSend
+
+        fd_set fdsetRecv;
+        fd_set fdsetSend;
+        fd_set fdsetError;
+        FD_ZERO(&fdsetRecv);
+        FD_ZERO(&fdsetSend);
+        
