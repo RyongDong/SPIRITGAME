@@ -751,4 +751,70 @@ void ThreadSocketHandler2(void* parg)
         fd_set fdsetError;
         FD_ZERO(&fdsetRecv);
         FD_ZERO(&fdsetSend);
-        
+        FD_ZERO(&fdsetError);
+        SOCKET hSocketMax = 0;
+
+        BOOST_FOREACH(SOCKET hListenSocket, vhListenSocket) {
+            FD_SET(hListenSocket, &fdsetRecv);
+            hSocketMax = max(hSocketMax, hListenSocket);
+        }
+        {
+            LOCK(cs_vNodes);
+            BOOST_FOREACH(CNode* pnode, vNodes)
+            {
+                if (pnode->hSocket == INVALID_SOCKET)
+                    continue;
+                FD_SET(pnode->hSocket, &fdsetRecv);
+                FD_SET(pnode->hSocket, &fdsetError);
+                hSocketMax = max(hSocketMax, pnode->hSocket);
+                {
+                    TRY_LOCK(pnode->cs_vSend, lockSend);
+                    if (lockSend && !pnode->vSend.empty())
+                        FD_SET(pnode->hSocket, &fdsetSend);
+                }
+            }
+        }
+
+        vnThreadsRunning[THREAD_SOCKETHANDLER]--;
+        int nSelect = select(hSocketMax + 1, &fdsetRecv, &fdsetSend, &fdsetError, &timeout);
+        vnThreadsRunning[THREAD_SOCKETHANDLER]++;
+        if (fShutdown)
+            return;
+        if (nSelect == SOCKET_ERROR)
+        {
+            int nErr = WSAGetLastError();
+            if (hSocketMax != INVALID_SOCKET)
+            {
+                printf("socket select error %d\n", nErr);
+                for (unsigned int i = 0; i <= hSocketMax; i++)
+                    FD_SET(i, &fdsetRecv);
+            }
+            FD_ZERO(&fdsetSend);
+            FD_ZERO(&fdsetError);
+            Sleep(timeout.tv_usec/1000);
+        }
+
+
+        //
+        // Accept new connections
+        //
+        BOOST_FOREACH(SOCKET hListenSocket, vhListenSocket)
+        if (hListenSocket != INVALID_SOCKET && FD_ISSET(hListenSocket, &fdsetRecv))
+        {
+#ifdef USE_IPV6
+            struct sockaddr_storage sockaddr;
+#else
+            struct sockaddr sockaddr;
+#endif
+            socklen_t len = sizeof(sockaddr);
+            SOCKET hSocket = accept(hListenSocket, (struct sockaddr*)&sockaddr, &len);
+            CAddress addr;
+            int nInbound = 0;
+
+            if (hSocket != INVALID_SOCKET)
+                if (!addr.SetSockAddr((const struct sockaddr*)&sockaddr))
+                    printf("warning: unknown socket family\n");
+
+            {
+                LOCK(cs_vNodes);
+                BOOST_FO
