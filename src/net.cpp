@@ -937,4 +937,79 @@ void ThreadSocketHandler2(void* parg)
                             vSend.erase(vSend.begin(), vSend.begin() + nBytes);
                             pnode->nLastSend = GetTime();
                         }
-                  
+                        else if (nBytes < 0)
+                        {
+                            // error
+                            int nErr = WSAGetLastError();
+                            if (nErr != WSAEWOULDBLOCK && nErr != WSAEMSGSIZE && nErr != WSAEINTR && nErr != WSAEINPROGRESS)
+                            {
+                                printf("socket send error %d\n", nErr);
+                                pnode->CloseSocketDisconnect();
+                            }
+                        }
+                    }
+                }
+            }
+
+            //
+            // Inactivity checking
+            //
+            if (pnode->vSend.empty())
+                pnode->nLastSendEmpty = GetTime();
+            if (GetTime() - pnode->nTimeConnected > 60)
+            {
+                if (pnode->nLastRecv == 0 || pnode->nLastSend == 0)
+                {
+                    printf("socket no message in first 60 seconds, %d %d\n", pnode->nLastRecv != 0, pnode->nLastSend != 0);
+                    pnode->fDisconnect = true;
+                }
+                else if (GetTime() - pnode->nLastSend > 90*60 && GetTime() - pnode->nLastSendEmpty > 90*60)
+                {
+                    printf("socket not sending\n");
+                    pnode->fDisconnect = true;
+                }
+                else if (GetTime() - pnode->nLastRecv > 90*60)
+                {
+                    printf("socket inactivity timeout\n");
+                    pnode->fDisconnect = true;
+                }
+            }
+        }
+        {
+            LOCK(cs_vNodes);
+            BOOST_FOREACH(CNode* pnode, vNodesCopy)
+                pnode->Release();
+        }
+
+        Sleep(10);
+    }
+}
+
+
+
+
+
+
+
+
+
+#ifdef USE_UPNP
+void ThreadMapPort(void* parg)
+{
+    IMPLEMENT_RANDOMIZE_STACK(ThreadMapPort(parg));
+
+    // Make this thread recognisable as the UPnP thread
+    RenameThread("bitcoin-UPnP");
+
+    try
+    {
+        vnThreadsRunning[THREAD_UPNP]++;
+        ThreadMapPort2(parg);
+        vnThreadsRunning[THREAD_UPNP]--;
+    }
+    catch (std::exception& e) {
+        vnThreadsRunning[THREAD_UPNP]--;
+        PrintException(&e, "ThreadMapPort()");
+    } catch (...) {
+        vnThreadsRunning[THREAD_UPNP]--;
+        PrintException
