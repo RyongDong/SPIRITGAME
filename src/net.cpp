@@ -884,4 +884,57 @@ void ThreadSocketHandler2(void* parg)
                     if (nPos > ReceiveBufferSize()) {
                         if (!pnode->fDisconnect)
                             printf("socket recv flood control disconnect (%d bytes)\n", vRecv.size());
-                        pnode->CloseSocketDisconnect()
+                        pnode->CloseSocketDisconnect();
+                    }
+                    else {
+                        // typical socket buffer is 8K-64K
+                        char pchBuf[0x10000];
+                        int nBytes = recv(pnode->hSocket, pchBuf, sizeof(pchBuf), MSG_DONTWAIT);
+                        if (nBytes > 0)
+                        {
+                            vRecv.resize(nPos + nBytes);
+                            memcpy(&vRecv[nPos], pchBuf, nBytes);
+                            pnode->nLastRecv = GetTime();
+                        }
+                        else if (nBytes == 0)
+                        {
+                            // socket closed gracefully
+                            if (!pnode->fDisconnect)
+                                printf("socket closed\n");
+                            pnode->CloseSocketDisconnect();
+                        }
+                        else if (nBytes < 0)
+                        {
+                            // error
+                            int nErr = WSAGetLastError();
+                            if (nErr != WSAEWOULDBLOCK && nErr != WSAEMSGSIZE && nErr != WSAEINTR && nErr != WSAEINPROGRESS)
+                            {
+                                if (!pnode->fDisconnect)
+                                    printf("socket recv error %d\n", nErr);
+                                pnode->CloseSocketDisconnect();
+                            }
+                        }
+                    }
+                }
+            }
+
+            //
+            // Send
+            //
+            if (pnode->hSocket == INVALID_SOCKET)
+                continue;
+            if (FD_ISSET(pnode->hSocket, &fdsetSend))
+            {
+                TRY_LOCK(pnode->cs_vSend, lockSend);
+                if (lockSend)
+                {
+                    CDataStream& vSend = pnode->vSend;
+                    if (!vSend.empty())
+                    {
+                        int nBytes = send(pnode->hSocket, &vSend[0], vSend.size(), MSG_NOSIGNAL | MSG_DONTWAIT);
+                        if (nBytes > 0)
+                        {
+                            vSend.erase(vSend.begin(), vSend.begin() + nBytes);
+                            pnode->nLastSend = GetTime();
+                        }
+                  
