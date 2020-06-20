@@ -1082,4 +1082,79 @@ void ThreadMapPort2(void* parg)
         loop {
             if (fShutdown || !fUseUPnP)
             {
-                r =
+                r = UPNP_DeletePortMapping(urls.controlURL, data.first.servicetype, port, "TCP", 0);
+                printf("UPNP_DeletePortMapping() returned : %d\n", r);
+                freeUPNPDevlist(devlist); devlist = 0;
+                FreeUPNPUrls(&urls);
+                return;
+            }
+            if (i % 600 == 0) // Refresh every 20 minutes
+            {
+#ifndef UPNPDISCOVER_SUCCESS
+                /* miniupnpc 1.5 */
+                r = UPNP_AddPortMapping(urls.controlURL, data.first.servicetype,
+                                    port, port, lanaddr, strDesc.c_str(), "TCP", 0);
+#else
+                /* miniupnpc 1.6 */
+                r = UPNP_AddPortMapping(urls.controlURL, data.first.servicetype,
+                                    port, port, lanaddr, strDesc.c_str(), "TCP", 0, "0");
+#endif
+
+                if(r!=UPNPCOMMAND_SUCCESS)
+                    printf("AddPortMapping(%s, %s, %s) failed with code %d (%s)\n",
+                        port, port, lanaddr, r, strupnperror(r));
+                else
+                    printf("UPnP Port Mapping successful.\n");;
+            }
+            Sleep(2000);
+            i++;
+        }
+    } else {
+        printf("No valid UPnP IGDs found\n");
+        freeUPNPDevlist(devlist); devlist = 0;
+        if (r != 0)
+            FreeUPNPUrls(&urls);
+        loop {
+            if (fShutdown || !fUseUPnP)
+                return;
+            Sleep(2000);
+        }
+    }
+}
+
+void MapPort()
+{
+    if (fUseUPnP && vnThreadsRunning[THREAD_UPNP] < 1)
+    {
+        if (!CreateThread(ThreadMapPort, NULL))
+            printf("Error: ThreadMapPort(ThreadMapPort) failed\n");
+    }
+}
+#else
+void MapPort()
+{
+    // Intentionally left blank.
+}
+#endif
+
+
+
+
+
+
+
+
+
+// DNS seeds
+// Each pair gives a source name and a seed name.
+// The first name is used as information source for addrman.
+// The second name should resolve to a list of seed addresses.
+static const char *strDNSSeed[][2] = {
+    // {"nuggetspool.org", "dnsseed.nuggetspool.org"},
+    // {"bytesized-vps.com", "dnsseed.bytesized-vps.com"},
+    // {"xurious.com", "dnsseed.ltc.xurious.com"},
+};
+
+void ThreadDNSAddressSeed(void* parg)
+{
+    IMPLEMENT_RANDOMIZE_STACK
