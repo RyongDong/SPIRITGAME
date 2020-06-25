@@ -1328,4 +1328,72 @@ void ThreadOpenConnections2(void* parg)
                 {
                     Sleep(500);
                     if (fShutdown)
-       
+                        return;
+                }
+            }
+        }
+    }
+
+    // Initiate network connections
+    int64 nStart = GetTime();
+    loop
+    {
+        ProcessOneShot();
+
+        vnThreadsRunning[THREAD_OPENCONNECTIONS]--;
+        Sleep(500);
+        vnThreadsRunning[THREAD_OPENCONNECTIONS]++;
+        if (fShutdown)
+            return;
+
+
+        vnThreadsRunning[THREAD_OPENCONNECTIONS]--;
+        CSemaphoreGrant grant(*semOutbound);
+        vnThreadsRunning[THREAD_OPENCONNECTIONS]++;
+        if (fShutdown)
+            return;
+
+        // Add seed nodes if IRC isn't working
+        if (addrman.size()==0 && (GetTime() - nStart > 60) && !fTestNet)
+        {
+            std::vector<CAddress> vAdd;
+            for (unsigned int i = 0; i < ARRAYLEN(pnSeed); i++)
+            {
+                // It'll only connect to one or two seed nodes because once it connects,
+                // it'll get a pile of addresses with newer timestamps.
+                // Seed nodes are given a random 'last seen time' of between one and two
+                // weeks ago.
+                const int64 nOneWeek = 7*24*60*60;
+                struct in_addr ip;
+                memcpy(&ip, &pnSeed[i], sizeof(ip));
+                CAddress addr(CService(ip, GetDefaultPort()));
+                addr.nTime = GetTime()-GetRand(nOneWeek)-nOneWeek;
+                vAdd.push_back(addr);
+            }
+            addrman.Add(vAdd, CNetAddr("127.0.0.1"));
+        }
+
+        //
+        // Choose an address to connect to based on most recently seen
+        //
+        CAddress addrConnect;
+
+        // Only connect out to one peer per network group (/16 for IPv4).
+        // Do this here so we don't have to critsect vNodes inside mapAddresses critsect.
+        int nOutbound = 0;
+        set<vector<unsigned char> > setConnected;
+        {
+            LOCK(cs_vNodes);
+            BOOST_FOREACH(CNode* pnode, vNodes) {
+                if (!pnode->fInbound) {
+                    setConnected.insert(pnode->addr.GetGroup());
+                    nOutbound++;
+                }
+            }
+        }
+
+        int64 nANow = GetAdjustedTime();
+
+        int nTries = 0;
+        loop
+   
