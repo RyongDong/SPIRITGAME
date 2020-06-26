@@ -1465,4 +1465,60 @@ void ThreadOpenAddedConnections2(void* parg)
                 Sleep(500);
             }
             vnThreadsRunning[THREAD_ADDEDCONNECTIONS]--;
-            Sleep(120000); 
+            Sleep(120000); // Retry every 2 minutes
+            vnThreadsRunning[THREAD_ADDEDCONNECTIONS]++;
+        }
+        return;
+    }
+
+    vector<vector<CService> > vservAddressesToAdd(0);
+    BOOST_FOREACH(string& strAddNode, mapMultiArgs["-addnode"])
+    {
+        vector<CService> vservNode(0);
+        if(Lookup(strAddNode.c_str(), vservNode, GetDefaultPort(), fNameLookup, 0))
+        {
+            vservAddressesToAdd.push_back(vservNode);
+            {
+                LOCK(cs_setservAddNodeAddresses);
+                BOOST_FOREACH(CService& serv, vservNode)
+                    setservAddNodeAddresses.insert(serv);
+            }
+        }
+    }
+    loop
+    {
+        vector<vector<CService> > vservConnectAddresses = vservAddressesToAdd;
+        // Attempt to connect to each IP for each addnode entry until at least one is successful per addnode entry
+        // (keeping in mind that addnode entries can have many IPs if fNameLookup)
+        {
+            LOCK(cs_vNodes);
+            BOOST_FOREACH(CNode* pnode, vNodes)
+                for (vector<vector<CService> >::iterator it = vservConnectAddresses.begin(); it != vservConnectAddresses.end(); it++)
+                    BOOST_FOREACH(CService& addrNode, *(it))
+                        if (pnode->addr == addrNode)
+                        {
+                            it = vservConnectAddresses.erase(it);
+                            it--;
+                            break;
+                        }
+        }
+        BOOST_FOREACH(vector<CService>& vserv, vservConnectAddresses)
+        {
+            CSemaphoreGrant grant(*semOutbound);
+            OpenNetworkConnection(CAddress(*(vserv.begin())), &grant);
+            Sleep(500);
+            if (fShutdown)
+                return;
+        }
+        if (fShutdown)
+            return;
+        vnThreadsRunning[THREAD_ADDEDCONNECTIONS]--;
+        Sleep(120000); // Retry every 2 minutes
+        vnThreadsRunning[THREAD_ADDEDCONNECTIONS]++;
+        if (fShutdown)
+            return;
+    }
+}
+
+// if succesful, this moves the passed grant to the constructed node
+bool OpenNetworkConnection
