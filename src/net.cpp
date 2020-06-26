@@ -1521,4 +1521,87 @@ void ThreadOpenAddedConnections2(void* parg)
 }
 
 // if succesful, this moves the passed grant to the constructed node
-bool OpenNetworkConnection
+bool OpenNetworkConnection(const CAddress& addrConnect, CSemaphoreGrant *grantOutbound, const char *strDest, bool fOneShot)
+{
+    //
+    // Initiate outbound network connection
+    //
+    if (fShutdown)
+        return false;
+    if (!strDest)
+        if (IsLocal(addrConnect) ||
+            FindNode((CNetAddr)addrConnect) || CNode::IsBanned(addrConnect) ||
+            FindNode(addrConnect.ToStringIPPort().c_str()))
+            return false;
+    if (strDest && FindNode(strDest))
+        return false;
+
+    vnThreadsRunning[THREAD_OPENCONNECTIONS]--;
+    CNode* pnode = ConnectNode(addrConnect, strDest);
+    vnThreadsRunning[THREAD_OPENCONNECTIONS]++;
+    if (fShutdown)
+        return false;
+    if (!pnode)
+        return false;
+    if (grantOutbound)
+        grantOutbound->MoveTo(pnode->grantOutbound);
+    pnode->fNetworkNode = true;
+    if (fOneShot)
+        pnode->fOneShot = true;
+
+    return true;
+}
+
+
+
+
+
+
+
+
+void ThreadMessageHandler(void* parg)
+{
+    IMPLEMENT_RANDOMIZE_STACK(ThreadMessageHandler(parg));
+
+    // Make this thread recognisable as the message handling thread
+    RenameThread("bitcoin-msghand");
+
+    try
+    {
+        vnThreadsRunning[THREAD_MESSAGEHANDLER]++;
+        ThreadMessageHandler2(parg);
+        vnThreadsRunning[THREAD_MESSAGEHANDLER]--;
+    }
+    catch (std::exception& e) {
+        vnThreadsRunning[THREAD_MESSAGEHANDLER]--;
+        PrintException(&e, "ThreadMessageHandler()");
+    } catch (...) {
+        vnThreadsRunning[THREAD_MESSAGEHANDLER]--;
+        PrintException(NULL, "ThreadMessageHandler()");
+    }
+    printf("ThreadMessageHandler exited\n");
+}
+
+void ThreadMessageHandler2(void* parg)
+{
+    printf("ThreadMessageHandler started\n");
+    SetThreadPriority(THREAD_PRIORITY_BELOW_NORMAL);
+    while (!fShutdown)
+    {
+        vector<CNode*> vNodesCopy;
+        {
+            LOCK(cs_vNodes);
+            vNodesCopy = vNodes;
+            BOOST_FOREACH(CNode* pnode, vNodesCopy)
+                pnode->AddRef();
+        }
+
+        // Poll the connected nodes for messages
+        CNode* pnodeTrickle = NULL;
+        if (!vNodesCopy.empty())
+            pnodeTrickle = vNodesCopy[GetRand(vNodesCopy.size())];
+        BOOST_FOREACH(CNode* pnode, vNodesCopy)
+        {
+            // Receive messages
+            {
+                
