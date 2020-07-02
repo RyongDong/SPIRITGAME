@@ -1739,4 +1739,78 @@ bool BindListenPort(const CService &addrBind, string& strError)
     // Listen for incoming connections
     if (listen(hListenSocket, SOMAXCONN) == SOCKET_ERROR)
     {
-        strE
+        strError = strprintf("Error: Listening for incoming connections failed (listen returned error %d)", WSAGetLastError());
+        printf("%s\n", strError.c_str());
+        return false;
+    }
+
+    vhListenSocket.push_back(hListenSocket);
+
+    if (addrBind.IsRoutable() && fDiscover)
+        AddLocal(addrBind, LOCAL_BIND);
+
+    return true;
+}
+
+void static Discover()
+{
+    if (!fDiscover)
+        return;
+
+#ifdef WIN32
+    // Get local host ip
+    char pszHostName[1000] = "";
+    if (gethostname(pszHostName, sizeof(pszHostName)) != SOCKET_ERROR)
+    {
+        vector<CNetAddr> vaddr;
+        if (LookupHost(pszHostName, vaddr))
+        {
+            BOOST_FOREACH (const CNetAddr &addr, vaddr)
+            {
+                AddLocal(addr, LOCAL_IF);
+            }
+        }
+    }
+#else
+    // Get local host ip
+    struct ifaddrs* myaddrs;
+    if (getifaddrs(&myaddrs) == 0)
+    {
+        for (struct ifaddrs* ifa = myaddrs; ifa != NULL; ifa = ifa->ifa_next)
+        {
+            if (ifa->ifa_addr == NULL) continue;
+            if ((ifa->ifa_flags & IFF_UP) == 0) continue;
+            if (strcmp(ifa->ifa_name, "lo") == 0) continue;
+            if (strcmp(ifa->ifa_name, "lo0") == 0) continue;
+            if (ifa->ifa_addr->sa_family == AF_INET)
+            {
+                struct sockaddr_in* s4 = (struct sockaddr_in*)(ifa->ifa_addr);
+                CNetAddr addr(s4->sin_addr);
+                if (AddLocal(addr, LOCAL_IF))
+                    printf("IPv4 %s: %s\n", ifa->ifa_name, addr.ToString().c_str());
+            }
+#ifdef USE_IPV6
+            else if (ifa->ifa_addr->sa_family == AF_INET6)
+            {
+                struct sockaddr_in6* s6 = (struct sockaddr_in6*)(ifa->ifa_addr);
+                CNetAddr addr(s6->sin6_addr);
+                if (AddLocal(addr, LOCAL_IF))
+                    printf("IPv6 %s: %s\n", ifa->ifa_name, addr.ToString().c_str());
+            }
+#endif
+        }
+        freeifaddrs(myaddrs);
+    }
+#endif
+
+    CreateThread(ThreadGetMyExternalIP, NULL);
+}
+
+void StartNode(void* parg)
+{
+    // Make this thread recognisable as the startup thread
+    RenameThread("bitcoin-start");
+
+    if (semOutbound == NULL) {
+        // initialize semaphore
+        int nMaxOutbound = min(MAX_OUTBOUND_CONNECTIONS, 
