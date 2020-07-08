@@ -49,4 +49,90 @@ void SplitHostPort(std::string in, int &portOut, std::string &hostOut) {
                 portOut = n;
         }
     }
-    if (in.size()>0 && in[0] == '[' && in[in.size()-
+    if (in.size()>0 && in[0] == '[' && in[in.size()-1] == ']')
+        hostOut = in.substr(1, in.size()-2);
+    else
+        hostOut = in;
+}
+
+bool static LookupIntern(const char *pszName, std::vector<CNetAddr>& vIP, unsigned int nMaxSolutions, bool fAllowLookup)
+{
+    vIP.clear();
+
+    {
+        CNetAddr addr;
+        if (addr.SetSpecial(std::string(pszName))) {
+            vIP.push_back(addr);
+            return true;
+        }
+    }
+
+    struct addrinfo aiHint;
+    memset(&aiHint, 0, sizeof(struct addrinfo));
+
+    aiHint.ai_socktype = SOCK_STREAM;
+    aiHint.ai_protocol = IPPROTO_TCP;
+#ifdef WIN32
+#  ifdef USE_IPV6
+    aiHint.ai_family = AF_UNSPEC;
+#  else
+    aiHint.ai_family = AF_INET;
+#  endif
+    aiHint.ai_flags = fAllowLookup ? 0 : AI_NUMERICHOST;
+#else
+#  ifdef USE_IPV6
+    aiHint.ai_family = AF_UNSPEC;
+#  else
+    aiHint.ai_family = AF_INET;
+#  endif
+    aiHint.ai_flags = fAllowLookup ? AI_ADDRCONFIG : AI_NUMERICHOST;
+#endif
+    struct addrinfo *aiRes = NULL;
+    int nErr = getaddrinfo(pszName, NULL, &aiHint, &aiRes);
+    if (nErr)
+        return false;
+
+    struct addrinfo *aiTrav = aiRes;
+    while (aiTrav != NULL && (nMaxSolutions == 0 || vIP.size() < nMaxSolutions))
+    {
+        if (aiTrav->ai_family == AF_INET)
+        {
+            assert(aiTrav->ai_addrlen >= sizeof(sockaddr_in));
+            vIP.push_back(CNetAddr(((struct sockaddr_in*)(aiTrav->ai_addr))->sin_addr));
+        }
+
+#ifdef USE_IPV6
+        if (aiTrav->ai_family == AF_INET6)
+        {
+            assert(aiTrav->ai_addrlen >= sizeof(sockaddr_in6));
+            vIP.push_back(CNetAddr(((struct sockaddr_in6*)(aiTrav->ai_addr))->sin6_addr));
+        }
+#endif
+
+        aiTrav = aiTrav->ai_next;
+    }
+
+    freeaddrinfo(aiRes);
+
+    return (vIP.size() > 0);
+}
+
+bool LookupHost(const char *pszName, std::vector<CNetAddr>& vIP, unsigned int nMaxSolutions, bool fAllowLookup)
+{
+    if (pszName[0] == 0)
+        return false;
+    char psz[256];
+    char *pszHost = psz;
+    strlcpy(psz, pszName, sizeof(psz));
+    if (psz[0] == '[' && psz[strlen(psz)-1] == ']')
+    {
+        pszHost = psz+1;
+        psz[strlen(psz)-1] = 0;
+    }
+
+    return LookupIntern(pszHost, vIP, nMaxSolutions, fAllowLookup);
+}
+
+bool LookupHostNumeric(const char *pszName, std::vector<CNetAddr>& vIP, unsigned int nMaxSolutions)
+{
+    return L
