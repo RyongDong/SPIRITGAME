@@ -206,4 +206,73 @@ bool static Socks4(const CService &addrDest, SOCKET& hSocket)
     }
     if (pchRet[1] != 0x5a)
     {
-        closesoc
+        closesocket(hSocket);
+        if (pchRet[1] != 0x5b)
+            printf("ERROR: Proxy returned error %d\n", pchRet[1]);
+        return false;
+    }
+    printf("SOCKS4 connected %s\n", addrDest.ToString().c_str());
+    return true;
+}
+
+bool static Socks5(string strDest, int port, SOCKET& hSocket)
+{
+    printf("SOCKS5 connecting %s\n", strDest.c_str());
+    if (strDest.size() > 255)
+    {
+        closesocket(hSocket);
+        return error("Hostname too long");
+    }
+    char pszSocks5Init[] = "\5\1\0";
+    char *pszSocks5 = pszSocks5Init;
+    ssize_t nSize = sizeof(pszSocks5Init) - 1;
+
+    ssize_t ret = send(hSocket, pszSocks5, nSize, MSG_NOSIGNAL);
+    if (ret != nSize)
+    {
+        closesocket(hSocket);
+        return error("Error sending to proxy");
+    }
+    char pchRet1[2];
+    if (recv(hSocket, pchRet1, 2, 0) != 2)
+    {
+        closesocket(hSocket);
+        return error("Error reading proxy response");
+    }
+    if (pchRet1[0] != 0x05 || pchRet1[1] != 0x00)
+    {
+        closesocket(hSocket);
+        return error("Proxy failed to initialize");
+    }
+    string strSocks5("\5\1");
+    strSocks5 += '\000'; strSocks5 += '\003';
+    strSocks5 += static_cast<char>(std::min((int)strDest.size(), 255));
+    strSocks5 += strDest; 
+    strSocks5 += static_cast<char>((port >> 8) & 0xFF);
+    strSocks5 += static_cast<char>((port >> 0) & 0xFF);
+    ret = send(hSocket, strSocks5.c_str(), strSocks5.size(), MSG_NOSIGNAL);
+    if (ret != (ssize_t)strSocks5.size())
+    {
+        closesocket(hSocket);
+        return error("Error sending to proxy");
+    }
+    char pchRet2[4];
+    if (recv(hSocket, pchRet2, 4, 0) != 4)
+    {
+        closesocket(hSocket);
+        return error("Error reading proxy response");
+    }
+    if (pchRet2[0] != 0x05)
+    {
+        closesocket(hSocket);
+        return error("Proxy failed to accept request");
+    }
+    if (pchRet2[1] != 0x00)
+    {
+        closesocket(hSocket);
+        switch (pchRet2[1])
+        {
+            case 0x01: return error("Proxy error: general failure");
+            case 0x02: return error("Proxy error: connection not allowed");
+            case 0x03: return error("Proxy error: network unreachable");
+            case 0x04: ret
