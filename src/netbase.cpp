@@ -135,4 +135,75 @@ bool LookupHost(const char *pszName, std::vector<CNetAddr>& vIP, unsigned int nM
 
 bool LookupHostNumeric(const char *pszName, std::vector<CNetAddr>& vIP, unsigned int nMaxSolutions)
 {
-    return L
+    return LookupHost(pszName, vIP, nMaxSolutions, false);
+}
+
+bool Lookup(const char *pszName, std::vector<CService>& vAddr, int portDefault, bool fAllowLookup, unsigned int nMaxSolutions)
+{
+    if (pszName[0] == 0)
+        return false;
+    int port = portDefault;
+    std::string hostname = "";
+    SplitHostPort(std::string(pszName), port, hostname);
+
+    std::vector<CNetAddr> vIP;
+    bool fRet = LookupIntern(hostname.c_str(), vIP, nMaxSolutions, fAllowLookup);
+    if (!fRet)
+        return false;
+    vAddr.resize(vIP.size());
+    for (unsigned int i = 0; i < vIP.size(); i++)
+        vAddr[i] = CService(vIP[i], port);
+    return true;
+}
+
+bool Lookup(const char *pszName, CService& addr, int portDefault, bool fAllowLookup)
+{
+    std::vector<CService> vService;
+    bool fRet = Lookup(pszName, vService, portDefault, fAllowLookup, 1);
+    if (!fRet)
+        return false;
+    addr = vService[0];
+    return true;
+}
+
+bool LookupNumeric(const char *pszName, CService& addr, int portDefault)
+{
+    return Lookup(pszName, addr, portDefault, false);
+}
+
+bool static Socks4(const CService &addrDest, SOCKET& hSocket)
+{
+    printf("SOCKS4 connecting %s\n", addrDest.ToString().c_str());
+    if (!addrDest.IsIPv4())
+    {
+        closesocket(hSocket);
+        return error("Proxy destination is not IPv4");
+    }
+    char pszSocks4IP[] = "\4\1\0\0\0\0\0\0user";
+    struct sockaddr_in addr;
+    socklen_t len = sizeof(addr);
+    if (!addrDest.GetSockAddr((struct sockaddr*)&addr, &len) || addr.sin_family != AF_INET)
+    {
+        closesocket(hSocket);
+        return error("Cannot get proxy destination address");
+    }
+    memcpy(pszSocks4IP + 2, &addr.sin_port, 2);
+    memcpy(pszSocks4IP + 4, &addr.sin_addr, 4);
+    char* pszSocks4 = pszSocks4IP;
+    int nSize = sizeof(pszSocks4IP);
+
+    int ret = send(hSocket, pszSocks4, nSize, MSG_NOSIGNAL);
+    if (ret != nSize)
+    {
+        closesocket(hSocket);
+        return error("Error sending to proxy");
+    }
+    char pchRet[8];
+    if (recv(hSocket, pchRet, 8, 0) != 8)
+    {
+        closesocket(hSocket);
+        return error("Error reading proxy response");
+    }
+    if (pchRet[1] != 0x5a)
+    {
+        closesoc
