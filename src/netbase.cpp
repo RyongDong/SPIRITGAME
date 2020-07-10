@@ -275,4 +275,72 @@ bool static Socks5(string strDest, int port, SOCKET& hSocket)
             case 0x01: return error("Proxy error: general failure");
             case 0x02: return error("Proxy error: connection not allowed");
             case 0x03: return error("Proxy error: network unreachable");
-            case 0x04: ret
+            case 0x04: return error("Proxy error: host unreachable");
+            case 0x05: return error("Proxy error: connection refused");
+            case 0x06: return error("Proxy error: TTL expired");
+            case 0x07: return error("Proxy error: protocol error");
+            case 0x08: return error("Proxy error: address type not supported");
+            default:   return error("Proxy error: unknown");
+        }
+    }
+    if (pchRet2[2] != 0x00)
+    {
+        closesocket(hSocket);
+        return error("Error: malformed proxy response");
+    }
+    char pchRet3[256];
+    switch (pchRet2[3])
+    {
+        case 0x01: ret = recv(hSocket, pchRet3, 4, 0) != 4; break;
+        case 0x04: ret = recv(hSocket, pchRet3, 16, 0) != 16; break;
+        case 0x03:
+        {
+            ret = recv(hSocket, pchRet3, 1, 0) != 1;
+            if (ret)
+                return error("Error reading from proxy");
+            int nRecv = pchRet3[0];
+            ret = recv(hSocket, pchRet3, nRecv, 0) != nRecv;
+            break;
+        }
+        default: closesocket(hSocket); return error("Error: malformed proxy response");
+    }
+    if (ret)
+    {
+        closesocket(hSocket);
+        return error("Error reading from proxy");
+    }
+    if (recv(hSocket, pchRet3, 2, 0) != 2)
+    {
+        closesocket(hSocket);
+        return error("Error reading from proxy");
+    }
+    printf("SOCKS5 connected %s\n", strDest.c_str());
+    return true;
+}
+
+bool static ConnectSocketDirectly(const CService &addrConnect, SOCKET& hSocketRet, int nTimeout)
+{
+    hSocketRet = INVALID_SOCKET;
+
+#ifdef USE_IPV6
+    struct sockaddr_storage sockaddr;
+#else
+    struct sockaddr sockaddr;
+#endif
+    socklen_t len = sizeof(sockaddr);
+    if (!addrConnect.GetSockAddr((struct sockaddr*)&sockaddr, &len)) {
+        printf("Cannot connect to %s: unsupported network\n", addrConnect.ToString().c_str());
+        return false;
+    }
+
+    SOCKET hSocket = socket(((struct sockaddr*)&sockaddr)->sa_family, SOCK_STREAM, IPPROTO_TCP);
+    if (hSocket == INVALID_SOCKET)
+        return false;
+#ifdef SO_NOSIGPIPE
+    int set = 1;
+    setsockopt(hSocket, SOL_SOCKET, SO_NOSIGPIPE, (void*)&set, sizeof(int));
+#endif
+
+#ifdef WIN32
+    u_long fNonblock = 1;
+    
