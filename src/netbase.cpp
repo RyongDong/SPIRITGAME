@@ -343,4 +343,71 @@ bool static ConnectSocketDirectly(const CService &addrConnect, SOCKET& hSocketRe
 
 #ifdef WIN32
     u_long fNonblock = 1;
-    
+    if (ioctlsocket(hSocket, FIONBIO, &fNonblock) == SOCKET_ERROR)
+#else
+    int fFlags = fcntl(hSocket, F_GETFL, 0);
+    if (fcntl(hSocket, F_SETFL, fFlags | O_NONBLOCK) == -1)
+#endif
+    {
+        closesocket(hSocket);
+        return false;
+    }
+
+    if (connect(hSocket, (struct sockaddr*)&sockaddr, len) == SOCKET_ERROR)
+    {
+        // WSAEINVAL is here because some legacy version of winsock uses it
+        if (WSAGetLastError() == WSAEINPROGRESS || WSAGetLastError() == WSAEWOULDBLOCK || WSAGetLastError() == WSAEINVAL)
+        {
+            struct timeval timeout;
+            timeout.tv_sec  = nTimeout / 1000;
+            timeout.tv_usec = (nTimeout % 1000) * 1000;
+
+            fd_set fdset;
+            FD_ZERO(&fdset);
+            FD_SET(hSocket, &fdset);
+            int nRet = select(hSocket + 1, NULL, &fdset, NULL, &timeout);
+            if (nRet == 0)
+            {
+                printf("connection timeout\n");
+                closesocket(hSocket);
+                return false;
+            }
+            if (nRet == SOCKET_ERROR)
+            {
+                printf("select() for connection failed: %i\n",WSAGetLastError());
+                closesocket(hSocket);
+                return false;
+            }
+            socklen_t nRetSize = sizeof(nRet);
+#ifdef WIN32
+            if (getsockopt(hSocket, SOL_SOCKET, SO_ERROR, (char*)(&nRet), &nRetSize) == SOCKET_ERROR)
+#else
+            if (getsockopt(hSocket, SOL_SOCKET, SO_ERROR, &nRet, &nRetSize) == SOCKET_ERROR)
+#endif
+            {
+                printf("getsockopt() for connection failed: %i\n",WSAGetLastError());
+                closesocket(hSocket);
+                return false;
+            }
+            if (nRet != 0)
+            {
+                printf("connect() failed after select(): %s\n",strerror(nRet));
+                closesocket(hSocket);
+                return false;
+            }
+        }
+#ifdef WIN32
+        else if (WSAGetLastError() != WSAEISCONN)
+#else
+        else
+#endif
+        {
+            printf("connect() failed: %i\n",WSAGetLastError());
+            closesocket(hSocket);
+            return false;
+        }
+    }
+
+    // this isn't even strictly necessary
+    // CNode::ConnectNode immediately turns the socket back to non-blocking
+    /
