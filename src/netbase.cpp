@@ -410,4 +410,81 @@ bool static ConnectSocketDirectly(const CService &addrConnect, SOCKET& hSocketRe
 
     // this isn't even strictly necessary
     // CNode::ConnectNode immediately turns the socket back to non-blocking
-    /
+    // but we'll turn it back to blocking just in case
+#ifdef WIN32
+    fNonblock = 0;
+    if (ioctlsocket(hSocket, FIONBIO, &fNonblock) == SOCKET_ERROR)
+#else
+    fFlags = fcntl(hSocket, F_GETFL, 0);
+    if (fcntl(hSocket, F_SETFL, fFlags & !O_NONBLOCK) == SOCKET_ERROR)
+#endif
+    {
+        closesocket(hSocket);
+        return false;
+    }
+
+    hSocketRet = hSocket;
+    return true;
+}
+
+bool SetProxy(enum Network net, CService addrProxy, int nSocksVersion) {
+    assert(net >= 0 && net < NET_MAX);
+    if (nSocksVersion != 0 && nSocksVersion != 4 && nSocksVersion != 5)
+        return false;
+    if (nSocksVersion != 0 && !addrProxy.IsValid())
+        return false;
+    proxyInfo[net] = std::make_pair(addrProxy, nSocksVersion);
+    return true;
+}
+
+bool GetProxy(enum Network net, CService &addrProxy) {
+    assert(net >= 0 && net < NET_MAX);
+    if (!proxyInfo[net].second)
+        return false;
+    addrProxy = proxyInfo[net].first;
+    return true;
+}
+
+bool SetNameProxy(CService addrProxy, int nSocksVersion) {
+    if (nSocksVersion != 0 && nSocksVersion != 5)
+        return false;
+    if (nSocksVersion != 0 && !addrProxy.IsValid())
+        return false;
+    nameproxyInfo = std::make_pair(addrProxy, nSocksVersion);
+    return true;
+}
+
+bool GetNameProxy() {
+    return nameproxyInfo.second != 0;
+}
+
+bool IsProxy(const CNetAddr &addr) {
+    for (int i=0; i<NET_MAX; i++) {
+        if (proxyInfo[i].second && (addr == (CNetAddr)proxyInfo[i].first))
+            return true;
+    }
+    return false;
+}
+
+bool ConnectSocket(const CService &addrDest, SOCKET& hSocketRet, int nTimeout)
+{
+    const proxyType &proxy = proxyInfo[addrDest.GetNetwork()];
+
+    // no proxy needed
+    if (!proxy.second)
+        return ConnectSocketDirectly(addrDest, hSocketRet, nTimeout);
+
+    SOCKET hSocket = INVALID_SOCKET;
+
+    // first connect to proxy server
+    if (!ConnectSocketDirectly(proxy.first, hSocket, nTimeout))
+        return false;
+ 
+    // do socks negotiation
+    switch (proxy.second) {
+    case 4:
+        if (!Socks4(addrDest, hSocket))
+            return false;
+        break;
+    case 5:
+        if (!Socks5(addrDest.ToStringIP(), addrDest.GetPort()
