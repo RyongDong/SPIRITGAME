@@ -663,4 +663,95 @@ bool CNetAddr::IsRFC4193() const
 bool CNetAddr::IsRFC6145() const
 {
     static const unsigned char pchRFC6145[] = {0,0,0,0,0,0,0,0,0xFF,0xFF,0,0};
-    return (memcmp(ip, pchRFC6145, sizeof(pchRFC6145)) == 
+    return (memcmp(ip, pchRFC6145, sizeof(pchRFC6145)) == 0);
+}
+
+bool CNetAddr::IsRFC4843() const
+{
+    return (GetByte(15) == 0x20 && GetByte(14) == 0x01 && GetByte(13) == 0x00 && (GetByte(12) & 0xF0) == 0x10);
+}
+
+bool CNetAddr::IsTor() const
+{
+    return (memcmp(ip, pchOnionCat, sizeof(pchOnionCat)) == 0);
+}
+
+bool CNetAddr::IsI2P() const
+{
+    return (memcmp(ip, pchGarliCat, sizeof(pchGarliCat)) == 0);
+}
+
+bool CNetAddr::IsLocal() const
+{
+    // IPv4 loopback
+   if (IsIPv4() && (GetByte(3) == 127 || GetByte(3) == 0))
+       return true;
+
+   // IPv6 loopback (::1/128)
+   static const unsigned char pchLocal[16] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1};
+   if (memcmp(ip, pchLocal, 16) == 0)
+       return true;
+
+   return false;
+}
+
+bool CNetAddr::IsMulticast() const
+{
+    return    (IsIPv4() && (GetByte(3) & 0xF0) == 0xE0)
+           || (GetByte(15) == 0xFF);
+}
+
+bool CNetAddr::IsValid() const
+{
+    // Clean up 3-byte shifted addresses caused by garbage in size field
+    // of addr messages from versions before 0.2.9 checksum.
+    // Two consecutive addr messages look like this:
+    // header20 vectorlen3 addr26 addr26 addr26 header20 vectorlen3 addr26 addr26 addr26...
+    // so if the first length field is garbled, it reads the second batch
+    // of addr misaligned by 3 bytes.
+    if (memcmp(ip, pchIPv4+3, sizeof(pchIPv4)-3) == 0)
+        return false;
+
+    // unspecified IPv6 address (::/128)
+    unsigned char ipNone[16] = {};
+    if (memcmp(ip, ipNone, 16) == 0)
+        return false;
+
+    // documentation IPv6 address
+    if (IsRFC3849())
+        return false;
+
+    if (IsIPv4())
+    {
+        // INADDR_NONE
+        uint32_t ipNone = INADDR_NONE;
+        if (memcmp(ip+12, &ipNone, 4) == 0)
+            return false;
+
+        // 0
+        ipNone = 0;
+        if (memcmp(ip+12, &ipNone, 4) == 0)
+            return false;
+    }
+
+    return true;
+}
+
+bool CNetAddr::IsRoutable() const
+{
+    return IsValid() && !(IsRFC1918() || IsRFC3927() || IsRFC4862() || (IsRFC4193() && !IsTor() && !IsI2P()) || IsRFC4843() || IsLocal());
+}
+
+enum Network CNetAddr::GetNetwork() const
+{
+    if (!IsRoutable())
+        return NET_UNROUTABLE;
+
+    if (IsIPv4())
+        return NET_IPV4;
+
+    if (IsTor())
+        return NET_TOR;
+
+    if (IsI2P())
+        return NET_I2P;
