@@ -487,4 +487,76 @@ bool ConnectSocket(const CService &addrDest, SOCKET& hSocketRet, int nTimeout)
             return false;
         break;
     case 5:
-        if (!Socks5(addrDest.ToStringIP(), addrDest.GetPort()
+        if (!Socks5(addrDest.ToStringIP(), addrDest.GetPort(), hSocket))
+            return false;
+        break;
+    default:
+        return false;
+    }
+
+    hSocketRet = hSocket;
+    return true;
+}
+
+bool ConnectSocketByName(CService &addr, SOCKET& hSocketRet, const char *pszDest, int portDefault, int nTimeout)
+{
+    string strDest;
+    int port = portDefault;
+    SplitHostPort(string(pszDest), port, strDest);
+
+    SOCKET hSocket = INVALID_SOCKET;
+    CService addrResolved(CNetAddr(strDest, fNameLookup && !nameproxyInfo.second), port);
+    if (addrResolved.IsValid()) {
+        addr = addrResolved;
+        return ConnectSocket(addr, hSocketRet, nTimeout);
+    }
+    addr = CService("0.0.0.0:0");
+    if (!nameproxyInfo.second)
+        return false;
+    if (!ConnectSocketDirectly(nameproxyInfo.first, hSocket, nTimeout))
+        return false;
+
+    switch(nameproxyInfo.second)
+    {
+        default:
+        case 4: return false;
+        case 5:
+            if (!Socks5(strDest, port, hSocket))
+                return false;
+            break;
+    }
+
+    hSocketRet = hSocket;
+    return true;
+}
+
+void CNetAddr::Init()
+{
+    memset(ip, 0, 16);
+}
+
+void CNetAddr::SetIP(const CNetAddr& ipIn)
+{
+    memcpy(ip, ipIn.ip, sizeof(ip));
+}
+
+static const unsigned char pchOnionCat[] = {0xFD,0x87,0xD8,0x7E,0xEB,0x43};
+static const unsigned char pchGarliCat[] = {0xFD,0x60,0xDB,0x4D,0xDD,0xB5};
+
+bool CNetAddr::SetSpecial(const std::string &strName)
+{
+    if (strName.size()>6 && strName.substr(strName.size() - 6, 6) == ".onion") {
+        std::vector<unsigned char> vchAddr = DecodeBase32(strName.substr(0, strName.size() - 6).c_str());
+        if (vchAddr.size() != 16-sizeof(pchOnionCat))
+            return false;
+        memcpy(ip, pchOnionCat, sizeof(pchOnionCat));
+        for (unsigned int i=0; i<16-sizeof(pchOnionCat); i++)
+            ip[i + sizeof(pchOnionCat)] = vchAddr[i];
+        return true;
+    }
+    if (strName.size()>11 && strName.substr(strName.size() - 11, 11) == ".oc.b32.i2p") {
+        std::vector<unsigned char> vchAddr = DecodeBase32(strName.substr(0, strName.size() - 11).c_str());
+        if (vchAddr.size() != 16-sizeof(pchGarliCat))
+            return false;
+        memcpy(ip, pchOnionCat, sizeof(pchGarliCat));
+        for (unsigned int i=0; i<16-sizeof(pchGarliCat); i+
