@@ -755,3 +755,85 @@ enum Network CNetAddr::GetNetwork() const
 
     if (IsI2P())
         return NET_I2P;
+
+    return NET_IPV6;
+}
+
+std::string CNetAddr::ToStringIP() const
+{
+    if (IsTor())
+        return EncodeBase32(&ip[6], 10) + ".onion";
+    if (IsI2P())
+        return EncodeBase32(&ip[6], 10) + ".oc.b32.i2p";
+    CService serv(*this, 0);
+#ifdef USE_IPV6
+    struct sockaddr_storage sockaddr;
+#else
+    struct sockaddr sockaddr;
+#endif
+    socklen_t socklen = sizeof(sockaddr);
+    if (serv.GetSockAddr((struct sockaddr*)&sockaddr, &socklen)) {
+        char name[1025] = "";
+        if (!getnameinfo((const struct sockaddr*)&sockaddr, socklen, name, sizeof(name), NULL, 0, NI_NUMERICHOST))
+            return std::string(name);
+    }
+    if (IsIPv4())
+        return strprintf("%u.%u.%u.%u", GetByte(3), GetByte(2), GetByte(1), GetByte(0));
+    else
+        return strprintf("%x:%x:%x:%x:%x:%x:%x:%x",
+                         GetByte(15) << 8 | GetByte(14), GetByte(13) << 8 | GetByte(12),
+                         GetByte(11) << 8 | GetByte(10), GetByte(9) << 8 | GetByte(8),
+                         GetByte(7) << 8 | GetByte(6), GetByte(5) << 8 | GetByte(4),
+                         GetByte(3) << 8 | GetByte(2), GetByte(1) << 8 | GetByte(0));
+}
+
+std::string CNetAddr::ToString() const
+{
+    return ToStringIP();
+}
+
+bool operator==(const CNetAddr& a, const CNetAddr& b)
+{
+    return (memcmp(a.ip, b.ip, 16) == 0);
+}
+
+bool operator!=(const CNetAddr& a, const CNetAddr& b)
+{
+    return (memcmp(a.ip, b.ip, 16) != 0);
+}
+
+bool operator<(const CNetAddr& a, const CNetAddr& b)
+{
+    return (memcmp(a.ip, b.ip, 16) < 0);
+}
+
+bool CNetAddr::GetInAddr(struct in_addr* pipv4Addr) const
+{
+    if (!IsIPv4())
+        return false;
+    memcpy(pipv4Addr, ip+12, 4);
+    return true;
+}
+
+#ifdef USE_IPV6
+bool CNetAddr::GetIn6Addr(struct in6_addr* pipv6Addr) const
+{
+    memcpy(pipv6Addr, ip, 16);
+    return true;
+}
+#endif
+
+// get canonical identifier of an address' group
+// no two connections will be attempted to addresses with the same group
+std::vector<unsigned char> CNetAddr::GetGroup() const
+{
+    std::vector<unsigned char> vchRet;
+    int nClass = NET_IPV6;
+    int nStartByte = 0;
+    int nBits = 16;
+
+    // all local addresses belong to the same group
+    if (IsLocal())
+    {
+        nClass = 255;
+  
