@@ -836,4 +836,92 @@ std::vector<unsigned char> CNetAddr::GetGroup() const
     if (IsLocal())
     {
         nClass = 255;
-  
+        nBits = 0;
+    }
+
+    // all unroutable addresses belong to the same group
+    if (!IsRoutable())
+    {
+        nClass = NET_UNROUTABLE;
+        nBits = 0;
+    }
+    // for IPv4 addresses, '1' + the 16 higher-order bits of the IP
+    // includes mapped IPv4, SIIT translated IPv4, and the well-known prefix
+    else if (IsIPv4() || IsRFC6145() || IsRFC6052())
+    {
+        nClass = NET_IPV4;
+        nStartByte = 12;
+    }
+    // for 6to4 tunneled addresses, use the encapsulated IPv4 address
+    else if (IsRFC3964())
+    {
+        nClass = NET_IPV4;
+        nStartByte = 2;
+    }
+    // for Teredo-tunneled IPv6 addresses, use the encapsulated IPv4 address
+    else if (IsRFC4380())
+    {
+        vchRet.push_back(NET_IPV4);
+        vchRet.push_back(GetByte(3) ^ 0xFF);
+        vchRet.push_back(GetByte(2) ^ 0xFF);
+        return vchRet;
+    }
+    else if (IsTor())
+    {
+        nClass = NET_TOR;
+        nStartByte = 6;
+        nBits = 4;
+    }
+    else if (IsI2P())
+    {
+        nClass = NET_I2P;
+        nStartByte = 6;
+        nBits = 4;
+    }
+    // for he.net, use /36 groups
+    else if (GetByte(15) == 0x20 && GetByte(14) == 0x11 && GetByte(13) == 0x04 && GetByte(12) == 0x70)
+        nBits = 36;
+    // for the rest of the IPv6 network, use /32 groups
+    else
+        nBits = 32;
+
+    vchRet.push_back(nClass);
+    while (nBits >= 8)
+    {
+        vchRet.push_back(GetByte(15 - nStartByte));
+        nStartByte++;
+        nBits -= 8;
+    }
+    if (nBits > 0)
+        vchRet.push_back(GetByte(15 - nStartByte) | ((1 << nBits) - 1));
+
+    return vchRet;
+}
+
+uint64 CNetAddr::GetHash() const
+{
+    uint256 hash = Hash(&ip[0], &ip[16]);
+    uint64 nRet;
+    memcpy(&nRet, &hash, sizeof(nRet));
+    return nRet;
+}
+
+void CNetAddr::print() const
+{
+    printf("CNetAddr(%s)\n", ToString().c_str());
+}
+
+// private extensions to enum Network, only returned by GetExtNetwork,
+// and only used in GetReachabilityFrom
+static const int NET_UNKNOWN = NET_MAX + 0;
+static const int NET_TEREDO  = NET_MAX + 1;
+int static GetExtNetwork(const CNetAddr *addr)
+{
+    if (addr == NULL)
+        return NET_UNKNOWN;
+    if (addr->IsRFC4380())
+        return NET_TEREDO;
+    return addr->GetNetwork();
+}
+
+/** Calculates a metric for how reachable (*th
