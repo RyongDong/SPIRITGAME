@@ -989,4 +989,105 @@ int CNetAddr::GetReachabilityFrom(const CNetAddr *paddrPartner) const
     }
 }
 
-void CService::I
+void CService::Init()
+{
+    port = 0;
+}
+
+CService::CService()
+{
+    Init();
+}
+
+CService::CService(const CNetAddr& cip, unsigned short portIn) : CNetAddr(cip), port(portIn)
+{
+}
+
+CService::CService(const struct in_addr& ipv4Addr, unsigned short portIn) : CNetAddr(ipv4Addr), port(portIn)
+{
+}
+
+#ifdef USE_IPV6
+CService::CService(const struct in6_addr& ipv6Addr, unsigned short portIn) : CNetAddr(ipv6Addr), port(portIn)
+{
+}
+#endif
+
+CService::CService(const struct sockaddr_in& addr) : CNetAddr(addr.sin_addr), port(ntohs(addr.sin_port))
+{
+    assert(addr.sin_family == AF_INET);
+}
+
+#ifdef USE_IPV6
+CService::CService(const struct sockaddr_in6 &addr) : CNetAddr(addr.sin6_addr), port(ntohs(addr.sin6_port))
+{
+   assert(addr.sin6_family == AF_INET6);
+}
+#endif
+
+bool CService::SetSockAddr(const struct sockaddr *paddr)
+{
+    switch (paddr->sa_family) {
+    case AF_INET:
+        *this = CService(*(const struct sockaddr_in*)paddr);
+        return true;
+#ifdef USE_IPV6
+    case AF_INET6:
+        *this = CService(*(const struct sockaddr_in6*)paddr);
+        return true;
+#endif
+    default:
+        return false;
+    }
+}
+
+CService::CService(const char *pszIpPort, bool fAllowLookup)
+{
+    Init();
+    CService ip;
+    if (Lookup(pszIpPort, ip, 0, fAllowLookup))
+        *this = ip;
+}
+
+CService::CService(const char *pszIpPort, int portDefault, bool fAllowLookup)
+{
+    Init();
+    CService ip;
+    if (Lookup(pszIpPort, ip, portDefault, fAllowLookup))
+        *this = ip;
+}
+
+CService::CService(const std::string &strIpPort, bool fAllowLookup)
+{
+    Init();
+    CService ip;
+    if (Lookup(strIpPort.c_str(), ip, 0, fAllowLookup))
+        *this = ip;
+}
+
+CService::CService(const std::string &strIpPort, int portDefault, bool fAllowLookup)
+{
+    Init();
+    CService ip;
+    if (Lookup(strIpPort.c_str(), ip, portDefault, fAllowLookup))
+        *this = ip;
+}
+
+unsigned short CService::GetPort() const
+{
+    return port;
+}
+
+bool operator==(const CService& a, const CService& b)
+{
+    return (CNetAddr)a == (CNetAddr)b && a.port == b.port;
+}
+
+bool operator!=(const CService& a, const CService& b)
+{
+    return (CNetAddr)a != (CNetAddr)b || a.port != b.port;
+}
+
+bool operator<(const CService& a, const CService& b)
+{
+    return (CNetAddr)a < (CNetAddr)b || ((CNetAddr)a == (CNetAddr)b && a.port < b.port);
