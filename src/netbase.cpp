@@ -1091,3 +1091,74 @@ bool operator!=(const CService& a, const CService& b)
 bool operator<(const CService& a, const CService& b)
 {
     return (CNetAddr)a < (CNetAddr)b || ((CNetAddr)a == (CNetAddr)b && a.port < b.port);
+}
+
+bool CService::GetSockAddr(struct sockaddr* paddr, socklen_t *addrlen) const
+{
+    if (IsIPv4()) {
+        if (*addrlen < (socklen_t)sizeof(struct sockaddr_in))
+            return false;
+        *addrlen = sizeof(struct sockaddr_in);
+        struct sockaddr_in *paddrin = (struct sockaddr_in*)paddr;
+        memset(paddrin, 0, *addrlen);
+        if (!GetInAddr(&paddrin->sin_addr))
+            return false;
+        paddrin->sin_family = AF_INET;
+        paddrin->sin_port = htons(port);
+        return true;
+    }
+#ifdef USE_IPV6
+    if (IsIPv6()) {
+        if (*addrlen < (socklen_t)sizeof(struct sockaddr_in6))
+            return false;
+        *addrlen = sizeof(struct sockaddr_in6);
+        struct sockaddr_in6 *paddrin6 = (struct sockaddr_in6*)paddr;
+        memset(paddrin6, 0, *addrlen);
+        if (!GetIn6Addr(&paddrin6->sin6_addr))
+            return false;
+        paddrin6->sin6_family = AF_INET6;
+        paddrin6->sin6_port = htons(port);
+        return true;
+    }
+#endif
+    return false;
+}
+
+std::vector<unsigned char> CService::GetKey() const
+{
+     std::vector<unsigned char> vKey;
+     vKey.resize(18);
+     memcpy(&vKey[0], ip, 16);
+     vKey[16] = port / 0x100;
+     vKey[17] = port & 0x0FF;
+     return vKey;
+}
+
+std::string CService::ToStringPort() const
+{
+    return strprintf("%i", port);
+}
+
+std::string CService::ToStringIPPort() const
+{
+    if (IsIPv4() || IsTor() || IsI2P()) {
+        return ToStringIP() + ":" + ToStringPort();
+    } else {
+        return "[" + ToStringIP() + "]:" + ToStringPort();
+    }
+}
+
+std::string CService::ToString() const
+{
+    return ToStringIPPort();
+}
+
+void CService::print() const
+{
+    printf("CService(%s)\n", ToString().c_str());
+}
+
+void CService::SetPort(unsigned short portIn)
+{
+    port = portIn;
+}
