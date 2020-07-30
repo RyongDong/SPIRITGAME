@@ -106,4 +106,60 @@ private:
     /** Create the main UI actions. */
     void createActions();
     /** Create the menu bar and submenus. */
-    void crea
+    void createMenuBar();
+    /** Create the toolbars */
+    void createToolBars();
+    /** Create system tray (notification) icon */
+    void createTrayIcon();
+
+public slots:
+    /** Set number of connections shown in the UI */
+    void setNumConnections(int count);
+    /** Set number of blocks shown in the UI */
+    void setNumBlocks(int count, int countOfPeers);
+    /** Set mining status and hashrate in the UI */
+    void setMining(bool mining, int hashrate);
+    /** Set the encryption status as shown in the UI.
+       @param[in] status            current encryption status
+       @see WalletModel::EncryptionStatus
+    */
+    void setEncryptionStatus(int status);
+
+    /** Notify the user of an error in the network or transaction handling code. */
+    void error(const QString &title, const QString &message, bool modal);
+    /** Asks the user whether to pay the transaction fee or to cancel the transaction.
+       It is currently not possible to pass a return value to another thread through
+       BlockingQueuedConnection, so an indirected pointer is used.
+       http://bugreports.qt.nokia.com/browse/QTBUG-10440
+
+      @param[in] nFeeRequired       the required fee
+      @param[out] payFee            true to pay the fee, false to not pay the fee
+    */
+    void askFee(qint64 nFeeRequired, bool *payFee);
+    void handleURI(QString strURI);
+
+private slots:
+    /** Switch to overview (home) page */
+    void gotoOverviewPage();
+    /** Switch to mining page */
+    void gotoMiningPage();
+    /** Switch to history (transactions) page */
+    void gotoHistoryPage();
+    /** Switch to address book page */
+    void gotoAddressBookPage();
+    /** Switch to receive coins page */
+    void gotoReceiveCoinsPage();
+    /** Switch to send coins page */
+    void gotoSendCoinsPage();
+
+    /** Show Sign/Verify Message dialog and switch to sign message tab */
+    void gotoSignMessageTab(QString addr = "");
+    /** Show Sign/Verify Message dialog and switch to verify message tab */
+    void gotoVerifyMessageTab(QString addr = "");
+
+    /** Show configuration dialog */
+    void optionsClicked();
+    /** Show about dialog */
+    void aboutClicked();
+#ifndef Q_WS_MAC
+    /** Handle tray ic
