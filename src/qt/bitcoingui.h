@@ -162,4 +162,27 @@ private slots:
     /** Show about dialog */
     void aboutClicked();
 #ifndef Q_WS_MAC
-    /** Handle tray ic
+    /** Handle tray icon clicked */
+    void trayIconActivated(QSystemTrayIcon::ActivationReason reason);
+#endif
+    /** Show incoming transaction notification for new transactions.
+
+        The new items are those between start and end inclusive, under the given parent item.
+    */
+    void incomingTransaction(const QModelIndex & parent, int start, int end);
+    /** Encrypt the wallet */
+    void encryptWallet(bool status);
+    /** Backup the wallet */
+    void backupWallet();
+    /** Change encrypted wallet passphrase */
+    void changePassphrase();
+    /** Ask for pass phrase to unlock wallet temporarily */
+    void unlockWallet();
+
+    /** Show window if hidden, unminimize when minimized, rise when obscured or show if hidden and fToggleHidden is true */
+    void showNormalIfMinimized(bool fToggleHidden = false);
+    /** simply calls showNormalIfMinimized(true) for use in SLOT() macro */
+    void toggleHidden();
+};
+
+#endif
