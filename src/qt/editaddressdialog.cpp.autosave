@@ -98,4 +98,31 @@ void EditAddressDialog::accept()
             return;
         case AddressTableModel::WALLET_UNLOCK_FAILURE:
             QMessageBox::critical(this, windowTitle(),
-                tr("Could not unlock walle
+                tr("Could not unlock wallet."),
+                QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        case AddressTableModel::KEY_GENERATION_FAILURE:
+            QMessageBox::critical(this, windowTitle(),
+                tr("New key generation failed."),
+                QMessageBox::Ok, QMessageBox::Ok);
+            return;
+        case AddressTableModel::OK:
+            // Failed with unknown reason. Just reject.
+            break;
+        }
+
+        return;
+    }
+    QDialog::accept();
+}
+
+QString EditAddressDialog::getAddress() const
+{
+    return address;
+}
+
+void EditAddressDialog::setAddress(const QString &address)
+{
+    this->address = address;
+    ui->addressEdit->setText(address);
+}
