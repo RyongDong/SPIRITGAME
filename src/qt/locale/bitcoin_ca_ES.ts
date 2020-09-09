@@ -48,4 +48,60 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location filename="../forms/addressbookpage.ui" line="77"/>
-        <source>Copy the currently selected address to the
+        <source>Copy the currently selected address to the system clipboard</source>
+        <translation>Copieu l&apos;adreça seleccionada al porta-retalls del sistema</translation>
+    </message>
+    <message>
+        <location filename="../forms/addressbookpage.ui" line="66"/>
+        <source>&amp;New Address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/addressbookpage.ui" line="80"/>
+        <source>&amp;Copy Address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/addressbookpage.ui" line="91"/>
+        <source>Show &amp;QR Code</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/addressbookpage.ui" line="102"/>
+        <source>Sign a message to prove you own this address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/addressbookpage.ui" line="105"/>
+        <source>&amp;Sign Message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/addressbookpage.ui" line="116"/>
+        <source>Delete the currently selected address from the list. Only sending addresses can be deleted.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/addressbookpage.ui" line="119"/>
+        <source>&amp;Delete</source>
+        <translation>&amp;Borrar</translation>
+    </message>
+    <message>
+        <location filename="../addressbookpage.cpp" line="63"/>
+        <source>Copy &amp;Label</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../addressbookpage.cpp" line="65"/>
+        <source>&amp;Edit</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../addressbookpage.cpp" line="292"/>
+        <source>Export Address Book Data</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../addressbookpage.cpp" line="293"/>
+        <source>Comma separated file (*.csv)</source>
+        <translation type="unfinished"/
