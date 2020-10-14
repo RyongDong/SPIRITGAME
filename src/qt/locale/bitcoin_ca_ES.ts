@@ -726,4 +726,66 @@ Address: %4
     </message>
     <message>
         <location filename="../editaddressdialog.cpp" line="101"/>
-        <source>Could not unlock wallet.</so
+        <source>Could not unlock wallet.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../editaddressdialog.cpp" line="106"/>
+        <source>New key generation failed.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>HelpMessageBox</name>
+    <message>
+        <location filename="../bitcoin.cpp" line="133"/>
+        <location filename="../bitcoin.cpp" line="143"/>
+        <source>Bitcoin-Qt</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="133"/>
+        <source>version</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="135"/>
+        <source>Usage:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="136"/>
+        <source>options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="138"/>
+        <source>UI options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="139"/>
+        <source>Set language, for example &quot;de_DE&quot; (default: system locale)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="140"/>
+        <source>Start minimized</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="141"/>
+        <source>Show splash screen on startup (default: 1)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>MainOptionsPage</name>
+    <message>
+        <location filename="../optionsdialog.cpp" line="227"/>
+        <source>Detach block and address databases at shutdown. This means they can be moved to another data directory, but it slows down shutdown. The wallet is always detached.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="212"/>
+        <source>Pay transaction &amp;fee</sourc
