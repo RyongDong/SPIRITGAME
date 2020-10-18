@@ -1013,4 +1013,65 @@ Address: %4
         <translation>Sense confirmar:</translation>
     </message>
     <message>
-        <location filename="../for
+        <location filename="../forms/overviewpage.ui" line="40"/>
+        <source>Wallet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/overviewpage.ui" line="197"/>
+        <source>&lt;b&gt;Recent transactions&lt;/b&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/overviewpage.ui" line="105"/>
+        <source>Your current balance</source>
+        <translation>El seu balanç actual</translation>
+    </message>
+    <message>
+        <location filename="../forms/overviewpage.ui" line="134"/>
+        <source>Total of transactions that have yet to be confirmed, and do not yet count toward the current balance</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/overviewpage.ui" line="154"/>
+        <source>Total number of transactions in wallet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../overviewpage.cpp" line="110"/>
+        <location filename="../overviewpage.cpp" line="111"/>
+        <source>out of sync</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>QRCodeDialog</name>
+    <message>
+        <location filename="../forms/qrcodedialog.ui" line="14"/>
+        <source>QR Code Dialog</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/qrcodedialog.ui" line="32"/>
+        <source>QR Code</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/qrcodedialog.ui" line="55"/>
+        <source>Request Payment</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/qrcodedialog.ui" line="70"/>
+        <source>Amount:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/qrcodedialog.ui" line="105"/>
+        <source>BTC</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/qrcodedialog.ui" line="121"/>
+        <source>Label:</source>
+        <translation ty
