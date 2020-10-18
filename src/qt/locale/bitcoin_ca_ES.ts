@@ -837,4 +837,63 @@ Address: %4
     <message>
         <location filename="../forms/messagepage.ui" line="48"/>
         <source>Choose adress from address book</source>
-        <translation type="unfinis
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="58"/>
+        <source>Alt+A</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="71"/>
+        <source>Paste address from clipboard</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="81"/>
+        <source>Alt+P</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="93"/>
+        <source>Enter the message you want to sign here</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="128"/>
+        <source>Copy the current signature to the system clipboard</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="131"/>
+        <source>&amp;Copy Signature</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="142"/>
+        <source>Reset all sign message fields</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="145"/>
+        <source>Clear &amp;All</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../messagepage.cpp" line="31"/>
+        <source>Click &quot;Sign Message&quot; to get signature</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="114"/>
+        <source>Sign a message to prove you own this address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="117"/>
+        <source>&amp;Sign Message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../messagepage.cpp" line="30"/>
+        <source>Enter a Bitcoin address (e.g. 1
