@@ -1309,4 +1309,57 @@ Address: %4
     </message>
     <message>
         <location filename="../sendcoinsdialog.cpp" line="123"/>
-        <source>The recepient addre
+        <source>The recepient address is not valid, please recheck.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../sendcoinsdialog.cpp" line="128"/>
+        <source>The amount to pay must be larger than 0.</source>
+        <translation>La quantitat a pagar ha de ser major que 0.</translation>
+    </message>
+    <message>
+        <location filename="../sendcoinsdialog.cpp" line="133"/>
+        <source>The amount exceeds your balance.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../sendcoinsdialog.cpp" line="138"/>
+        <source>The total exceeds your balance when the %1 transaction fee is included.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../sendcoinsdialog.cpp" line="144"/>
+        <source>Duplicate address found, can only send to each address once per send operation.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../sendcoinsdialog.cpp" line="149"/>
+        <source>Error: Transaction creation failed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../sendcoinsdialog.cpp" line="154"/>
+        <source>Error: The transaction was rejected. This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>SendCoinsEntry</name>
+    <message>
+        <location filename="../forms/sendcoinsentry.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/sendcoinsentry.ui" line="29"/>
+        <source>A&amp;mount:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/sendcoinsentry.ui" line="42"/>
+        <source>Pay &amp;To:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/sendcoinsentry.ui" line="66"/>
+    
