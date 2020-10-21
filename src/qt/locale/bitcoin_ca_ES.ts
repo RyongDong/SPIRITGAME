@@ -1422,3 +1422,60 @@ Address: %4
     <message>
         <location filename="../transactiondesc.cpp" line="29"/>
         <source>%1/offline?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="31"/>
+        <source>%1/unconfirmed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="33"/>
+        <source>%1 confirmations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="51"/>
+        <source>&lt;b&gt;Status:&lt;/b&gt; </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="56"/>
+        <source>, has not been successfully broadcast yet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="58"/>
+        <source>, broadcast through %1 node</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="60"/>
+        <source>, broadcast through %1 nodes</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="64"/>
+        <source>&lt;b&gt;Date:&lt;/b&gt; </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="71"/>
+        <source>&lt;b&gt;Source:&lt;/b&gt; Generated&lt;br&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="77"/>
+        <location filename="../transactiondesc.cpp" line="94"/>
+        <source>&lt;b&gt;From:&lt;/b&gt; </source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="94"/>
+        <source>unknown</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="95"/>
+        <location filename="../transactiondesc.cpp" line="118"/>
+        <location filename="../transactiondesc.cpp" line="1
