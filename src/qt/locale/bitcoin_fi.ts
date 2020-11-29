@@ -112,4 +112,58 @@ This product includes software developed by the OpenSSL Project for use in the O
         <source>Comma separated file (*.csv)</source>
         <translation>Comma separated file (*.csv)</translation>
     </message>
-    <
+    <message>
+        <location filename="../addressbookpage.cpp" line="306"/>
+        <source>Error exporting</source>
+        <translation>Virhe viedessä osoitekirjaa</translation>
+    </message>
+    <message>
+        <location filename="../addressbookpage.cpp" line="306"/>
+        <source>Could not write to file %1.</source>
+        <translation>Ei voida kirjoittaa tiedostoon %1.</translation>
+    </message>
+</context>
+<context>
+    <name>AddressTableModel</name>
+    <message>
+        <location filename="../addresstablemodel.cpp" line="142"/>
+        <source>Label</source>
+        <translation>Nimi</translation>
+    </message>
+    <message>
+        <location filename="../addresstablemodel.cpp" line="142"/>
+        <source>Address</source>
+        <translation>Osoite</translation>
+    </message>
+    <message>
+        <location filename="../addresstablemodel.cpp" line="178"/>
+        <source>(no label)</source>
+        <translation>(ei nimeä)</translation>
+    </message>
+</context>
+<context>
+    <name>AskPassphraseDialog</name>
+    <message>
+        <location filename="../forms/askpassphrasedialog.ui" line="26"/>
+        <source>Passphrase Dialog</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/askpassphrasedialog.ui" line="47"/>
+        <source>Enter passphrase</source>
+        <translation>Anna tunnuslause</translation>
+    </message>
+    <message>
+        <location filename="../forms/askpassphrasedialog.ui" line="61"/>
+        <source>New passphrase</source>
+        <translation>Uusi tunnuslause</translation>
+    </message>
+    <message>
+        <location filename="../forms/askpassphrasedialog.ui" line="75"/>
+        <source>Repeat new passphrase</source>
+        <translation>Toista uusi tunnuslause</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="33"/>
+        <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;10 or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
+        <translation>Anna lompakolle uusi tunnuslause.&lt;br/&gt;Käytä tunnuslau
