@@ -304,4 +304,57 @@ Tahdotko varmasti salata lompakon?</translation>
     <message>
         <location filename="../bitcoingui.cpp" line="186"/>
         <source>Show general overview of wallet</source>
-        <t
+        <translation>Näyttää kokonaiskatsauksen lompakon tilanteesta</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="191"/>
+        <source>&amp;Transactions</source>
+        <translation>&amp;Rahansiirrot</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="192"/>
+        <source>Browse transaction history</source>
+        <translation>Selaa rahansiirtohistoriaa</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="197"/>
+        <source>&amp;Address Book</source>
+        <translation>&amp;Osoitekirja</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="198"/>
+        <source>Edit the list of stored addresses and labels</source>
+        <translation>Muokkaa tallennettujen nimien ja osoitteiden listaa</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="203"/>
+        <source>&amp;Receive coins</source>
+        <translation>&amp;Vastaanota Bitcoineja</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="204"/>
+        <source>Show the list of addresses for receiving payments</source>
+        <translation>Näytä Bitcoinien vastaanottamiseen käytetyt osoitteet</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="209"/>
+        <source>&amp;Send coins</source>
+        <translation>&amp;Lähetä Bitcoineja</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="216"/>
+        <source>Prove you control an address</source>
+        <translation>Todista että hallitset osoitetta</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="235"/>
+        <source>E&amp;xit</source>
+        <translation>L&amp;opeta</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="236"/>
+        <source>Quit application</source>
+        <translation>Lopeta ohjelma</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" lin
