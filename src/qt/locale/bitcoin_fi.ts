@@ -469,4 +469,54 @@ Tahdotko varmasti salata lompakon?</translation>
     <message>
         <location filename="../bitcoingui.cpp" line="286"/>
         <source>&amp;File</source>
-        <translat
+        <translation>&amp;Tiedosto</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="296"/>
+        <source>&amp;Settings</source>
+        <translation>&amp;Asetukset</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="302"/>
+        <source>&amp;Help</source>
+        <translation>&amp;Apua</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="311"/>
+        <source>Tabs toolbar</source>
+        <translation>Välilehtipalkki</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="322"/>
+        <source>Actions toolbar</source>
+        <translation>Toimintopalkki</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="334"/>
+        <location filename="../bitcoingui.cpp" line="343"/>
+        <source>[testnet]</source>
+        <translation>[testnet]</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="343"/>
+        <location filename="../bitcoingui.cpp" line="399"/>
+        <source>Bitcoin client</source>
+        <translation>Bitcoin-asiakas</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../bitcoingui.cpp" line="492"/>
+        <source>%n active connection(s) to Bitcoin network</source>
+        <translation><numerusform>%n aktiivinen yhteys Bitcoin-verkkoon</numerusform><numerusform>%n aktiivista yhteyttä Bitcoin-verkkoon</numerusform></translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="540"/>
+        <source>Downloaded %1 blocks of transaction history.</source>
+        <translation>Ladattu %1 lohkoa rahansiirron historiasta.</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../bitcoingui.cpp" line="555"/>
+        <source>%n second(s) ago</source>
+        <translation><numerusform>%n sekunti sitten</numerusform><numerusform>%n sekuntia sitten</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../bitcoingui.cpp" line="559"/
