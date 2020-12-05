@@ -519,4 +519,45 @@ Tahdotko varmasti salata lompakon?</translation>
         <translation><numerusform>%n sekunti sitten</numerusform><numerusform>%n sekuntia sitten</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../bitcoingui.cpp" line="559"/
+        <location filename="../bitcoingui.cpp" line="559"/>
+        <source>%n minute(s) ago</source>
+        <translation><numerusform>%n minuutti sitten</numerusform><numerusform>%n minuuttia sitten</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../bitcoingui.cpp" line="563"/>
+        <source>%n hour(s) ago</source>
+        <translation><numerusform>%n tunti sitten</numerusform><numerusform>%n tuntia sitten</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../bitcoingui.cpp" line="567"/>
+        <source>%n day(s) ago</source>
+        <translation><numerusform>%n päivä sitten</numerusform><numerusform>%n päivää sitten</numerusform></translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="573"/>
+        <source>Up to date</source>
+        <translation>Rahansiirtohistoria on ajan tasalla</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="580"/>
+        <source>Catching up...</source>
+        <translation>Kurotaan kiinni...</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="590"/>
+        <source>Last received block was generated %1.</source>
+        <translation>Viimeisin vastaanotettu lohko tuotettu %1.</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="649"/>
+        <source>This transaction is over the size limit.  You can still send it for a fee of %1, which goes to the nodes that process your transaction and helps to support the network.  Do you want to pay the fee?</source>
+        <translation>Tämä rahansiirto ylittää kokorajoituksen. Voit siitä huolimatta lähettää sen %1 siirtopalkkion mikä menee solmuille jotka  käsittelevät rahansiirtosi tämä auttaa myös verkostoa. Haluatko maksaa siirtopalkkion? </translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="654"/>
+        <source>Confirm transaction fee</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="681"/>
+        <source>Sent
