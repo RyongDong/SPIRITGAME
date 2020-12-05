@@ -413,4 +413,60 @@ Tahdotko varmasti salata lompakon?</translation>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="210"/>
-        <source>Send coins to a Bitcoin address</so
+        <source>Send coins to a Bitcoin address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="246"/>
+        <source>Modify configuration options for Bitcoin</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="249"/>
+        <source>Show or hide the Bitcoin window</source>
+        <translation>Näytä tai piillota Bitcoin-ikkuna</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="251"/>
+        <source>Export the data in the current tab to a file</source>
+        <translation>Vie auki olevan välilehden tiedot tiedostoon</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="253"/>
+        <source>Encrypt or decrypt wallet</source>
+        <translation>Salaa tai poista salaus lompakosta</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="256"/>
+        <source>Backup wallet to another location</source>
+        <translation>Varmuuskopioi lompakko toiseen sijaintiin</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="258"/>
+        <source>Change the passphrase used for wallet encryption</source>
+        <translation>Vaihda lompakon salaukseen käytettävä tunnuslause</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="259"/>
+        <source>&amp;Debug window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="260"/>
+        <source>Open debugging and diagnostic console</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="261"/>
+        <source>&amp;Verify message...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="262"/>
+        <source>Verify a message signature</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="286"/>
+        <source>&amp;File</source>
+        <translat
