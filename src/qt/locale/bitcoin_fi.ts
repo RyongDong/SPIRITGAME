@@ -560,4 +560,61 @@ Tahdotko varmasti salata lompakon?</translation>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="681"/>
-        <source>Sent
+        <source>Sent transaction</source>
+        <translation>Lähetetyt rahansiirrot</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="682"/>
+        <source>Incoming transaction</source>
+        <translation>Saapuva rahansiirto</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="683"/>
+        <source>Date: %1
+Amount: %2
+Type: %3
+Address: %4
+</source>
+        <translation>Päivä: %1
+Määrä: %2
+Tyyppi: %3
+Osoite: %4</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="804"/>
+        <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
+        <translation>Lompakko on &lt;b&gt;salattu&lt;/b&gt; ja tällä hetkellä &lt;b&gt;avoinna&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="812"/>
+        <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
+        <translation>Lompakko on &lt;b&gt;salattu&lt;/b&gt; ja tällä hetkellä &lt;b&gt;lukittuna&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="835"/>
+        <source>Backup Wallet</source>
+        <translation>Varmuuskopioi lompakko</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="835"/>
+        <source>Wallet Data (*.dat)</source>
+        <translation>Lompakkodata (*.dat)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="838"/>
+        <source>Backup Failed</source>
+        <translation>Varmuuskopio epäonnistui</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="838"/>
+        <source>There was an error trying to save the wallet data to the new location.</source>
+        <translation>Virhe tallennettaessa lompakkodataa uuteen sijaintiin.</translation>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="112"/>
+        <source>A fatal error occured. Bitcoin can no longer continue safely and will quit.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <n
