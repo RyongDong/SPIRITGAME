@@ -725,4 +725,60 @@ Osoite: %4</translation>
         <translation>Muokkaa lähtevää osoitetta</translation>
     </message>
     <message>
-        <location 
+        <location filename="../editaddressdialog.cpp" line="91"/>
+        <source>The entered address &quot;%1&quot; is already in the address book.</source>
+        <translation>Osoite &quot;%1&quot; on jo osoitekirjassa.</translation>
+    </message>
+    <message>
+        <location filename="../editaddressdialog.cpp" line="96"/>
+        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../editaddressdialog.cpp" line="101"/>
+        <source>Could not unlock wallet.</source>
+        <translation>Lompakkoa ei voitu avata.</translation>
+    </message>
+    <message>
+        <location filename="../editaddressdialog.cpp" line="106"/>
+        <source>New key generation failed.</source>
+        <translation>Uuden avaimen luonti epäonnistui.</translation>
+    </message>
+</context>
+<context>
+    <name>HelpMessageBox</name>
+    <message>
+        <location filename="../bitcoin.cpp" line="133"/>
+        <location filename="../bitcoin.cpp" line="143"/>
+        <source>Bitcoin-Qt</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="133"/>
+        <source>version</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="135"/>
+        <source>Usage:</source>
+        <translation>Käyttö:</translation>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="136"/>
+        <source>options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="138"/>
+        <source>UI options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="139"/>
+        <source>Set language, for example &quot;de_DE&quot; (default: system locale)</source>
+        <translation>Set language, for example &quot;de_DE&quot; (default: system locale)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="140"/>
+        <source>Start minimized</source>
+        <translation>Käynnistä pienennet
