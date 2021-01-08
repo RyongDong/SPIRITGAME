@@ -975,4 +975,60 @@ Osoite: %4</translation>
         <location filename="../optionsdialog.cpp" line="366"/>
         <source>&amp;Port:</source>
         <translation type="unfinished"/>
-    </message
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="363"/>
+        <source>IP address of the proxy (e.g. 127.0.0.1)</source>
+        <translation>Välityspalvelimen IP-osoite (esim. 127.0.0.1)</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="372"/>
+        <source>Port of the proxy (e.g. 1234)</source>
+        <translation>Portti, johon Bitcoin-asiakasohjelma yhdistää (esim. 1234)</translation>
+    </message>
+</context>
+<context>
+    <name>OptionsDialog</name>
+    <message>
+        <location filename="../optionsdialog.cpp" line="135"/>
+        <source>Options</source>
+        <translation>Asetukset</translation>
+    </message>
+</context>
+<context>
+    <name>OverviewPage</name>
+    <message>
+        <location filename="../forms/overviewpage.ui" line="14"/>
+        <source>Form</source>
+        <translation>Lomake</translation>
+    </message>
+    <message>
+        <location filename="../forms/overviewpage.ui" line="47"/>
+        <location filename="../forms/overviewpage.ui" line="204"/>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Bitcoin network after a connection is established, but this process has not completed yet.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/overviewpage.ui" line="89"/>
+        <source>Balance:</source>
+        <translation>Saldo:</translation>
+    </message>
+    <message>
+        <location filename="../forms/overviewpage.ui" line="147"/>
+        <source>Number of transactions:</source>
+        <translation>Rahansiirtojen lukumäärä:</translation>
+    </message>
+    <message>
+        <location filename="../forms/overviewpage.ui" line="118"/>
+        <source>Unconfirmed:</source>
+        <translation>Vahvistamatta:</translation>
+    </message>
+    <message>
+        <location filename="../forms/overviewpage.ui" line="40"/>
+        <source>Wallet</source>
+        <translation>Lompakko</translation>
+    </message>
+    <message>
+        <location filename="../forms/overviewpage.ui" line="197"/>
+        <source>&lt;b&gt;Recent transactions&lt;/b&gt;</source>
+    
