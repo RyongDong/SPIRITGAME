@@ -1610,4 +1610,54 @@ Osoite: %4</translation>
         <translation>Ei yhteyttä verkkoon (%1 vahvistusta)</translation>
     </message>
     <message>
-        <location filename="../transactiontablemodel.cpp" line=
+        <location filename="../transactiontablemodel.cpp" line="290"/>
+        <source>Unconfirmed (%1 of %2 confirmations)</source>
+        <translation>Vahvistamatta (%1/%2 vahvistusta)</translation>
+    </message>
+    <message>
+        <location filename="../transactiontablemodel.cpp" line="293"/>
+        <source>Confirmed (%1 confirmations)</source>
+        <translation>Vahvistettu (%1 vahvistusta)</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../transactiontablemodel.cpp" line="301"/>
+        <source>Mined balance will be available in %n more blocks</source>
+        <translation><numerusform>Louhittu saldo tulee saataville %n lohkossa</numerusform><numerusform>Louhittu saldo tulee saataville %n lohkossa</numerusform></translation>
+    </message>
+    <message>
+        <location filename="../transactiontablemodel.cpp" line="307"/>
+        <source>This block was not received by any other nodes and will probably not be accepted!</source>
+        <translation>Tätä lohkoa ei vastaanotettu mistään muusta solmusta ja sitä ei mahdollisesti hyväksytä!</translation>
+    </message>
+    <message>
+        <location filename="../transactiontablemodel.cpp" line="310"/>
+        <source>Generated but not accepted</source>
+        <translation>Generoitu mutta ei hyväksytty</translation>
+    </message>
+    <message>
+        <location filename="../transactiontablemodel.cpp" line="353"/>
+        <source>Received with</source>
+        <translation>Vastaanotettu osoitteella</translation>
+    </message>
+    <message>
+        <location filename="../transactiontablemodel.cpp" line="355"/>
+        <source>Received from</source>
+        <translation>Vastaanotettu</translation>
+    </message>
+    <message>
+        <location filename="../transactiontablemodel.cpp" line="358"/>
+        <source>Sent to</source>
+        <translation>Saaja</translation>
+    </message>
+    <message>
+        <location filename="../transactiontablemodel.cpp" line="360"/>
+        <source>Payment to yourself</source>
+        <translation>Maksu itsellesi</translation>
+    </message>
+    <message>
+        <location filename="../transactiontablemodel.cpp" line="362"/>
+        <source>Mined</source>
+        <translation>Louhittu</translation>
+    </message>
+    <message>
+  
