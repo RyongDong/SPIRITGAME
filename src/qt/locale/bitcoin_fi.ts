@@ -1711,4 +1711,68 @@ Osoite: %4</translation>
     <message>
         <location filename="../transactionview.cpp" line="58"/>
         <source>This month</source>
-        <translation>Tässä kuussa</translatio
+        <translation>Tässä kuussa</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="59"/>
+        <source>Last month</source>
+        <translation>Viime kuussa</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="60"/>
+        <source>This year</source>
+        <translation>Tänä vuonna</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="61"/>
+        <source>Range...</source>
+        <translation>Alue...</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="72"/>
+        <source>Received with</source>
+        <translation>Vastaanotettu osoitteella</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="74"/>
+        <source>Sent to</source>
+        <translation>Saaja</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="76"/>
+        <source>To yourself</source>
+        <translation>Itsellesi</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="77"/>
+        <source>Mined</source>
+        <translation>Louhittu</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="78"/>
+        <source>Other</source>
+        <translation>Muu</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="85"/>
+        <source>Enter address or label to search</source>
+        <translation>Anna etsittävä osoite tai tunniste</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="92"/>
+        <source>Min amount</source>
+        <translation>Minimimäärä</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="126"/>
+        <source>Copy address</source>
+        <translation>Kopioi osoite</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="127"/>
+        <source>Copy label</source>
+        <translation>Kopioi nimi</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="128"/>
+       
