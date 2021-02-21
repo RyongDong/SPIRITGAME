@@ -1997,4 +1997,51 @@ Osoite: %4</translation>
         <translation>Hanki apua käskyyn</translation>
     </message>
     <message>
-        <l
+        <location filename="../bitcoinstrings.cpp" line="49"/>
+        <source>Options:</source>
+        <translation>Asetukset:</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="50"/>
+        <source>Specify configuration file (default: bitcoin.conf)</source>
+        <translation>Määritä asetustiedosto (oletus: bitcoin.conf)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="51"/>
+        <source>Specify pid file (default: bitcoind.pid)</source>
+        <translation>Määritä pid-tiedosto (oletus: bitcoin.pid)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="52"/>
+        <source>Generate coins</source>
+        <translation>Generoi kolikoita</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="53"/>
+        <source>Don&apos;t generate coins</source>
+        <translation>Älä generoi kolikoita</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="54"/>
+        <source>Specify data directory</source>
+        <translation>Määritä data-hakemisto</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="55"/>
+        <source>Set database cache size in megabytes (default: 25)</source>
+        <translation>Aseta tietokannan välimuistin koko megatavuina (oletus: 25)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="56"/>
+        <source>Set database disk log size in megabytes (default: 100)</source>
+        <translation>Aseta tietokannan lokitiedoston koko megatavuina (oletus: 100)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="57"/>
+        <source>Specify connection timeout (in milliseconds)</source>
+        <translation>Määritä yhteyden aikakatkaisu (millisekunneissa)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="63"/>
+        <source>Listen for connections on &lt;port&gt; (default: 8333 or testnet: 18333)</source>
+        <translation>Kuuntele yhteyksiä
