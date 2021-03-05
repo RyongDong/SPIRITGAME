@@ -2137,4 +2137,50 @@ Osoite: %4</translation>
         <translation>Lähetä jäljitys/debug-tieto konsoliin, debug.log-tiedoston sijaan</translation>
     </message>
     <message>
-        <
+        <location filename="../bitcoinstrings.cpp" line="92"/>
+        <source>Send trace/debug info to debugger</source>
+        <translation>Lähetä jäljitys/debug-tieto debuggeriin</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="93"/>
+        <source>Username for JSON-RPC connections</source>
+        <translation>Käyttäjätunnus JSON-RPC-yhteyksille</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="94"/>
+        <source>Password for JSON-RPC connections</source>
+        <translation>Salasana JSON-RPC-yhteyksille</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="95"/>
+        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 8332)</source>
+        <translation>Kuuntele JSON-RPC -yhteyksiä portista &lt;port&gt; (oletus: 8332)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="96"/>
+        <source>Allow JSON-RPC connections from specified IP address</source>
+        <translation>Salli JSON-RPC yhteydet tietystä ip-osoitteesta</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="97"/>
+        <source>Send commands to node running on &lt;ip&gt; (default: 127.0.0.1)</source>
+        <translation>Lähetä käskyjä solmuun osoitteessa &lt;ip&gt; (oletus: 127.0.0.1)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="98"/>
+        <source>Execute command when the best block changes (%s in cmd is replaced by block hash)</source>
+        <translation>Suorita käsky kun paras lohko muuttuu (%s cmd on vaihdettu block hashin kanssa)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="101"/>
+        <source>Upgrade wallet to latest format</source>
+        <translation>Päivitä lompakko uusimpaan formaattiin</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="102"/>
+        <source>Set key pool size to &lt;n&gt; (default: 100)</source>
+        <translation>Aseta avainpoolin koko arvoon &lt;n&gt; (oletus: 100)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="103"/>
+        <source>Rescan the block c
