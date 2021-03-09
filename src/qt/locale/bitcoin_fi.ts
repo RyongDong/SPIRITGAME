@@ -2281,4 +2281,53 @@ TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH)</translation>
     <message>
         <location filename="../bitcoinstrings.cpp" line="142"/>
         <source>Loading addresses...</source>
-        <translation>Ladataan osoitteita...
+        <translation>Ladataan osoitteita...</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="132"/>
+        <source>Error loading blkindex.dat</source>
+        <translation>Virhe ladattaessa blkindex.dat-tiedostoa</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="134"/>
+        <source>Error loading wallet.dat: Wallet corrupted</source>
+        <translation>Virhe ladattaessa wallet.dat-tiedostoa: Lompakko vioittunut</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="135"/>
+        <source>Error loading wallet.dat: Wallet requires newer version of Bitcoin</source>
+        <translation>Virhe ladattaessa wallet.dat-tiedostoa: Tarvitset uudemman version Bitcoinista</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="136"/>
+        <source>Wallet needed to be rewritten: restart Bitcoin to complete</source>
+        <translation>Lompakko tarvitsee uudelleenkirjoittaa: käynnistä Bitcoin uudelleen</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="137"/>
+        <source>Error loading wallet.dat</source>
+        <translation>Virhe ladattaessa wallet.dat-tiedostoa</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="124"/>
+        <source>Invalid -proxy address: &apos;%s&apos;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="125"/>
+        <source>Unknown network specified in -noproxy: &apos;%s&apos;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="127"/>
+        <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="126"/>
+        <source>Unknown -socks proxy version requested: %i</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="128"/>
+    
