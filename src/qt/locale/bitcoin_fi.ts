@@ -2375,4 +2375,48 @@ TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH)</translation>
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="37"/>
-        <source>Error: The transaction was rejected.  This might happen if some of the coins in your wallet were already spent, such as if you us
+        <source>Error: The transaction was rejected.  This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.</source>
+        <translation>Virhe: Rahansiirto hylättiin.  Tämä voi tapahtua jos jotkin bitcoineistasi on jo käytetty, esimerkiksi jos olet käyttänyt kopiota wallet.dat-lompakkotiedostosta ja bitcoinit on merkitty käytetyksi vain kopiossa.</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="41"/>
+        <source>Invalid amount</source>
+        <translation>Virheellinen määrä</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="42"/>
+        <source>Insufficient funds</source>
+        <translation>Lompakon saldo ei riitä</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="131"/>
+        <source>Loading block index...</source>
+        <translation>Ladataan lohkoindeksiä...</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="65"/>
+        <source>Add a node to connect to and attempt to keep the connection open</source>
+        <translation>Linää solmu mihin liittyä pitääksesi yhteyden auki</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="28"/>
+        <source>Unable to bind to %s on this computer. Bitcoin is probably already running.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="71"/>
+        <source>Find peers using internet relay chat (default: 0)</source>
+        <translation>Etsi solmuja käyttäen internet relay chatia (oletus: 0)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="72"/>
+        <source>Accept connections from outside (default: 1)</source>
+        <translation>Hyväksytään ulkopuoliset yhteydet (oletus: 1)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="74"/>
+        <source>Find peers using DNS lookup (default: 1)</source>
+        <translation>Etsi solmuja käyttämällä DNS hakua (oletus: 1)</translation>
+    </message>
+    <message>
+        <location filename="../bi
