@@ -2514,4 +2514,7 @@ Jos tiedostoa ei ole, niin luo se ainoastaan omistajan kirjoitusoikeuksin.</tran
     <message>
         <location filename="../bitcoinstrings.cpp" line="25"/>
         <source>Warning: Please check that your computer&apos;s date and time are correct.  If your clock is wrong Bitcoin will not work properly.</source>
-        <translation>Varoitus: Tarkista, ovatko tietokoneesi päivämäärä ja aika oikein.  Mikäli aika on väärin, Bitcoin-ohjelma ei toimi oikein.</tra
+        <translation>Varoitus: Tarkista, ovatko tietokoneesi päivämäärä ja aika oikein.  Mikäli aika on väärin, Bitcoin-ohjelma ei toimi oikein.</translation>
+    </message>
+</context>
+</TS>
