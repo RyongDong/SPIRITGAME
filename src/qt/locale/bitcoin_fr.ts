@@ -85,4 +85,57 @@ Ce produit comprend des logiciels développés par le projet OpenSSL pour être 
     <message>
         <location filename="../forms/addressbookpage.ui" line="116"/>
         <source>Delete the currently selected address from the list. Only sending addresses can be deleted.</source>
-        <translation>Supprimer l&apos
+        <translation>Supprimer l&apos;adresse sélectionnée dans la liste. Seules les adresses d&apos;envoi peuvent être supprimées.</translation>
+    </message>
+    <message>
+        <location filename="../forms/addressbookpage.ui" line="119"/>
+        <source>&amp;Delete</source>
+        <translation>&amp;Supprimer</translation>
+    </message>
+    <message>
+        <location filename="../addressbookpage.cpp" line="63"/>
+        <source>Copy &amp;Label</source>
+        <translation>Copier l&apos;é&amp;tiquette</translation>
+    </message>
+    <message>
+        <location filename="../addressbookpage.cpp" line="65"/>
+        <source>&amp;Edit</source>
+        <translation>&amp;Éditer</translation>
+    </message>
+    <message>
+        <location filename="../addressbookpage.cpp" line="292"/>
+        <source>Export Address Book Data</source>
+        <translation>Exporter les données du carnet d&apos;adresses</translation>
+    </message>
+    <message>
+        <location filename="../addressbookpage.cpp" line="293"/>
+        <source>Comma separated file (*.csv)</source>
+        <translation>Valeurs séparées par des virgules (*.csv)</translation>
+    </message>
+    <message>
+        <location filename="../addressbookpage.cpp" line="306"/>
+        <source>Error exporting</source>
+        <translation>Erreur lors de l&apos;exportation</translation>
+    </message>
+    <message>
+        <location filename="../addressbookpage.cpp" line="306"/>
+        <source>Could not write to file %1.</source>
+        <translation>Impossible d&apos;écrire sur le fichier %1.</translation>
+    </message>
+</context>
+<context>
+    <name>AddressTableModel</name>
+    <message>
+        <location filename="../addresstablemodel.cpp" line="142"/>
+        <source>Label</source>
+        <translation>Étiquette</translation>
+    </message>
+    <message>
+        <location filename="../addresstablemodel.cpp" line="142"/>
+        <source>Address</source>
+        <translation>Adresse</translation>
+    </message>
+    <message>
+        <location filename="../addresstablemodel.cpp" line="178"/>
+        <source>(no label)</source>
+        <translatio
