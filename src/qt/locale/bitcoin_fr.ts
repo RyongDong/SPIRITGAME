@@ -138,4 +138,50 @@ Ce produit comprend des logiciels développés par le projet OpenSSL pour être 
     <message>
         <location filename="../addresstablemodel.cpp" line="178"/>
         <source>(no label)</source>
-        <translatio
+        <translation>(aucune étiquette)</translation>
+    </message>
+</context>
+<context>
+    <name>AskPassphraseDialog</name>
+    <message>
+        <location filename="../forms/askpassphrasedialog.ui" line="26"/>
+        <source>Passphrase Dialog</source>
+        <translation>Dialogue de phrase de passe</translation>
+    </message>
+    <message>
+        <location filename="../forms/askpassphrasedialog.ui" line="47"/>
+        <source>Enter passphrase</source>
+        <translation>Entrez la phrase de passe</translation>
+    </message>
+    <message>
+        <location filename="../forms/askpassphrasedialog.ui" line="61"/>
+        <source>New passphrase</source>
+        <translation>Nouvelle phrase de passe</translation>
+    </message>
+    <message>
+        <location filename="../forms/askpassphrasedialog.ui" line="75"/>
+        <source>Repeat new passphrase</source>
+        <translation>Répétez la phrase de passe</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="33"/>
+        <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;10 or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
+        <translation>Entrez une nouvelle phrase de passe pour le porte-monnaie.&lt;br/&gt;Veuillez utiliser une phrase de &lt;b&gt;10 caractères au hasard ou plus&lt;/b&gt; ou bien de &lt;b&gt;huit mots ou plus&lt;/b&gt;.</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="34"/>
+        <source>Encrypt wallet</source>
+        <translation>Chiffrer le porte-monnaie</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="37"/>
+        <source>This operation needs your wallet passphrase to unlock the wallet.</source>
+        <translation>Cette opération nécessite votre phrase de passe pour déverrouiller le porte-monnaie.</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="42"/>
+        <source>Unlock wallet</source>
+        <translation>Déverrouiller le porte-monnaie</translation>
+    </message>
+    <message>
+        <location filename="../askpassp
