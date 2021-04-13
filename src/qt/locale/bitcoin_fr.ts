@@ -261,4 +261,59 @@ Are you sure you wish to encrypt your wallet?</source>
         <location filename="../askpassphrasedialog.cpp" line="147"/>
         <location filename="../askpassphrasedialog.cpp" line="166"/>
         <source>The passphrase entered for the wallet decryption was incorrect.</source>
-        <translation>La phra
+        <translation>La phrase de passe entrée pour décrypter le porte-monnaie était incorrecte.</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="146"/>
+        <source>Wallet decryption failed</source>
+        <translation>Le décryptage du porte-monnaie a échoué</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="160"/>
+        <source>Wallet passphrase was succesfully changed.</source>
+        <translation>La phrase de passe du porte-monnaie a été modifiée avec succès.</translation>
+    </message>
+</context>
+<context>
+    <name>BitcoinGUI</name>
+    <message>
+        <location filename="../bitcoingui.cpp" line="73"/>
+        <source>Bitcoin Wallet</source>
+        <translation>Porte-monnaie Bitcoin</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="215"/>
+        <source>Sign &amp;message...</source>
+        <translation>Signer le &amp;message...</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="248"/>
+        <source>Show/Hide &amp;Bitcoin</source>
+        <translation>Afficher/Cacher &amp;Bitcoin</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="515"/>
+        <source>Synchronizing with network...</source>
+        <translation>Synchronisation avec le réseau...</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="185"/>
+        <source>&amp;Overview</source>
+        <translation>&amp;Vue d&apos;ensemble</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="186"/>
+        <source>Show general overview of wallet</source>
+        <translation>Affiche une vue d&apos;ensemble du porte-monnaie</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="191"/>
+        <source>&amp;Transactions</source>
+        <translation>&amp;Transactions</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="192"/>
+        <source>Browse transaction history</source>
+        <translation>Permet de parcourir l&apos;historique des transactions</translation>
+    </message>
+    <
