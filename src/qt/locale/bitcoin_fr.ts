@@ -316,4 +316,56 @@ Are you sure you wish to encrypt your wallet?</source>
         <source>Browse transaction history</source>
         <translation>Permet de parcourir l&apos;historique des transactions</translation>
     </message>
-    <
+    <message>
+        <location filename="../bitcoingui.cpp" line="197"/>
+        <source>&amp;Address Book</source>
+        <translation>Carnet d&apos;&amp;adresses</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="198"/>
+        <source>Edit the list of stored addresses and labels</source>
+        <translation>Éditer la liste des adresses et des étiquettes stockées</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="203"/>
+        <source>&amp;Receive coins</source>
+        <translation>&amp;Recevoir des pièces</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="204"/>
+        <source>Show the list of addresses for receiving payments</source>
+        <translation>Affiche la liste des adresses pour recevoir des paiements</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="209"/>
+        <source>&amp;Send coins</source>
+        <translation>&amp;Envoyer des pièces</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="216"/>
+        <source>Prove you control an address</source>
+        <translation>Prouver que vous contrôlez une adresse</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="235"/>
+        <source>E&amp;xit</source>
+        <translation>Q&amp;uitter</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="236"/>
+        <source>Quit application</source>
+        <translation>Quitter l&apos;application</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="239"/>
+        <source>&amp;About %1</source>
+        <translation>&amp;À propos de %1</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="240"/>
+        <source>Show information about Bitcoin</source>
+        <translation>Afficher des informations à propos de Bitcoin</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="242"/>
+        <source>About &amp
