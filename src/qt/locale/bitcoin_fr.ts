@@ -418,4 +418,53 @@ Are you sure you wish to encrypt your wallet?</source>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="246"/>
-        <sourc
+        <source>Modify configuration options for Bitcoin</source>
+        <translation>Modifier les options de configuration de Bitcoin</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="249"/>
+        <source>Show or hide the Bitcoin window</source>
+        <translation>Afficher ou cacher la fenêtre Bitcoin</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="251"/>
+        <source>Export the data in the current tab to a file</source>
+        <translation>Exporter les données de l&apos;onglet courant vers un fichier</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="253"/>
+        <source>Encrypt or decrypt wallet</source>
+        <translation>Chiffrer ou décrypter le porte-monnaie</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="256"/>
+        <source>Backup wallet to another location</source>
+        <translation>Sauvegarder le porte-monnaie à un autre emplacement</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="258"/>
+        <source>Change the passphrase used for wallet encryption</source>
+        <translation>Modifier la phrase de passe utilisée pour le cryptage du porte-monnaie</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="259"/>
+        <source>&amp;Debug window</source>
+        <translation>Fenêtre de &amp;débogage</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="260"/>
+        <source>Open debugging and diagnostic console</source>
+        <translation>Ouvrir une console de débogage et de diagnostic</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="261"/>
+        <source>&amp;Verify message...</source>
+        <translation>&amp;Vérifier le message...</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="262"/>
+        <source>Verify a message signature</source>
+        <translation>Vérifier la signature d&apos;un message</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="
