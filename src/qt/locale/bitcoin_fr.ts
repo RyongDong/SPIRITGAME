@@ -708,4 +708,56 @@ Adresse : %4
     <message>
         <location filename="../editaddressdialog.cpp" line="20"/>
         <source>New receiving address</source>
-        <translation>Nouvelle adresse de réception<
+        <translation>Nouvelle adresse de réception</translation>
+    </message>
+    <message>
+        <location filename="../editaddressdialog.cpp" line="24"/>
+        <source>New sending address</source>
+        <translation>Nouvelle adresse d&apos;envoi</translation>
+    </message>
+    <message>
+        <location filename="../editaddressdialog.cpp" line="27"/>
+        <source>Edit receiving address</source>
+        <translation>Éditer l&apos;adresse de réception</translation>
+    </message>
+    <message>
+        <location filename="../editaddressdialog.cpp" line="31"/>
+        <source>Edit sending address</source>
+        <translation>Éditer l&apos;adresse d&apos;envoi</translation>
+    </message>
+    <message>
+        <location filename="../editaddressdialog.cpp" line="91"/>
+        <source>The entered address &quot;%1&quot; is already in the address book.</source>
+        <translation>L&apos;adresse fournie « %1 » est déjà présente dans le carnet d&apos;adresses.</translation>
+    </message>
+    <message>
+        <location filename="../editaddressdialog.cpp" line="96"/>
+        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
+        <translation>L&apos;adresse fournie « %1 » n&apos;est pas une adresse Bitcoin valide.</translation>
+    </message>
+    <message>
+        <location filename="../editaddressdialog.cpp" line="101"/>
+        <source>Could not unlock wallet.</source>
+        <translation>Impossible de déverrouiller le porte-monnaie.</translation>
+    </message>
+    <message>
+        <location filename="../editaddressdialog.cpp" line="106"/>
+        <source>New key generation failed.</source>
+        <translation>Échec de la génération de la nouvelle clef.</translation>
+    </message>
+</context>
+<context>
+    <name>HelpMessageBox</name>
+    <message>
+        <location filename="../bitcoin.cpp" line="133"/>
+        <location filename="../bitcoin.cpp" line="143"/>
+        <source>Bitcoin-Qt</source>
+        <translation>Bitcoin-Qt</translation>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="133"/>
+        <source>version</source>
+        <translation>version</translation>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="135"/>
