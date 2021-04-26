@@ -659,4 +659,53 @@ Adresse : %4
     </message>
     <message>
         <location filename="../optionsdialog.cpp" line="284"/>
-        <source>&amp;Display addres
+        <source>&amp;Display addresses in transaction list</source>
+        <translation>&amp;Afficher les adresses sur la liste des transactions</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="285"/>
+        <source>Whether to show Bitcoin addresses in the transaction list</source>
+        <translation>Détermine si les adresses Bitcoin seront affichées sur la liste des transactions</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="303"/>
+        <source>Warning</source>
+        <translation>Attention</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="303"/>
+        <source>This setting will take effect after restarting Bitcoin.</source>
+        <translation>Ce réglage sera pris en compte après un redémarrage de Bitcoin.</translation>
+    </message>
+</context>
+<context>
+    <name>EditAddressDialog</name>
+    <message>
+        <location filename="../forms/editaddressdialog.ui" line="14"/>
+        <source>Edit Address</source>
+        <translation>Éditer l&apos;adresse</translation>
+    </message>
+    <message>
+        <location filename="../forms/editaddressdialog.ui" line="25"/>
+        <source>&amp;Label</source>
+        <translation>&amp;Étiquette</translation>
+    </message>
+    <message>
+        <location filename="../forms/editaddressdialog.ui" line="35"/>
+        <source>The label associated with this address book entry</source>
+        <translation>L&apos;étiquette associée à cette entrée du carnet d&apos;adresses</translation>
+    </message>
+    <message>
+        <location filename="../forms/editaddressdialog.ui" line="42"/>
+        <source>&amp;Address</source>
+        <translation>&amp;Adresse</translation>
+    </message>
+    <message>
+        <location filename="../forms/editaddressdialog.ui" line="52"/>
+        <source>The address associated with this address book entry. This can only be modified for sending addresses.</source>
+        <translation>L&apos;adresse associée avec cette entrée du carnet d&apos;adresses. Ne peut être modifiée que pour les adresses d&apos;envoi.</translation>
+    </message>
+    <message>
+        <location filename="../editaddressdialog.cpp" line="20"/>
+        <source>New receiving address</source>
+        <translation>Nouvelle adresse de réception<
