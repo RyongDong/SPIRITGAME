@@ -761,3 +761,52 @@ Adresse : %4
     </message>
     <message>
         <location filename="../bitcoin.cpp" line="135"/>
+        <source>Usage:</source>
+        <translation>Utilisation :</translation>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="136"/>
+        <source>options</source>
+        <translation>options</translation>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="138"/>
+        <source>UI options</source>
+        <translation>Options Interface Utilisateur</translation>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="139"/>
+        <source>Set language, for example &quot;de_DE&quot; (default: system locale)</source>
+        <translation>Définir la langue, par exemple « de_DE » (par défaut : la langue du système)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="140"/>
+        <source>Start minimized</source>
+        <translation>Démarrer sous forme minimisée</translation>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="141"/>
+        <source>Show splash screen on startup (default: 1)</source>
+        <translation>Afficher l&apos;écran d&apos;accueil au démarrage (par défaut : 1)</translation>
+    </message>
+</context>
+<context>
+    <name>MainOptionsPage</name>
+    <message>
+        <location filename="../optionsdialog.cpp" line="227"/>
+        <source>Detach block and address databases at shutdown. This means they can be moved to another data directory, but it slows down shutdown. The wallet is always detached.</source>
+        <translation>Détacher les bases de données des blocs et des adresses lors de la fermeture. Cela permet de les déplacer dans un autre répertoire de données mais ralentit la fermeture. Le porte-monnaie est toujours détaché.</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="212"/>
+        <source>Pay transaction &amp;fee</source>
+        <translation>Payer des &amp;frais de transaction</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="204"/>
+        <source>Main</source>
+        <translation>Principal</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="206"/>
+        <source>Optional transaction
