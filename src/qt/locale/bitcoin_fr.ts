@@ -809,4 +809,36 @@ Adresse : %4
     </message>
     <message>
         <location filename="../optionsdialog.cpp" line="206"/>
-        <source>Optional transaction
+        <source>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee 0.01 recommended.</source>
+        <translation>Frais de transaction optionnels par ko qui aident à garantir un traitement rapide des transactions. La plupart des transactions occupent 1 ko. Des frais de 0.01 sont recommandés.</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="222"/>
+        <source>&amp;Start Bitcoin on system login</source>
+        <translation>&amp;Démarrer Bitcoin lors de l&apos;ouverture d&apos;une session</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="223"/>
+        <source>Automatically start Bitcoin after logging in to the system</source>
+        <translation>Démarrer Bitcoin automatiquement après avoir ouvert une session sur l&apos;ordinateur</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="226"/>
+        <source>&amp;Detach databases at shutdown</source>
+        <translation>&amp;Détacher les bases de données lors de la fermeture</translation>
+    </message>
+</context>
+<context>
+    <name>MessagePage</name>
+    <message>
+        <location filename="../forms/messagepage.ui" line="14"/>
+        <source>Sign Message</source>
+        <translation>Signer le message</translation>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="20"/>
+        <source>You can sign messages with your addresses to prove you own them. Be careful not to sign anything vague, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <translation>Vous pouvez signer des messages avec vos adresses pour prouver que les détenez. Faites attention à ne pas signer quoi que ce soit de vague car des attaques d&apos;hameçonnage peuvent essayer d&apos;obtenir votre identité par votre signature. Ne signez que des déclarations entièrement détaillées et avec lesquelles vous serez d&apos;accord.</translation>
+    </message>
+    <message>
+        <location filename="../
