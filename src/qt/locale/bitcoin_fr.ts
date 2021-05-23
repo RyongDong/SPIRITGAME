@@ -1090,4 +1090,55 @@ Adresse : %4
     <message>
         <location filename="../forms/qrcodedialog.ui" line="144"/>
         <source>Message:</source>
+        <translation>Message :</translation>
+    </message>
+    <message>
+        <location filename="../forms/qrcodedialog.ui" line="186"/>
+        <source>&amp;Save As...</source>
+        <translation>&amp;Enregistrer sous...</translation>
+    </message>
+    <message>
+        <location filename="../qrcodedialog.cpp" line="45"/>
+        <source>Error encoding URI into QR Code.</source>
+        <translation>Erreur de l&apos;encodage de l&apos;URI dans le QR Code.</translation>
+    </message>
+    <message>
+        <location filename="../qrcodedialog.cpp" line="63"/>
+        <source>Resulting URI too long, try to reduce the text for label / message.</source>
+        <translation>L&apos;URI résultant est trop long, essayez avec un texte d&apos;étiquette ou de message plus court.</translation>
+    </message>
+    <message>
+        <location filename="../qrcodedialog.cpp" line="120"/>
+        <source>Save QR Code</source>
+        <translation>Sauvegarder le QR Code</translation>
+    </message>
+    <message>
+        <location filename="../qrcodedialog.cpp" line="120"/>
+        <source>PNG Images (*.png)</source>
+        <translation>Images PNG (*.png)</translation>
+    </message>
+</context>
+<context>
+    <name>RPCConsole</name>
+    <message>
+        <location filename="../forms/rpcconsole.ui" line="14"/>
+        <source>Bitcoin debug window</source>
+        <translation>Fenêtre de débogage de Bitcoin</translation>
+    </message>
+    <message>
+        <location filename="../forms/rpcconsole.ui" line="46"/>
+        <source>Client name</source>
+        <translation>Nom du client</translation>
+    </message>
+    <message>
+        <location filename="../forms/rpcconsole.ui" line="56"/>
+        <location filename="../forms/rpcconsole.ui" line="79"/>
+        <location filename="../forms/rpcconsole.ui" line="102"/>
+        <location filename="../forms/rpcconsole.ui" line="125"/>
+        <location filename="../forms/rpcconsole.ui" line="161"/>
+        <location filename="../forms/rpcconsole.ui" line="214"/>
+        <location filename="../forms/rpcconsole.ui" line="237"/>
+        <location filename="../forms/rpcconsole.ui" line="260"/>
+        <location filename="../rpcconsole.cpp" line="245"/>
+        <source>N/A</source>
         <tra
