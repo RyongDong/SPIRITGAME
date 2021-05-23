@@ -1141,4 +1141,63 @@ Adresse : %4
         <location filename="../forms/rpcconsole.ui" line="260"/>
         <location filename="../rpcconsole.cpp" line="245"/>
         <source>N/A</source>
-        <tra
+        <translation>Indisponible</translation>
+    </message>
+    <message>
+        <location filename="../forms/rpcconsole.ui" line="69"/>
+        <source>Client version</source>
+        <translation>Version du client</translation>
+    </message>
+    <message>
+        <location filename="../forms/rpcconsole.ui" line="24"/>
+        <source>&amp;Information</source>
+        <translation>&amp;Information</translation>
+    </message>
+    <message>
+        <location filename="../forms/rpcconsole.ui" line="39"/>
+        <source>Client</source>
+        <translation>Client</translation>
+    </message>
+    <message>
+        <location filename="../forms/rpcconsole.ui" line="115"/>
+        <source>Startup time</source>
+        <translation>Temps de démarrage</translation>
+    </message>
+    <message>
+        <location filename="../forms/rpcconsole.ui" line="144"/>
+        <source>Network</source>
+        <translation>Réseau</translation>
+    </message>
+    <message>
+        <location filename="../forms/rpcconsole.ui" line="151"/>
+        <source>Number of connections</source>
+        <translation>Nombre de connexions</translation>
+    </message>
+    <message>
+        <location filename="../forms/rpcconsole.ui" line="174"/>
+        <source>On testnet</source>
+        <translation>Sur testnet</translation>
+    </message>
+    <message>
+        <location filename="../forms/rpcconsole.ui" line="197"/>
+        <source>Block chain</source>
+        <translation>Chaîne de blocs</translation>
+    </message>
+    <message>
+        <location filename="../forms/rpcconsole.ui" line="204"/>
+        <source>Current number of blocks</source>
+        <translation>Nombre actuel de blocs</translation>
+    </message>
+    <message>
+        <location filename="../forms/rpcconsole.ui" line="227"/>
+        <source>Estimated total blocks</source>
+        <translation>Nombre total estimé de blocs</translation>
+    </message>
+    <message>
+        <location filename="../forms/rpcconsole.ui" line="250"/>
+        <source>Last block time</source>
+        <translation>Horodatage du dernier bloc</translation>
+    </message>
+    <message>
+        <location filename="../forms/rpcconsole.ui" line="292"/>
+        <source>Debug logfile</so
