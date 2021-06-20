@@ -1385,4 +1385,57 @@ Adresse : %4
     <message>
         <location filename="../forms/sendcoinsentry.ui" line="93"/>
         <source>The address to send the payment to  (e.g. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</source>
-        <
+        <translation>L&apos;adresse à laquelle le paiement sera envoyé   (par ex. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</translation>
+    </message>
+    <message>
+        <location filename="../forms/sendcoinsentry.ui" line="103"/>
+        <source>Choose address from address book</source>
+        <translation>Choisir une adresse dans le carnet d&apos;adresses</translation>
+    </message>
+    <message>
+        <location filename="../forms/sendcoinsentry.ui" line="113"/>
+        <source>Alt+A</source>
+        <translation>Alt+A</translation>
+    </message>
+    <message>
+        <location filename="../forms/sendcoinsentry.ui" line="120"/>
+        <source>Paste address from clipboard</source>
+        <translation>Coller une adresse depuis le presse-papiers</translation>
+    </message>
+    <message>
+        <location filename="../forms/sendcoinsentry.ui" line="130"/>
+        <source>Alt+P</source>
+        <translation>Alt+P</translation>
+    </message>
+    <message>
+        <location filename="../forms/sendcoinsentry.ui" line="137"/>
+        <source>Remove this recipient</source>
+        <translation>Enlever ce destinataire</translation>
+    </message>
+    <message>
+        <location filename="../sendcoinsentry.cpp" line="26"/>
+        <source>Enter a Bitcoin address (e.g. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</source>
+        <translation>Entrez une adresse Bitcoin (par ex. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</translation>
+    </message>
+</context>
+<context>
+    <name>TransactionDesc</name>
+    <message>
+        <location filename="../transactiondesc.cpp" line="21"/>
+        <source>Open for %1 blocks</source>
+        <translation>Ouvert pour %1 blocs</translation>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="23"/>
+        <source>Open until %1</source>
+        <translation>Ouvert jusqu&apos;à %1</translation>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="29"/>
+        <source>%1/offline?</source>
+        <translation>%1/hors ligne ?</translation>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="31"/>
+        <source>%1/unconfirmed</source>
+        <trans
