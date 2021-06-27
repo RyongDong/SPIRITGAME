@@ -1491,4 +1491,57 @@ Adresse : %4
         <location filename="../transactiondesc.cpp" line="118"/>
         <location filename="../transactiondesc.cpp" line="178"/>
         <source>&lt;b&gt;To:&lt;/b&gt; </source>
-        <translation>&lt;b&gt;À :&l
+        <translation>&lt;b&gt;À :&lt;/b&gt; </translation>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="98"/>
+        <source> (yours, label: </source>
+        <translation> (vôtre, étiquette : </translation>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="100"/>
+        <source> (yours)</source>
+        <translation> (vôtre)</translation>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="136"/>
+        <location filename="../transactiondesc.cpp" line="150"/>
+        <location filename="../transactiondesc.cpp" line="195"/>
+        <location filename="../transactiondesc.cpp" line="212"/>
+        <source>&lt;b&gt;Credit:&lt;/b&gt; </source>
+        <translation>&lt;b&gt;Crédit : &lt;/b&gt; </translation>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="138"/>
+        <source>(%1 matures in %2 more blocks)</source>
+        <translation>(%1 sera considérée comme mûre suite à %2 blocs de plus)</translation>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="142"/>
+        <source>(not accepted)</source>
+        <translation>(pas accepté)</translation>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="186"/>
+        <location filename="../transactiondesc.cpp" line="194"/>
+        <location filename="../transactiondesc.cpp" line="209"/>
+        <source>&lt;b&gt;Debit:&lt;/b&gt; </source>
+        <translation>&lt;b&gt;Débit : &lt;/b&gt; </translation>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="200"/>
+        <source>&lt;b&gt;Transaction fee:&lt;/b&gt; </source>
+        <translation>&lt;b&gt;Frais de transaction :&lt;/b&gt; </translation>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="216"/>
+        <source>&lt;b&gt;Net amount:&lt;/b&gt; </source>
+        <translation>&lt;b&gt;Montant net :&lt;/b&gt; </translation>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="222"/>
+        <source>Message:</source>
+        <translation>Message :</translation>
+    </message>
+    <message>
+        <location filename="../transaction
