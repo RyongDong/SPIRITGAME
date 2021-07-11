@@ -1862,4 +1862,42 @@ Adresse : %4
         <translation>Vérifier le message signé</translation>
     </message>
     <message>
-     
+        <location filename="../forms/verifymessagedialog.ui" line="20"/>
+        <source>Enter the message and signature below (be careful to correctly copy newlines, spaces, tabs and other invisible characters) to obtain the Bitcoin address used to sign the message.</source>
+        <translation>Entrez le message et la signature ci-dessous (faites attention à copier correctement les nouvelles lignes, les espacement, tabulations et autre caractères invisibles) pour obtenir l&apos;adresse Bitcoin utilisée pour signer le message.</translation>
+    </message>
+    <message>
+        <location filename="../forms/verifymessagedialog.ui" line="62"/>
+        <source>Verify a message and obtain the Bitcoin address used to sign the message</source>
+        <translation>Vérifier un message et obtenir l&apos;adresse Bitcoin utilisée pour le signer</translation>
+    </message>
+    <message>
+        <location filename="../forms/verifymessagedialog.ui" line="65"/>
+        <source>&amp;Verify Message</source>
+        <translation>&amp;Vérifier le message</translation>
+    </message>
+    <message>
+        <location filename="../forms/verifymessagedialog.ui" line="79"/>
+        <source>Copy the currently selected address to the system clipboard</source>
+        <translation>Copier l&apos;adresse surlignée dans votre presse-papiers</translation>
+    </message>
+    <message>
+        <location filename="../forms/verifymessagedialog.ui" line="82"/>
+        <source>&amp;Copy Address</source>
+        <translation>&amp;Copier l&apos;adresse</translation>
+    </message>
+    <message>
+        <location filename="../forms/verifymessagedialog.ui" line="93"/>
+        <source>Reset all verify message fields</source>
+        <translation>Remettre à zéro tous les champs de vérification de message</translation>
+    </message>
+    <message>
+        <location filename="../forms/verifymessagedialog.ui" line="96"/>
+        <source>Clear &amp;All</source>
+        <translation>&amp;Tout nettoyer</translation>
+    </message>
+    <message>
+        <location filename="../verifymessagedialog.cpp" line="28"/>
+        <source>Enter Bitcoin signature</source>
+        <translation>Entrer une signature Bitcoin</translation>
+    </message>
