@@ -1950,4 +1950,50 @@ Adresse : %4
     </message>
     <message>
         <location filename="../optionsdialog.cpp" line="316"/>
-        <sour
+        <source>&amp;Minimize to the tray instead of the taskbar</source>
+        <translation>&amp;Minimiser dans la barre système au lieu de la barre des tâches</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="317"/>
+        <source>Show only a tray icon after minimizing the window</source>
+        <translation>Montrer uniquement une icône système après minimisation</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="320"/>
+        <source>M&amp;inimize on close</source>
+        <translation>M&amp;inimiser lors de la fermeture</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="321"/>
+        <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Quit in the menu.</source>
+        <translation>Minimiser au lieu quitter l&apos;application lorsque la fenêtre est fermée. Lorsque cette option est activée, l&apos;application ne pourra être fermée qu&apos;en sélectionnant Quitter dans le menu déroulant.</translation>
+    </message>
+</context>
+<context>
+    <name>bitcoin-core</name>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="43"/>
+        <source>Bitcoin version</source>
+        <translation>Version de Bitcoin</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="44"/>
+        <source>Usage:</source>
+        <translation>Utilisation :</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="45"/>
+        <source>Send command to -server or bitcoind</source>
+        <translation>Envoyer une commande à -server ou à bitcoind</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="46"/>
+        <source>List commands</source>
+        <translation>Lister les commandes</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="47"/>
+        <source>Get help for a command</source>
+        <translation>Obtenir de l&apos;aide pour une commande</translation>
+    </message>
+    <mess
