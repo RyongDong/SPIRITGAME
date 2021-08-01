@@ -2164,4 +2164,46 @@ Adresse : %4
     <message>
         <location filename="../bitcoinstrings.cpp" line="97"/>
         <source>Send commands to node running on &lt;ip&gt; (default: 127.0.0.1)</source>
-     
+        <translation>Envoyer des commandes au nœud fonctionnant à &lt;ip&gt; (par défaut : 127.0.0.1)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="98"/>
+        <source>Execute command when the best block changes (%s in cmd is replaced by block hash)</source>
+        <translation>Exécuter la commande lorsque le meilleur bloc change (%s est remplacé par le hachage du bloc dans cmd)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="101"/>
+        <source>Upgrade wallet to latest format</source>
+        <translation>Mettre à jour le format du porte-monnaie</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="102"/>
+        <source>Set key pool size to &lt;n&gt; (default: 100)</source>
+        <translation>Régler la taille de la plage de clefs sur &lt;n&gt; (par défaut : 100)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="103"/>
+        <source>Rescan the block chain for missing wallet transactions</source>
+        <translation>Réanalyser la chaîne de blocs pour les transactions de porte-monnaie manquantes</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="104"/>
+        <source>How many blocks to check at startup (default: 2500, 0 = all)</source>
+        <translation>Nombre de blocs à tester au démarrage (par défaut : 2500, 0 = tous)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="105"/>
+        <source>How thorough the block verification is (0-6, default: 1)</source>
+        <translation>Profondeur de la vérification des blocs (0-6, par défaut : 1)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="106"/>
+        <source>Imports blocks from external blk000?.dat file</source>
+        <translation>Importe des blocs depuis un fichier blk000?.dat externe</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="108"/>
+        <source>
+SSL options: (see the Bitcoin Wiki for SSL setup instructions)</source>
+        <translation>
+Options SSL : (cf. le wiki 
