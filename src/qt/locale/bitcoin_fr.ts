@@ -2206,4 +2206,48 @@ Adresse : %4
         <source>
 SSL options: (see the Bitcoin Wiki for SSL setup instructions)</source>
         <translation>
-Options SSL : (cf. le wiki 
+Options SSL : (cf. le wiki Bitcoin pour les réglages SSL)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="111"/>
+        <source>Use OpenSSL (https) for JSON-RPC connections</source>
+        <translation>Utiliser OpenSSL (https) pour les connexions JSON-RPC</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="112"/>
+        <source>Server certificate file (default: server.cert)</source>
+        <translation>Fichier de certificat serveur (par défaut : server.cert)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="113"/>
+        <source>Server private key (default: server.pem)</source>
+        <translation>Clef privée du serveur (par défaut : server.pem)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="114"/>
+        <source>Acceptable ciphers (default: TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH)</source>
+        <translation>Clefs de chiffrement acceptables (par défaut : TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="145"/>
+        <source>Warning: Disk space is low</source>
+        <translation>Attention : l&apos;espace disque est faible</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="107"/>
+        <source>This help message</source>
+        <translation>Ce message d&apos;aide</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="121"/>
+        <source>Cannot obtain a lock on data directory %s.  Bitcoin is probably already running.</source>
+        <translation>Impossible d&apos;obtenir un verrou sur le répertoire de données %s.  Bitcoin fonctionne probablement déjà.</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="48"/>
+        <source>Bitcoin</source>
+        <translation>Bitcoin</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="30"/>
+        <source>Unable to bind to %s on this computer (bind returned error %d, %s)</so
