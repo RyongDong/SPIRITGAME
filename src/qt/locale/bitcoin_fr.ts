@@ -2250,4 +2250,48 @@ Options SSL : (cf. le wiki Bitcoin pour les réglages SSL)</translation>
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="30"/>
-        <source>Unable to bind to %s on this computer (bind returned error %d, %s)</so
+        <source>Unable to bind to %s on this computer (bind returned error %d, %s)</source>
+        <translation>Impossible de se lier à %s sur cet ordinateur (bind a retourné l&apos;erreur %d, %s)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="58"/>
+        <source>Connect through socks proxy</source>
+        <translation>Connexion via un proxy socks</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="59"/>
+        <source>Select the version of socks proxy to use (4 or 5, 5 is default)</source>
+        <translation>Sélectionner la version du proxy socks à utiliser (4 ou 5, 5 étant la valeur par défaut)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="60"/>
+        <source>Do not use proxy for connections to network &lt;net&gt; (IPv4 or IPv6)</source>
+        <translation>Ne pas utiliser de proxy pour les connexions au réseau &lt;net&gt; (IPv4 ou IPv6)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="61"/>
+        <source>Allow DNS lookups for -addnode, -seednode and -connect</source>
+        <translation>Autoriser les recherches DNS pour -addnode, -seednode et -connect</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="62"/>
+        <source>Pass DNS requests to (SOCKS5) proxy</source>
+        <translation>Transmettre les requêtes DNS au proxy (SOCKS5)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="142"/>
+        <source>Loading addresses...</source>
+        <translation>Chargement des adresses...</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="132"/>
+        <source>Error loading blkindex.dat</source>
+        <translation>Erreur lors du chargement de blkindex.dat</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="134"/>
+        <source>Error loading wallet.dat: Wallet corrupted</source>
+        <translation>Erreur lors du chargement de wallet.dat : porte-monnaie corrompu</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line=
