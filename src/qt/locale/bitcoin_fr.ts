@@ -2339,4 +2339,41 @@ Options SSL : (cf. le wiki Bitcoin pour les réglages SSL)</translation>
         <translation>Aucune écoute sur quel port que ce soit</translation>
     </message>
     <message>
- 
+        <location filename="../bitcoinstrings.cpp" line="130"/>
+        <source>Cannot resolve -externalip address: &apos;%s&apos;</source>
+        <translation>Impossible de résoudre l&apos;adresse -externalip : « %s »</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="117"/>
+        <source>Invalid amount for -paytxfee=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Montant invalide pour -paytxfee=&lt;montant&gt; : « %s »</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="143"/>
+        <source>Error: could not start node</source>
+        <translation>Erreur : le nœud n&apos;a pu être démarré</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="31"/>
+        <source>Error: Wallet locked, unable to create transaction  </source>
+        <translation>Erreur : le porte-monnaie est verrouillé, impossible de créer la transaction  </translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="32"/>
+        <source>Error: This transaction requires a transaction fee of at least %s because of its amount, complexity, or use of recently received funds  </source>
+        <translation>Erreur : cette transaction nécessite des frais de transaction d&apos;au moins %s en raison de son montant, de sa complexité ou parce que des fonds reçus récemment sont utilisés  </translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="35"/>
+        <source>Error: Transaction creation failed  </source>
+        <translation>Erreur : échec de la création de la transaction  </translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="36"/>
+        <source>Sending...</source>
+        <translation>Envoi en cours...</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="37"/>
+        <source>Error: The transaction was rejected.  This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.</source>
+        <translation>Erreur : la transaction a été rejet
