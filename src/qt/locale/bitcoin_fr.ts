@@ -2376,4 +2376,44 @@ Options SSL : (cf. le wiki Bitcoin pour les réglages SSL)</translation>
     <message>
         <location filename="../bitcoinstrings.cpp" line="37"/>
         <source>Error: The transaction was rejected.  This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.</source>
-        <translation>Erreur : la transaction a été rejet
+        <translation>Erreur : la transaction a été rejetée.  Cela peut arriver si certaines pièces de votre porte-monnaie ont déjà été dépensées, par exemple si vous avez utilisé une copie de wallet.dat et si des pièces ont été dépensées avec cette copie sans être marquées comme telles ici.</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="41"/>
+        <source>Invalid amount</source>
+        <translation>Montant invalide</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="42"/>
+        <source>Insufficient funds</source>
+        <translation>Fonds insuffisants</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="131"/>
+        <source>Loading block index...</source>
+        <translation>Chargement de l&apos;index des blocs...</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="65"/>
+        <source>Add a node to connect to and attempt to keep the connection open</source>
+        <translation>Ajouter un nœud auquel se connecter et tenter de garder la connexion ouverte</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="28"/>
+        <source>Unable to bind to %s on this computer. Bitcoin is probably already running.</source>
+        <translation>Impossible de se lier à %s sur cet ordinateur. Bitcoin fonctionne probablement déjà.</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="71"/>
+        <source>Find peers using internet relay chat (default: 0)</source>
+        <translation>Trouver des pairs en utilisant Internet Relay Chat (par défaut : 0)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="72"/>
+        <source>Accept connections from outside (default: 1)</source>
+        <translation>Accepter les connexions entrantes (par défaut : 1)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="74"/>
+        <source>Find peers using DNS lookup (default: 1)</source>
+        <translation>Trouver des pairs en utilisant la
