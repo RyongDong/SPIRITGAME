@@ -2416,4 +2416,47 @@ Options SSL : (cf. le wiki Bitcoin pour les réglages SSL)</translation>
     <message>
         <location filename="../bitcoinstrings.cpp" line="74"/>
         <source>Find peers using DNS lookup (default: 1)</source>
-        <translation>Trouver des pairs en utilisant la
+        <translation>Trouver des pairs en utilisant la recherche DNS (par défaut : 1)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="81"/>
+        <source>Use Universal Plug and Play to map the listening port (default: 1)</source>
+        <translation>Utiliser Universal Plug and Play pour rediriger le port d&apos;écoute (par défaut : 1)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="82"/>
+        <source>Use Universal Plug and Play to map the listening port (default: 0)</source>
+        <translation>Utiliser Universal Plug and Play pour rediriger le port d&apos;écoute (par défaut : 0)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="85"/>
+        <source>Fee per KB to add to transactions you send</source>
+        <translation>Frais par Ko à ajouter aux transactions que vous enverrez</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="118"/>
+        <source>Warning: -paytxfee is set very high. This is the transaction fee you will pay if you send a transaction.</source>
+        <translation>Attention : -paytxfee est réglée sur un montant très élevé. Il s&apos;agit des frais de transaction que vous payerez si vous envoyez une transaction.</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="133"/>
+        <source>Loading wallet...</source>
+        <translation>Chargement du porte-monnaie...</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="138"/>
+        <source>Cannot downgrade wallet</source>
+        <translation>Impossible de revenir à une version antérieure du porte-monnaie</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="139"/>
+        <source>Cannot initialize keypool</source>
+        <translation>Impossible d&apos;initialiser le keypool</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="140"/>
+        <source>Cannot write default address</source>
+        <translation>Impossible d&apos;écrire l&apos;adresse par défaut</translation>
+    </message>
+    <message>
+        <location filename="../bi
