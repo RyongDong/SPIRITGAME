@@ -2509,4 +2509,12 @@ Si le fichier n&apos;existe pas, créez-le avec les droits de lecture accordés 
 If the file does not exist, create it with owner-readable-only file permissions.</source>
         <translation>Vous devez ajouter la ligne rpcpassword=&lt;mot-de-passe&gt; au fichier de configuration :
 %s
-Si le fichier n&apos;existe pas, créez-le avec les droits de lecture seule accordés
+Si le fichier n&apos;existe pas, créez-le avec les droits de lecture seule accordés au propriétaire.</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="25"/>
+        <source>Warning: Please check that your computer&apos;s date and time are correct.  If your clock is wrong Bitcoin will not work properly.</source>
+        <translation>Attention : veuillez vérifier que l&apos;heure et la date de votre ordinateur sont correctes.  Si votre horloge n&apos;est pas à l&apos;heure, Bitcoin ne fonctionnera pas correctement.</translation>
+    </message>
+</context>
+</TS>
