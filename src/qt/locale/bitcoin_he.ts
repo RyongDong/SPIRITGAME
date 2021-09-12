@@ -498,4 +498,51 @@ Are you sure you wish to encrypt your wallet?</source>
         <translation>[רשת-בדיקה]</translation>
     </message>
     <message>
-        <lo
+        <location filename="../bitcoingui.cpp" line="343"/>
+        <location filename="../bitcoingui.cpp" line="399"/>
+        <source>Bitcoin client</source>
+        <translation>תוכנת ביטקוין</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../bitcoingui.cpp" line="492"/>
+        <source>%n active connection(s) to Bitcoin network</source>
+        <translation><numerusform>חיבור פעיל אחד לרשת הביטקוין</numerusform><numerusform>%n חיבורים פעילים לרשת הביטקוין</numerusform></translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="540"/>
+        <source>Downloaded %1 blocks of transaction history.</source>
+        <translation>הורדו %1 בלוקים של היסטוריית פעולות.</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../bitcoingui.cpp" line="555"/>
+        <source>%n second(s) ago</source>
+        <translation><numerusform>לפני שניה</numerusform><numerusform>לפני %n שניות</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../bitcoingui.cpp" line="559"/>
+        <source>%n minute(s) ago</source>
+        <translation><numerusform>לפני דקה</numerusform><numerusform>לפני %n דקות</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../bitcoingui.cpp" line="563"/>
+        <source>%n hour(s) ago</source>
+        <translation><numerusform>לפני שעה</numerusform><numerusform>לפני %n שעות</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../bitcoingui.cpp" line="567"/>
+        <source>%n day(s) ago</source>
+        <translation><numerusform>לפני יום</numerusform><numerusform>לפני %n ימים</numerusform></translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="573"/>
+        <source>Up to date</source>
+        <translation>עדכני</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="580"/>
+        <source>Catching up...</source>
+        <translation>מתעדכן...</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="590"/>
+        <source>Last received block 
