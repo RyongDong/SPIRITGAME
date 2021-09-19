@@ -765,4 +765,56 @@ Address: %4
     </message>
     <message>
         <location filename="../bitcoin.cpp" line="136"/>
-        <
+        <source>options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="138"/>
+        <source>UI options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="139"/>
+        <source>Set language, for example &quot;de_DE&quot; (default: system locale)</source>
+        <translation>קבע שפה, למשל &quot;he_il&quot; (ברירת מחדל: שפת המערכת)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="140"/>
+        <source>Start minimized</source>
+        <translation>התחל ממוזער</translation>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="141"/>
+        <source>Show splash screen on startup (default: 1)</source>
+        <translation>הצג מסך פתיחה בעת הפעלה (ברירת מחדל: 1)</translation>
+    </message>
+</context>
+<context>
+    <name>MainOptionsPage</name>
+    <message>
+        <location filename="../optionsdialog.cpp" line="227"/>
+        <source>Detach block and address databases at shutdown. This means they can be moved to another data directory, but it slows down shutdown. The wallet is always detached.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="212"/>
+        <source>Pay transaction &amp;fee</source>
+        <translation>שלם &amp;עמלת פעולה</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="204"/>
+        <source>Main</source>
+        <translation>ראשי</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="206"/>
+        <source>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee 0.01 recommended.</source>
+        <translation>עמלת פעולה אופציונלית לכל kB תבטיח שהפעולה שלך תעובד בזריזות. רוב הפעולות הן 1 kB. מומלצת עמלה בסך 0.01.</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="222"/>
+        <source>&amp;Start Bitcoin on system login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location
