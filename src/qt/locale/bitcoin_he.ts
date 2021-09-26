@@ -860,4 +860,56 @@ Address: %4
         <translation>הדבק כתובת מהלוח</translation>
     </message>
     <message>
-        <location filename=
+        <location filename="../forms/messagepage.ui" line="81"/>
+        <source>Alt+P</source>
+        <translation>Alt+P</translation>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="93"/>
+        <source>Enter the message you want to sign here</source>
+        <translation>הכנס כאן את ההודעה שעליך ברצונך לחתום</translation>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="128"/>
+        <source>Copy the current signature to the system clipboard</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="131"/>
+        <source>&amp;Copy Signature</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="142"/>
+        <source>Reset all sign message fields</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="145"/>
+        <source>Clear &amp;All</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../messagepage.cpp" line="31"/>
+        <source>Click &quot;Sign Message&quot; to get signature</source>
+        <translation>לחץ על &quot;חתום על הודעה&quot; לקבלת חתימה</translation>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="114"/>
+        <source>Sign a message to prove you own this address</source>
+        <translation>חתום על הודעה כדי להוכיח שכתובת זו בבעלותך</translation>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="117"/>
+        <source>&amp;Sign Message</source>
+        <translation>חתום על הו&amp;דעה</translation>
+    </message>
+    <message>
+        <location filename="../messagepage.cpp" line="30"/>
+        <source>Enter a Bitcoin address (e.g. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</source>
+        <translation>הכנס כתובת ביטקוין (למשל 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</translation>
+    </message>
+    <message>
+        <location filename="../messagepage.cpp" line="83"/>
+        <location filename="../messagepage.cpp" line="90"/>
+     
