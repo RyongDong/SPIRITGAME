@@ -817,4 +817,47 @@ Address: %4
         <translation type="unfinished"/>
     </message>
     <message>
-        <location
+        <location filename="../optionsdialog.cpp" line="223"/>
+        <source>Automatically start Bitcoin after logging in to the system</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="226"/>
+        <source>&amp;Detach databases at shutdown</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>MessagePage</name>
+    <message>
+        <location filename="../forms/messagepage.ui" line="14"/>
+        <source>Sign Message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="20"/>
+        <source>You can sign messages with your addresses to prove you own them. Be careful not to sign anything vague, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <translation>אתה יכול לחתום על הודעות עם הכתובות שלך כדי להוכיח שהן בבעלותך. היזהר לא לחתום על משהו מעורפל, שכן התקפות פישינג עשויות לגרום לך בעורמה למסור את זהותך. חתום רק על אמרות מפורטות לחלוטין שאתה מסכים עימן.</translation>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="38"/>
+        <source>The address to sign the message with  (e.g. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</source>
+        <translation>הכתובת המשמשת לחתימה על ההודעה (למשל 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</translation>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="48"/>
+        <source>Choose adress from address book</source>
+        <translation>בחר כתובת מפנקס הכתובות</translation>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="58"/>
+        <source>Alt+A</source>
+        <translation>Alt+A</translation>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="71"/>
+        <source>Paste address from clipboard</source>
+        <translation>הדבק כתובת מהלוח</translation>
+    </message>
+    <message>
+        <location filename=
