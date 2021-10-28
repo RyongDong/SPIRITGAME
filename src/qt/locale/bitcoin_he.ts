@@ -1522,4 +1522,48 @@ Address: %4
     </message>
     <message>
         <location filename="../transactiondesc.cpp" line="186"/>
-        <location filename="../transactiondesc.cpp" line="194"
+        <location filename="../transactiondesc.cpp" line="194"/>
+        <location filename="../transactiondesc.cpp" line="209"/>
+        <source>&lt;b&gt;Debit:&lt;/b&gt; </source>
+        <translation>&lt;b&lt;חיוב:&lt;/b&gt; </translation>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="200"/>
+        <source>&lt;b&gt;Transaction fee:&lt;/b&gt; </source>
+        <translation>&lt;b&gt;עמלת פעולה:&lt;/b&gt; </translation>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="216"/>
+        <source>&lt;b&gt;Net amount:&lt;/b&gt; </source>
+        <translation>&lt;b&gt;כמות נטו:&lt;/b&gt; </translation>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="222"/>
+        <source>Message:</source>
+        <translation>הודעה:</translation>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="224"/>
+        <source>Comment:</source>
+        <translation>הערה:</translation>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="226"/>
+        <source>Transaction ID:</source>
+        <translation>מזהה פעולה:</translation>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="229"/>
+        <source>Generated coins must wait 120 blocks before they can be spent.  When you generated this block, it was broadcast to the network to be added to the block chain.  If it fails to get into the chain, it will change to &quot;not accepted&quot; and not be spendable.  This may occasionally happen if another node generates a block within a few seconds of yours.</source>
+        <translation>מטבעות שנוצרו חייבים לחכות 120 בלוקים לפני שניתן לנצל אותם.  כשיצרת את הבלוק הזה, הוא שודר לרשת כדי להתווסף לשרשרת הבלוקים.  אם הוא אינו מצליח להיכנס לשרשרת, הוא ישתנה ל&quot;לא התקבל&quot; ולא ניתן יהיה לנצל אותו.  זה יכול לקרות מדי פעם אם צומת אחר מייצר בלוק בהפרש של מספר שניות מהבלוק שלך.</translation>
+    </message>
+</context>
+<context>
+    <name>TransactionDescDialog</name>
+    <message>
+        <location filename="../forms/transactiondescdialog.ui" line="14"/>
+        <source>Transaction details</source>
+        <translation>פרטי הפעולה</translation>
+    </message>
+    <message>
+ 
