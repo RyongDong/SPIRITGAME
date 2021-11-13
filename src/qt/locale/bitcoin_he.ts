@@ -1909,4 +1909,59 @@ Address: %4
         <location filename="../verifymessagedialog.cpp" line="55"/>
         <location filename="../verifymessagedialog.cpp" line="62"/>
         <source>Invalid Signature</source>
-        <translation
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../verifymessagedialog.cpp" line="55"/>
+        <source>The signature could not be decoded. Please check the signature and try again.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../verifymessagedialog.cpp" line="62"/>
+        <source>The signature did not match the message digest. Please check the signature and try again.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../verifymessagedialog.cpp" line="72"/>
+        <source>Address not found in address book.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../verifymessagedialog.cpp" line="72"/>
+        <source>Address found in address book: %1</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>WalletModel</name>
+    <message>
+        <location filename="../walletmodel.cpp" line="158"/>
+        <source>Sending...</source>
+        <translation>שולח...</translation>
+    </message>
+</context>
+<context>
+    <name>WindowOptionsPage</name>
+    <message>
+        <location filename="../optionsdialog.cpp" line="313"/>
+        <source>Window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="316"/>
+        <source>&amp;Minimize to the tray instead of the taskbar</source>
+        <translation>מ&amp;זער למגש במקום לשורת המשימות</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="317"/>
+        <source>Show only a tray icon after minimizing the window</source>
+        <translation>הצג אייקון מגש בלבד לאחר מזעור החלון</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="320"/>
+        <source>M&amp;inimize on close</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="321"/>
+        <source>Minimize instead of exit the application when the window is closed. When this option 
