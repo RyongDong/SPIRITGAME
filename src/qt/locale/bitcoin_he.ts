@@ -1793,4 +1793,69 @@ Address: %4
         <translation>יצוא נתוני פעולות</translation>
     </message>
     <message>
-        <lo
+        <location filename="../transactionview.cpp" line="271"/>
+        <source>Comma separated file (*.csv)</source>
+        <translation>קובץ מופרד בפסיקים (*.csv)</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="279"/>
+        <source>Confirmed</source>
+        <translation>מאושר</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="280"/>
+        <source>Date</source>
+        <translation>תאריך</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="281"/>
+        <source>Type</source>
+        <translation>סוג</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="282"/>
+        <source>Label</source>
+        <translation>תוית</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="283"/>
+        <source>Address</source>
+        <translation>כתובת</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="284"/>
+        <source>Amount</source>
+        <translation>כמות</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="285"/>
+        <source>ID</source>
+        <translation>מזהה</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="289"/>
+        <source>Error exporting</source>
+        <translation>שגיאה ביצוא</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="289"/>
+        <source>Could not write to file %1.</source>
+        <translation>לא מסוגל לכתוב לקובץ %1.</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="384"/>
+        <source>Range:</source>
+        <translation>טווח:</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="392"/>
+        <source>to</source>
+        <translation>אל</translation>
+    </message>
+</context>
+<context>
+    <name>VerifyMessageDialog</name>
+    <message>
+        <location filename="../forms/verifymessagedialog.ui" line="14"/>
+        <source>Verify Signed Message</source>
+        <translation type="
