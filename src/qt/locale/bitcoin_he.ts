@@ -2157,4 +2157,49 @@ Address: %4
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="96"/>
-        <source>Allo
+        <source>Allow JSON-RPC connections from specified IP address</source>
+        <translation>אפשר חיבורי JSON-RPC מכתובת האינטרנט המצוינת</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="97"/>
+        <source>Send commands to node running on &lt;ip&gt; (default: 127.0.0.1)</source>
+        <translation>שלח פקודות לצומת ב-&lt;ip&gt; (ברירת מחדל: 127.0.0.1)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="98"/>
+        <source>Execute command when the best block changes (%s in cmd is replaced by block hash)</source>
+        <translation>בצע פקודה זו כשהבלוק הטוב ביותר משתנה (%s בפקודה יוחלף בגיבוב הבלוק)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="101"/>
+        <source>Upgrade wallet to latest format</source>
+        <translation>שדרג את הארנק לפורמט העדכני</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="102"/>
+        <source>Set key pool size to &lt;n&gt; (default: 100)</source>
+        <translation>קבע את גודל המאגר ל -&lt;n&gt; (ברירת מחדל: 100)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="103"/>
+        <source>Rescan the block chain for missing wallet transactions</source>
+        <translation>סרוק מחדש את שרשרת הבלוקים למציאת פעולות חסרות בארנק</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="104"/>
+        <source>How many blocks to check at startup (default: 2500, 0 = all)</source>
+        <translation>מספר הבלוקים לבדוק בעת ההפעלה (ברירת מחדל: 2500, 0=כולם)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="105"/>
+        <source>How thorough the block verification is (0-6, default: 1)</source>
+        <translation>מידת היסודיות של אימות הבלוקים (0-6, ברירת מחדל: 1)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="106"/>
+        <source>Imports blocks from external blk000?.dat file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="108"/>
+        <source>
