@@ -2501,4 +2501,17 @@ rpcpassword=%s
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="20"/>
-        <source>You must s
+        <source>You must set rpcpassword=&lt;password&gt; in the configuration file:
+%s
+If the file does not exist, create it with owner-readable-only file permissions.</source>
+        <translation>עליך לקבוע rpcpassword=yourpassword בקובץ ההגדרות:
+%s
+אם הקובץ אינו קיים, צור אותו עם הרשאות קריאה לבעלים בלבד.</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="25"/>
+        <source>Warning: Please check that your computer&apos;s date and time are correct.  If your clock is wrong Bitcoin will not work properly.</source>
+        <translation>אזהרה: אנא בדוק שהתאריך והשעה של המחשב הזה נכונים.  אם השעון שלך שגוי ביטקוין לא יפעל כהלכה.</translation>
+    </message>
+</context>
+</TS>
