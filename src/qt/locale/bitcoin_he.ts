@@ -2354,4 +2354,48 @@ SSL options: (see the Bitcoin Wiki for SSL setup instructions)</source>
     <message>
         <location filename="../bitcoinstrings.cpp" line="31"/>
         <source>Error: Wallet locked, unable to create transaction  </source>
-        <translation>שגיאה: האר
+        <translation>שגיאה: הארנק נעול, לא ניתן ליצור פעולה</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="32"/>
+        <source>Error: This transaction requires a transaction fee of at least %s because of its amount, complexity, or use of recently received funds  </source>
+        <translation>שגיאה: הפעולה דורשת עמלת פעולה של לפחות %s מפאת הכמות, המורכבות, או השימוש בכספים שהתקבלו לאחרונה</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="35"/>
+        <source>Error: Transaction creation failed  </source>
+        <translation>שגיאה: יצירת הפעולה נכשלה  </translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="36"/>
+        <source>Sending...</source>
+        <translation>שולח...</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="37"/>
+        <source>Error: The transaction was rejected.  This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.</source>
+        <translation>שגיאה: הפעולה נדחתה.  זה עשוי לקרות אם חלק מהמטבעות בארנק שלך כבר נוצלו, למשל אם השתמשת בעותק של הקובץ wallet.dat ומטבעות נוצלו בהעתק אך לא סומנו כמנוצלות כאן.</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="41"/>
+        <source>Invalid amount</source>
+        <translation>כמות לא תקינה</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="42"/>
+        <source>Insufficient funds</source>
+        <translation>אין מספיק כספים</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="131"/>
+        <source>Loading block index...</source>
+        <translation>טוען את אינדקס הבלוקים...</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="65"/>
+        <source>Add a node to connect to and attempt to keep the connection open</source>
+        <translation>הוסף צומת להתחברות ונסה לשמור את החיבור פתוח</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="28"/>
+        <source>U
