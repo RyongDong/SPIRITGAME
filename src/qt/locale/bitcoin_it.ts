@@ -115,4 +115,58 @@ Questo prodotto include software sviluppato dal progetto OpenSSL per l&apos;uso 
     <message>
         <location filename="../addressbookpage.cpp" line="306"/>
         <source>Error exporting</source>
-        <translat
+        <translation>Errore nell&apos;esportazione</translation>
+    </message>
+    <message>
+        <location filename="../addressbookpage.cpp" line="306"/>
+        <source>Could not write to file %1.</source>
+        <translation>Impossibile scrivere sul file %1.</translation>
+    </message>
+</context>
+<context>
+    <name>AddressTableModel</name>
+    <message>
+        <location filename="../addresstablemodel.cpp" line="142"/>
+        <source>Label</source>
+        <translation>Etichetta</translation>
+    </message>
+    <message>
+        <location filename="../addresstablemodel.cpp" line="142"/>
+        <source>Address</source>
+        <translation>Indirizzo</translation>
+    </message>
+    <message>
+        <location filename="../addresstablemodel.cpp" line="178"/>
+        <source>(no label)</source>
+        <translation>(nessuna etichetta)</translation>
+    </message>
+</context>
+<context>
+    <name>AskPassphraseDialog</name>
+    <message>
+        <location filename="../forms/askpassphrasedialog.ui" line="26"/>
+        <source>Passphrase Dialog</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/askpassphrasedialog.ui" line="47"/>
+        <source>Enter passphrase</source>
+        <translation>Inserisci la passphrase</translation>
+    </message>
+    <message>
+        <location filename="../forms/askpassphrasedialog.ui" line="61"/>
+        <source>New passphrase</source>
+        <translation>Nuova passphrase</translation>
+    </message>
+    <message>
+        <location filename="../forms/askpassphrasedialog.ui" line="75"/>
+        <source>Repeat new passphrase</source>
+        <translation>Ripeti la passphrase</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="33"/>
+        <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;10 or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
+        <translation>Inserisci la passphrase per il portamonete.&lt;br/&gt;Per piacere usare unapassphrase di &lt;b&gt;10 o più caratteri casuali&lt;/b&gt;, o &lt;b&gt;otto o più parole&lt;/b&gt;.</translation>
+    </message>
+    <message>
+  
