@@ -63,4 +63,56 @@ Questo prodotto include software sviluppato dal progetto OpenSSL per l&apos;uso 
         <translation type="unfinished"/>
     </message>
     <message>
-        <lo
+        <location filename="../forms/addressbookpage.ui" line="80"/>
+        <source>&amp;Copy Address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/addressbookpage.ui" line="91"/>
+        <source>Show &amp;QR Code</source>
+        <translation>Mostra il codice &amp;QR</translation>
+    </message>
+    <message>
+        <location filename="../forms/addressbookpage.ui" line="102"/>
+        <source>Sign a message to prove you own this address</source>
+        <translation>Firma un messaggio per dimostrare di possedere questo indirizzo</translation>
+    </message>
+    <message>
+        <location filename="../forms/addressbookpage.ui" line="105"/>
+        <source>&amp;Sign Message</source>
+        <translation>&amp;Firma il messaggio</translation>
+    </message>
+    <message>
+        <location filename="../forms/addressbookpage.ui" line="116"/>
+        <source>Delete the currently selected address from the list. Only sending addresses can be deleted.</source>
+        <translation>Cancella l&apos;indirizzo attualmente selezionato dalla lista. Solo indirizzi d&apos;invio possono essere cancellati.</translation>
+    </message>
+    <message>
+        <location filename="../forms/addressbookpage.ui" line="119"/>
+        <source>&amp;Delete</source>
+        <translation>&amp;Cancella</translation>
+    </message>
+    <message>
+        <location filename="../addressbookpage.cpp" line="63"/>
+        <source>Copy &amp;Label</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../addressbookpage.cpp" line="65"/>
+        <source>&amp;Edit</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../addressbookpage.cpp" line="292"/>
+        <source>Export Address Book Data</source>
+        <translation>Esporta gli indirizzi della rubrica</translation>
+    </message>
+    <message>
+        <location filename="../addressbookpage.cpp" line="293"/>
+        <source>Comma separated file (*.csv)</source>
+        <translation>Testo CSV (*.csv)</translation>
+    </message>
+    <message>
+        <location filename="../addressbookpage.cpp" line="306"/>
+        <source>Error exporting</source>
+        <translat
