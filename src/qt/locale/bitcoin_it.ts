@@ -354,4 +354,57 @@ Si è sicuri di voler cifrare il portamonete?</translation>
     <message>
         <location filename="../bitcoingui.cpp" line="236"/>
         <source>Quit application</source>
-        <translation>C
+        <translation>Chiudi applicazione</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="239"/>
+        <source>&amp;About %1</source>
+        <translation>&amp;Informazioni su %1</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="240"/>
+        <source>Show information about Bitcoin</source>
+        <translation>Mostra informazioni su Bitcoin</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="242"/>
+        <source>About &amp;Qt</source>
+        <translation>Informazioni su &amp;Qt</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="243"/>
+        <source>Show information about Qt</source>
+        <translation>Mostra informazioni su Qt</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="245"/>
+        <source>&amp;Options...</source>
+        <translation>&amp;Opzioni...</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="252"/>
+        <source>&amp;Encrypt Wallet...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="255"/>
+        <source>&amp;Backup Wallet...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="257"/>
+        <source>&amp;Change Passphrase...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message numerus="yes">
+        <location filename="../bitcoingui.cpp" line="517"/>
+        <source>~%n block(s) remaining</source>
+        <translation><numerusform>~%n blocco rimanente</numerusform><numerusform>~%n blocchi rimanenti</numerusform></translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="528"/>
+        <source>Downloaded %1 of %2 blocks of transaction history (%3% done).</source>
+        <translation>Scaricati %1 di %2 blocchi dello storico delle transazioni ( il %3% )</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" li
