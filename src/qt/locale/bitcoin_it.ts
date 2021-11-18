@@ -212,4 +212,39 @@ Questo prodotto include software sviluppato dal progetto OpenSSL per l&apos;uso 
         <location filename="../askpassphrasedialog.cpp" line="101"/>
         <source>WARNING: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!
 Are you sure you wish to encrypt your wallet?</source>
-        <translation>ATTENZIONE: se si cifra il portamon
+        <translation>ATTENZIONE: se si cifra il portamonete e si perde la frase d&apos;ordine, &lt;b&gt;SI PERDERANNO TUTTI I PROPRI BITCOIN&lt;/b&gt;!
+Si è sicuri di voler cifrare il portamonete?</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="110"/>
+        <location filename="../askpassphrasedialog.cpp" line="159"/>
+        <source>Wallet encrypted</source>
+        <translation>Portamonete cifrato</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="111"/>
+        <source>Bitcoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <translation>Bitcoin verrà ora chiuso per finire il processo di crittazione. Ricorda che criptare il tuo portamonete non può fornire una protezione totale contro furti causati da malware che dovessero infettare il tuo computer.</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="207"/>
+        <location filename="../askpassphrasedialog.cpp" line="231"/>
+        <source>Warning: The Caps Lock key is on.</source>
+        <translation>Attenzione: tasto Blocco maiuscole attivo.</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="116"/>
+        <location filename="../askpassphrasedialog.cpp" line="123"/>
+        <location filename="../askpassphrasedialog.cpp" line="165"/>
+        <location filename="../askpassphrasedialog.cpp" line="171"/>
+        <source>Wallet encryption failed</source>
+        <translation>Cifratura del portamonete fallita</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="117"/>
+        <source>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</source>
+        <translation>Cifratura del portamonete fallita a causa di un errore interno. Il portamonete non è stato cifrato.</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="124"/>
+        <location filename=".
