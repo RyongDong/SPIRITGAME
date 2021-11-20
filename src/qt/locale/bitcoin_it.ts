@@ -514,4 +514,44 @@ Si è sicuri di voler cifrare il portamonete?</translation>
         <translation>Scaricati %1 blocchi dello storico transazioni.</translation>
     </message>
     <message numerus="yes">
-        <location filename=
+        <location filename="../bitcoingui.cpp" line="555"/>
+        <source>%n second(s) ago</source>
+        <translation><numerusform>%n secondo fa</numerusform><numerusform>%n secondi fa</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../bitcoingui.cpp" line="559"/>
+        <source>%n minute(s) ago</source>
+        <translation><numerusform>%n minuto fa</numerusform><numerusform>%n minuti fa</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../bitcoingui.cpp" line="563"/>
+        <source>%n hour(s) ago</source>
+        <translation><numerusform>%n ora fa</numerusform><numerusform>%n ore fa</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../bitcoingui.cpp" line="567"/>
+        <source>%n day(s) ago</source>
+        <translation><numerusform>%n giorno fa</numerusform><numerusform>%n giorni fa</numerusform></translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="573"/>
+        <source>Up to date</source>
+        <translation>Aggiornato</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="580"/>
+        <source>Catching up...</source>
+        <translation>In aggiornamento...</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="590"/>
+        <source>Last received block was generated %1.</source>
+        <translation>L&apos;ultimo blocco ricevuto è stato generato %1</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="649"/>
+        <source>This transaction is over the size limit.  You can still send it for a fee of %1, which goes to the nodes that process your transaction and helps to support the network.  Do you want to pay the fee?</source>
+        <translation>Questa transazione è superiore al limite di dimensione. È comunque possibile inviarla con una commissione di %1, che va ai nodi che processano la tua transazione e contribuisce a sostenere la rete. Vuoi pagare la commissione?</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="65
