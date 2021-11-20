@@ -462,4 +462,56 @@ Si è sicuri di voler cifrare il portamonete?</translation>
         <translation type="unfinished"/>
     </message>
     <message>
- 
+        <location filename="../bitcoingui.cpp" line="262"/>
+        <source>Verify a message signature</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="286"/>
+        <source>&amp;File</source>
+        <translation>&amp;File</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="296"/>
+        <source>&amp;Settings</source>
+        <translation>&amp;Impostazioni</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="302"/>
+        <source>&amp;Help</source>
+        <translation>&amp;Aiuto</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="311"/>
+        <source>Tabs toolbar</source>
+        <translation>Barra degli strumenti &quot;Tabs&quot;</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="322"/>
+        <source>Actions toolbar</source>
+        <translation>Barra degli strumenti &quot;Azioni&quot;</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="334"/>
+        <location filename="../bitcoingui.cpp" line="343"/>
+        <source>[testnet]</source>
+        <translation>[testnet]</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="343"/>
+        <location filename="../bitcoingui.cpp" line="399"/>
+        <source>Bitcoin client</source>
+        <translation>Bitcoin client</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../bitcoingui.cpp" line="492"/>
+        <source>%n active connection(s) to Bitcoin network</source>
+        <translation><numerusform>%n connessione attiva alla rete Bitcoin</numerusform><numerusform>%n connessioni attive alla rete Bitcoin</numerusform></translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="540"/>
+        <source>Downloaded %1 blocks of transaction history.</source>
+        <translation>Scaricati %1 blocchi dello storico transazioni.</translation>
+    </message>
+    <message numerus="yes">
+        <location filename=
