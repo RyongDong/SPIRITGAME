@@ -554,4 +554,64 @@ Si è sicuri di voler cifrare il portamonete?</translation>
         <translation>Questa transazione è superiore al limite di dimensione. È comunque possibile inviarla con una commissione di %1, che va ai nodi che processano la tua transazione e contribuisce a sostenere la rete. Vuoi pagare la commissione?</translation>
     </message>
     <message>
-        <location filename="../bitcoingui.cpp" line="65
+        <location filename="../bitcoingui.cpp" line="654"/>
+        <source>Confirm transaction fee</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="681"/>
+        <source>Sent transaction</source>
+        <translation>Transazione inviata</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="682"/>
+        <source>Incoming transaction</source>
+        <translation>Transazione ricevuta</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="683"/>
+        <source>Date: %1
+Amount: %2
+Type: %3
+Address: %4
+</source>
+        <translation>Data: %1
+Quantità: %2
+Tipo: %3
+Indirizzo: %4
+
+</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="804"/>
+        <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
+        <translation>Il portamonete è &lt;b&gt;cifrato&lt;/b&gt; e attualmente &lt;b&gt;sbloccato&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="812"/>
+        <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
+        <translation>Il portamonete è &lt;b&gt;cifrato&lt;/b&gt; e attualmente &lt;b&gt;bloccato&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="835"/>
+        <source>Backup Wallet</source>
+        <translation>Backup Portamonete</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="835"/>
+        <source>Wallet Data (*.dat)</source>
+        <translation>Dati Portamonete (*.dat)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="838"/>
+        <source>Backup Failed</source>
+        <translation>Backup fallito</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="838"/>
+        <source>There was an error trying to save the wallet data to the new location.</source>
+        <translation>C&apos;è stato un errore tentanto di salvare i dati del portamonete in un&apos;altra locazione</translation>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="112"/>
+        <source>A f
