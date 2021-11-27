@@ -614,4 +614,59 @@ Indirizzo: %4
     </message>
     <message>
         <location filename="../bitcoin.cpp" line="112"/>
-        <source>A f
+        <source>A fatal error occured. Bitcoin can no longer continue safely and will quit.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ClientModel</name>
+    <message>
+        <location filename="../clientmodel.cpp" line="84"/>
+        <source>Network Alert</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>DisplayOptionsPage</name>
+    <message>
+        <location filename="../optionsdialog.cpp" line="246"/>
+        <source>Display</source>
+        <translation>Mostra</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="257"/>
+        <source>default</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="263"/>
+        <source>The user interface language can be set here. This setting will only take effect after restarting Bitcoin.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="252"/>
+        <source>User Interface &amp;Language:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="273"/>
+        <source>&amp;Unit to show amounts in:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="277"/>
+        <source>Choose the default subdivision unit to show in the interface, and when sending coins</source>
+        <translation>Scegli l&apos;unità di suddivisione di default per l&apos;interfaccia e per l&apos;invio di monete</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="284"/>
+        <source>&amp;Display addresses in transaction list</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="285"/>
+        <source>Whether to show Bitcoin addresses in the transaction list</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+       
