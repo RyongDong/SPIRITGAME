@@ -669,4 +669,54 @@ Indirizzo: %4
         <translation type="unfinished"/>
     </message>
     <message>
-       
+        <location filename="../optionsdialog.cpp" line="303"/>
+        <source>Warning</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="303"/>
+        <source>This setting will take effect after restarting Bitcoin.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>EditAddressDialog</name>
+    <message>
+        <location filename="../forms/editaddressdialog.ui" line="14"/>
+        <source>Edit Address</source>
+        <translation>Modifica l&apos;indirizzo</translation>
+    </message>
+    <message>
+        <location filename="../forms/editaddressdialog.ui" line="25"/>
+        <source>&amp;Label</source>
+        <translation>&amp;Etichetta</translation>
+    </message>
+    <message>
+        <location filename="../forms/editaddressdialog.ui" line="35"/>
+        <source>The label associated with this address book entry</source>
+        <translation>L&apos;etichetta associata a questo indirizzo nella rubrica</translation>
+    </message>
+    <message>
+        <location filename="../forms/editaddressdialog.ui" line="42"/>
+        <source>&amp;Address</source>
+        <translation>&amp;Indirizzo</translation>
+    </message>
+    <message>
+        <location filename="../forms/editaddressdialog.ui" line="52"/>
+        <source>The address associated with this address book entry. This can only be modified for sending addresses.</source>
+        <translation>L&apos;indirizzo associato a questa voce della rubrica. Si può modificare solo negli indirizzi di spedizione.</translation>
+    </message>
+    <message>
+        <location filename="../editaddressdialog.cpp" line="20"/>
+        <source>New receiving address</source>
+        <translation>Nuovo indirizzo di ricezione</translation>
+    </message>
+    <message>
+        <location filename="../editaddressdialog.cpp" line="24"/>
+        <source>New sending address</source>
+        <translation>Nuovo indirizzo d&apos;invio</translation>
+    </message>
+    <message>
+        <location filename="../editaddressdialog.cpp" line="27"/>
+        <source>Edit receiving address</source>
+        <translation>Modifica indirizzo di rice
