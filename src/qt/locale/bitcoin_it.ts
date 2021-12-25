@@ -966,4 +966,59 @@ Indirizzo: %4
     <message>
         <location filename="../optionsdialog.cpp" line="352"/>
         <source>Connect to the Bitcon network through a SOCKS4 proxy (e.g. when connecting through Tor)</source>
-        <translation>Connettiti alla rete B
+        <translation>Connettiti alla rete Bitcon attraverso un proxy SOCKS4 (ad esempio quando ci si collega via Tor)</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="357"/>
+        <source>Proxy &amp;IP:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="366"/>
+        <source>&amp;Port:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="363"/>
+        <source>IP address of the proxy (e.g. 127.0.0.1)</source>
+        <translation>Indirizzo IP del proxy (ad esempio 127.0.0.1)</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="372"/>
+        <source>Port of the proxy (e.g. 1234)</source>
+        <translation>Porta del proxy (es. 1234)</translation>
+    </message>
+</context>
+<context>
+    <name>OptionsDialog</name>
+    <message>
+        <location filename="../optionsdialog.cpp" line="135"/>
+        <source>Options</source>
+        <translation>Opzioni</translation>
+    </message>
+</context>
+<context>
+    <name>OverviewPage</name>
+    <message>
+        <location filename="../forms/overviewpage.ui" line="14"/>
+        <source>Form</source>
+        <translation>Modulo</translation>
+    </message>
+    <message>
+        <location filename="../forms/overviewpage.ui" line="47"/>
+        <location filename="../forms/overviewpage.ui" line="204"/>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Bitcoin network after a connection is established, but this process has not completed yet.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/overviewpage.ui" line="89"/>
+        <source>Balance:</source>
+        <translation>Saldo</translation>
+    </message>
+    <message>
+        <location filename="../forms/overviewpage.ui" line="147"/>
+        <source>Number of transactions:</source>
+        <translation>Numero di transazioni:</translation>
+    </message>
+    <message>
+        <location filename="../forms/overviewpage.
