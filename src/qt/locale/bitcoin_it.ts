@@ -2093,4 +2093,46 @@ Indirizzo: %4
         <location filename="../bitcoinstrings.cpp" line="73"/>
         <source>Bind to given address. Use [host]:port notation for IPv6</source>
         <translation type="unfinished"/>
-    </message
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="75"/>
+        <source>Threshold for disconnecting misbehaving peers (default: 100)</source>
+        <translation>Soglia di disconnessione dei peer di cattiva qualità (default: 100)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="76"/>
+        <source>Number of seconds to keep misbehaving peers from reconnecting (default: 86400)</source>
+        <translation>Numero di secondi di sospensione che i peer di cattiva qualità devono trascorrere prima di riconnettersi (default: 86400)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="79"/>
+        <source>Maximum per-connection receive buffer, &lt;n&gt;*1000 bytes (default: 10000)</source>
+        <translation>Buffer di ricezione massimo per connessione, &lt;n&gt;*1000 byte (default: 10000)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="80"/>
+        <source>Maximum per-connection send buffer, &lt;n&gt;*1000 bytes (default: 10000)</source>
+        <translation>Buffer di invio massimo per connessione, &lt;n&gt;*1000 byte (default: 10000)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="83"/>
+        <source>Detach block and address databases. Increases shutdown time (default: 0)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="86"/>
+        <source>Accept command line and JSON-RPC commands</source>
+        <translation>Accetta da linea di comando e da comandi JSON-RPC
+</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="87"/>
+        <source>Run in the background as a daemon and accept commands</source>
+        <translation>Esegui in background come demone e accetta i comandi
+</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="88"/>
+        <source>Use the test network</source>
+        <translation>Utilizza la rete di prova
+</
