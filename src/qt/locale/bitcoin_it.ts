@@ -2135,4 +2135,52 @@ Indirizzo: %4
         <location filename="../bitcoinstrings.cpp" line="88"/>
         <source>Use the test network</source>
         <translation>Utilizza la rete di prova
-</
+</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="89"/>
+        <source>Output extra debugging information</source>
+        <translation>Produci informazioni extra utili al debug</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="90"/>
+        <source>Prepend debug output with timestamp</source>
+        <translation>Anteponi all&apos;output di debug una marca temporale</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="91"/>
+        <source>Send trace/debug info to console instead of debug.log file</source>
+        <translation>Invia le informazioni di trace/debug alla console invece che al file debug.log</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="92"/>
+        <source>Send trace/debug info to debugger</source>
+        <translation>Invia le informazioni di trace/debug al debugger</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="93"/>
+        <source>Username for JSON-RPC connections</source>
+        <translation>Nome utente per connessioni JSON-RPC
+</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="94"/>
+        <source>Password for JSON-RPC connections</source>
+        <translation>Password per connessioni JSON-RPC
+</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="95"/>
+        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 8332)</source>
+        <translation>Attendi le connessioni JSON-RPC su &lt;porta&gt; (default: 8332)
+</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="96"/>
+        <source>Allow JSON-RPC connections from specified IP address</source>
+        <translation>Consenti connessioni JSON-RPC dall&apos;indirizzo IP specificato
+</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="97"/>
+        <source>Send commands to node running on &lt;ip&gt; (default: 127.0
