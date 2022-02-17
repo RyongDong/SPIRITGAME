@@ -176,4 +176,49 @@ www.transifex.net/projects/p/bitcoin/</translation>
     <message>
         <location filename="../askpassphrasedialog.cpp" line="34"/>
         <source>Encrypt wallet</source>
-        <tran
+        <translation>Zaszyfruj portfel</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="37"/>
+        <source>This operation needs your wallet passphrase to unlock the wallet.</source>
+        <translation>Ta operacja wymaga hasła do portfela ażeby odblokować portfel.</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="42"/>
+        <source>Unlock wallet</source>
+        <translation>Odblokuj portfel</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="45"/>
+        <source>This operation needs your wallet passphrase to decrypt the wallet.</source>
+        <translation>Ta operacja wymaga hasła do portfela ażeby odszyfrować portfel.</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="50"/>
+        <source>Decrypt wallet</source>
+        <translation>Odszyfruj portfel</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="53"/>
+        <source>Change passphrase</source>
+        <translation>Zmień hasło</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="54"/>
+        <source>Enter the old and new passphrase to the wallet.</source>
+        <translation>Podaj stare i nowe hasło do portfela.</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="100"/>
+        <source>Confirm wallet encryption</source>
+        <translation>Potwierdź szyfrowanie portfela</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="101"/>
+        <source>WARNING: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!
+Are you sure you wish to encrypt your wallet?</source>
+        <translation>OSTRZEŻENIE: Jeśli zaszyfrujesz portfel i zgubisz hasło, wtedy &lt;b&gt;STRACISZ WSZYSTKIE SWOJE BITMONETY&lt;/b&gt;
+Czy na pewno chcesz zaszyfrować swój portfel?</translation>
+    </message>
+    <message>
+        <location filename="../askpassphr
