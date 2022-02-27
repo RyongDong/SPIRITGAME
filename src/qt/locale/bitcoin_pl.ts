@@ -221,4 +221,40 @@ Are you sure you wish to encrypt your wallet?</source>
 Czy na pewno chcesz zaszyfrować swój portfel?</translation>
     </message>
     <message>
-        <location filename="../askpassphr
+        <location filename="../askpassphrasedialog.cpp" line="110"/>
+        <location filename="../askpassphrasedialog.cpp" line="159"/>
+        <source>Wallet encrypted</source>
+        <translation>Portfel zaszyfrowany</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="111"/>
+        <source>Bitcoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <translation>Program Bitcoin zamknie się aby dokończyć proces szyfrowania. Pamiętaj, że szyfrowanie portfela nie zabezpiecza w pełni Twoich bitcoinów przed kradzieżą przez wirusy lub trojany mogące zainfekować Twój komputer.</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="207"/>
+        <location filename="../askpassphrasedialog.cpp" line="231"/>
+        <source>Warning: The Caps Lock key is on.</source>
+        <translation>Ostrzeżenie: Caps Lock jest włączony.</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="116"/>
+        <location filename="../askpassphrasedialog.cpp" line="123"/>
+        <location filename="../askpassphrasedialog.cpp" line="165"/>
+        <location filename="../askpassphrasedialog.cpp" line="171"/>
+        <source>Wallet encryption failed</source>
+        <translation>Szyfrowanie portfela nie powiodło się</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="117"/>
+        <source>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</source>
+        <translation>Szyfrowanie portfela nie powiodło się z powodu wewnętrznego błędu. Twój portfel nie został zaszyfrowany.</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="124"/>
+        <location filename="../askpassphrasedialog.cpp" line="172"/>
+        <source>The supplied passphrases do not match.</source>
+        <translation>Podane hasła nie są takie same.</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp
