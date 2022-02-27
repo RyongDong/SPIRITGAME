@@ -309,4 +309,59 @@ Czy na pewno chcesz zaszyfrować swój portfel?</translation>
     <message>
         <location filename="../bitcoingui.cpp" line="186"/>
         <source>Show general overview of wallet</source>
-        <translation>Po
+        <translation>Pokazuje ogólny zarys portfela</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="191"/>
+        <source>&amp;Transactions</source>
+        <translation>&amp;Transakcje</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="192"/>
+        <source>Browse transaction history</source>
+        <translation>Przeglądaj historię transakcji</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="197"/>
+        <source>&amp;Address Book</source>
+        <translation>Książka &amp;adresowa</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="198"/>
+        <source>Edit the list of stored addresses and labels</source>
+        <translation>Edytuj listę zapisanych adresów i i etykiet</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="203"/>
+        <source>&amp;Receive coins</source>
+        <translation>Odbie&amp;rz monety</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="204"/>
+        <source>Show the list of addresses for receiving payments</source>
+        <translation>Pokaż listę adresów do otrzymywania płatności</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="209"/>
+        <source>&amp;Send coins</source>
+        <translation>Wy&amp;syłka monet</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="216"/>
+        <source>Prove you control an address</source>
+        <translation>Udowodnij, że kontrolujesz adres</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="235"/>
+        <source>E&amp;xit</source>
+        <translation>&amp;Zakończ</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="236"/>
+        <source>Quit application</source>
+        <translation>Zamknij program</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="239"/>
+        <source>&amp;About %1</source>
+        <tra
