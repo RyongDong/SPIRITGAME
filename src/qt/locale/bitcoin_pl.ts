@@ -364,4 +364,61 @@ Czy na pewno chcesz zaszyfrować swój portfel?</translation>
     <message>
         <location filename="../bitcoingui.cpp" line="239"/>
         <source>&amp;About %1</source>
-        <tra
+        <translation>&amp;O %1</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="240"/>
+        <source>Show information about Bitcoin</source>
+        <translation>Pokaż informację o Bitcoin</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="242"/>
+        <source>About &amp;Qt</source>
+        <translation>O &amp;Qt</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="243"/>
+        <source>Show information about Qt</source>
+        <translation>Pokazuje informacje o Qt</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="245"/>
+        <source>&amp;Options...</source>
+        <translation>&amp;Opcje...</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="252"/>
+        <source>&amp;Encrypt Wallet...</source>
+        <translation>Zaszyfruj Portf&amp;el</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="255"/>
+        <source>&amp;Backup Wallet...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="257"/>
+        <source>&amp;Change Passphrase...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message numerus="yes">
+        <location filename="../bitcoingui.cpp" line="517"/>
+        <source>~%n block(s) remaining</source>
+        <translation><numerusform>pozostał ~%n blok</numerusform><numerusform>pozostało ~%n bloki</numerusform><numerusform>pozostało ~%n bloków</numerusform></translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="528"/>
+        <source>Downloaded %1 of %2 blocks of transaction history (%3% done).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="250"/>
+        <source>&amp;Export...</source>
+        <translation>&amp;Eksportuj...</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="210"/>
+        <source>Send coins to a Bitcoin address</source>
+        <translation>Wyślij monety na adres Bitcoin</translation>
+    </message>
+    <messa
