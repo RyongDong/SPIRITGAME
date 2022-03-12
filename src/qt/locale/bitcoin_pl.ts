@@ -479,4 +479,51 @@ Czy na pewno chcesz zaszyfrować swój portfel?</translation>
     <message>
         <location filename="../bitcoingui.cpp" line="296"/>
         <source>&amp;Settings</source>
-        
+        <translation>P&amp;referencje</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="302"/>
+        <source>&amp;Help</source>
+        <translation>Pomo&amp;c</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="311"/>
+        <source>Tabs toolbar</source>
+        <translation>Pasek zakładek</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="322"/>
+        <source>Actions toolbar</source>
+        <translation>Pasek akcji</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="334"/>
+        <location filename="../bitcoingui.cpp" line="343"/>
+        <source>[testnet]</source>
+        <translation>[testnet]</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="343"/>
+        <location filename="../bitcoingui.cpp" line="399"/>
+        <source>Bitcoin client</source>
+        <translation>Bitcoin klient</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../bitcoingui.cpp" line="492"/>
+        <source>%n active connection(s) to Bitcoin network</source>
+        <translation><numerusform>%n aktywne połączenie do sieci Bitcoin</numerusform><numerusform>%n aktywne połączenia do sieci Bitcoin</numerusform><numerusform>%n aktywnych połączeń do sieci Bitcoin</numerusform></translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="540"/>
+        <source>Downloaded %1 blocks of transaction history.</source>
+        <translation>Pobrano %1 bloków z historią transakcji.</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../bitcoingui.cpp" line="555"/>
+        <source>%n second(s) ago</source>
+        <translation><numerusform>%n sekundę temu</numerusform><numerusform>%n sekundy temu</numerusform><numerusform>%n sekund temu</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../bitcoingui.cpp" line="559"/>
+        <source>%n minute(s) ago</source>
+        <translation><numerusform>%n minutę temu</numerusform><
