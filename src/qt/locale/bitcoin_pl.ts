@@ -526,4 +526,47 @@ Czy na pewno chcesz zaszyfrować swój portfel?</translation>
     <message numerus="yes">
         <location filename="../bitcoingui.cpp" line="559"/>
         <source>%n minute(s) ago</source>
-        <translation><numerusform>%n minutę temu</numerusform><
+        <translation><numerusform>%n minutę temu</numerusform><numerusform>%n minuty temu</numerusform><numerusform>%n minut temu</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../bitcoingui.cpp" line="563"/>
+        <source>%n hour(s) ago</source>
+        <translation><numerusform>%n godzinę temu</numerusform><numerusform>%n godziny temu</numerusform><numerusform>%n godzin temu</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../bitcoingui.cpp" line="567"/>
+        <source>%n day(s) ago</source>
+        <translation><numerusform>%n dzień temu</numerusform><numerusform>%n dni temu</numerusform><numerusform>%n dni temu</numerusform></translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="573"/>
+        <source>Up to date</source>
+        <translation>Aktualny</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="580"/>
+        <source>Catching up...</source>
+        <translation>Łapanie bloków...</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="590"/>
+        <source>Last received block was generated %1.</source>
+        <translation>Ostatnio otrzymany blok została wygenerowany %1.</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="649"/>
+        <source>This transaction is over the size limit.  You can still send it for a fee of %1, which goes to the nodes that process your transaction and helps to support the network.  Do you want to pay the fee?</source>
+        <translation>Transakcja przekracza limit. Możesz wysłać ją płacąc prowizję %1, która zostaje przekazana do węzłów, które ją prześlą i pomoże wspierać sieć Bitcoin. Czy chcesz zapłacić prowizję?</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="654"/>
+        <source>Confirm transaction fee</source>
+        <translation>Potwierdź prowizję transakcyjną</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="681"/>
+        <source>Sent transaction</source>
+        <translation>Transakcja wysłana</translation>
+    </message>
+    <message>
+        <location filename=
