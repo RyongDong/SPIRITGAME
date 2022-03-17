@@ -569,4 +569,61 @@ Czy na pewno chcesz zaszyfrować swój portfel?</translation>
         <translation>Transakcja wysłana</translation>
     </message>
     <message>
-        <location filename=
+        <location filename="../bitcoingui.cpp" line="682"/>
+        <source>Incoming transaction</source>
+        <translation>Transakcja przychodząca</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="683"/>
+        <source>Date: %1
+Amount: %2
+Type: %3
+Address: %4
+</source>
+        <translation>Data: %1
+Kwota: %2
+Typ: %3
+Adres: %4
+</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="804"/>
+        <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
+        <translation>Portfel jest &lt;b&gt;zaszyfrowany&lt;/b&gt; i obecnie &lt;b&gt;niezablokowany&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="812"/>
+        <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
+        <translation>Portfel jest &lt;b&gt;zaszyfrowany&lt;/b&gt; i obecnie &lt;b&gt;zablokowany&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="835"/>
+        <source>Backup Wallet</source>
+        <translation>Kopia Zapasowa Portfela</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="835"/>
+        <source>Wallet Data (*.dat)</source>
+        <translation>Dane Portfela (*.dat)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="838"/>
+        <source>Backup Failed</source>
+        <translation>Kopia Zapasowa Nie Została Wykonana</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="838"/>
+        <source>There was an error trying to save the wallet data to the new location.</source>
+        <translation>Wystąpił błąd podczas próby zapisu portfela do nowej lokalizacji.</translation>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="112"/>
+        <source>A fatal error occured. Bitcoin can no longer continue safely and will quit.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ClientModel</name>
+    <message>
+        <location filename="../clientmodel.cpp" line="84"/>
+        <sourc
