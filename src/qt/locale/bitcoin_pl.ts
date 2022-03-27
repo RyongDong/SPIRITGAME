@@ -626,4 +626,61 @@ Adres: %4
     <name>ClientModel</name>
     <message>
         <location filename="../clientmodel.cpp" line="84"/>
-        <sourc
+        <source>Network Alert</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>DisplayOptionsPage</name>
+    <message>
+        <location filename="../optionsdialog.cpp" line="246"/>
+        <source>Display</source>
+        <translation>Wyświetlanie</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="257"/>
+        <source>default</source>
+        <translation>domyślny</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="263"/>
+        <source>The user interface language can be set here. This setting will only take effect after restarting Bitcoin.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="252"/>
+        <source>User Interface &amp;Language:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="273"/>
+        <source>&amp;Unit to show amounts in:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="277"/>
+        <source>Choose the default subdivision unit to show in the interface, and when sending coins</source>
+        <translation>Wybierz podział jednostki pokazywany w interfejsie  oraz podczas wysyłania monet</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="284"/>
+        <source>&amp;Display addresses in transaction list</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="285"/>
+        <source>Whether to show Bitcoin addresses in the transaction list</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="303"/>
+        <source>Warning</source>
+        <translation>Ostrzeżenie</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="303"/>
+        <source>This setting will take effect after restarting Bitcoin.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context
