@@ -788,4 +788,53 @@ Adres: %4
         <location filename="../bitcoin.cpp" line="140"/>
         <source>Start minimized</source>
         <translation>Uruchom zminimalizowany</translation>
-    </
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="141"/>
+        <source>Show splash screen on startup (default: 1)</source>
+        <translation>Pokazuj okno powitalne przy starcie (domyślnie: 1)</translation>
+    </message>
+</context>
+<context>
+    <name>MainOptionsPage</name>
+    <message>
+        <location filename="../optionsdialog.cpp" line="227"/>
+        <source>Detach block and address databases at shutdown. This means they can be moved to another data directory, but it slows down shutdown. The wallet is always detached.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="212"/>
+        <source>Pay transaction &amp;fee</source>
+        <translation>Płać prowizję za t&amp;ransakcje</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="204"/>
+        <source>Main</source>
+        <translation>Główny</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="206"/>
+        <source>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee 0.01 recommended.</source>
+        <translation>Opcjonalna prowizja za transakcje za kB, wspomaga ona szybkość przebiegu transakcji. Większość transakcji jest 1 kB. Zalecana prowizja 0.01 .</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="222"/>
+        <source>&amp;Start Bitcoin on system login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="223"/>
+        <source>Automatically start Bitcoin after logging in to the system</source>
+        <translation>Automatycznie uruchom Bitcoin po zalogowaniu do systemu</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="226"/>
+        <source>&amp;Detach databases at shutdown</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>MessagePage</name>
+    <message>
+        <location filename="../forms/messagepage.ui" line="14"/>
+        <source>Sign Message
