@@ -837,4 +837,47 @@ Adres: %4
     <name>MessagePage</name>
     <message>
         <location filename="../forms/messagepage.ui" line="14"/>
-        <source>Sign Message
+        <source>Sign Message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="20"/>
+        <source>You can sign messages with your addresses to prove you own them. Be careful not to sign anything vague, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <translation>Możesz podpisywać wiadomości swoimi adresami aby udowodnić, że jesteś ich właścicielem. Uważaj, aby nie podpisywać niczego co wzbudza Twoje podejrzenia, ponieważ ktoś może stosować phishing próbując nakłonić Cię do ich podpisania. Akceptuj i podpisuj tylko w pełni zrozumiałe komunikaty i wiadomości.</translation>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="38"/>
+        <source>The address to sign the message with  (e.g. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="48"/>
+        <source>Choose adress from address book</source>
+        <translation>Wybierz adres z książki adresowej</translation>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="58"/>
+        <source>Alt+A</source>
+        <translation>Alt+A</translation>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="71"/>
+        <source>Paste address from clipboard</source>
+        <translation>Wklej adres ze schowka</translation>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="81"/>
+        <source>Alt+P</source>
+        <translation>Alt+P</translation>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="93"/>
+        <source>Enter the message you want to sign here</source>
+        <translation>Wprowadź wiadomość, którą chcesz podpisać, tutaj</translation>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="128"/>
+        <source>Copy the current signature to the system clipboard</source>
+        <translation type="unfinished"/>
+    </message>
+    <me
