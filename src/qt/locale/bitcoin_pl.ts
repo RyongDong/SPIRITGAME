@@ -880,4 +880,54 @@ Adres: %4
         <source>Copy the current signature to the system clipboard</source>
         <translation type="unfinished"/>
     </message>
-    <me
+    <message>
+        <location filename="../forms/messagepage.ui" line="131"/>
+        <source>&amp;Copy Signature</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="142"/>
+        <source>Reset all sign message fields</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="145"/>
+        <source>Clear &amp;All</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../messagepage.cpp" line="31"/>
+        <source>Click &quot;Sign Message&quot; to get signature</source>
+        <translation>Kliknij &quot;Podpisz Wiadomość&quot; żeby uzyskać podpis</translation>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="114"/>
+        <source>Sign a message to prove you own this address</source>
+        <translation>Podpisz wiadomość aby dowieść, że ten adres jest twój</translation>
+    </message>
+    <message>
+        <location filename="../forms/messagepage.ui" line="117"/>
+        <source>&amp;Sign Message</source>
+        <translation>Podpi&amp;sz Wiadomość</translation>
+    </message>
+    <message>
+        <location filename="../messagepage.cpp" line="30"/>
+        <source>Enter a Bitcoin address (e.g. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</source>
+        <translation>Wprowadź adres Bitcoin (np. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</translation>
+    </message>
+    <message>
+        <location filename="../messagepage.cpp" line="83"/>
+        <location filename="../messagepage.cpp" line="90"/>
+        <location filename="../messagepage.cpp" line="105"/>
+        <location filename="../messagepage.cpp" line="117"/>
+        <source>Error signing</source>
+        <translation>Błąd podpisywania</translation>
+    </message>
+    <message>
+        <location filename="../messagepage.cpp" line="83"/>
+        <source>%1 is not a valid address.</source>
+        <translation>%1 nie jest poprawnym adresem.</translation>
+    </message>
+    <message>
+        <location filename="../messagepage.cpp" line="90"/>
+        <source>%1 does not refer to a key.</sourc
