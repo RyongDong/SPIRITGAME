@@ -1367,4 +1367,56 @@ Adres: %4
         <translation>Formularz</translation>
     </message>
     <message>
-        <location f
+        <location filename="../forms/sendcoinsentry.ui" line="29"/>
+        <source>A&amp;mount:</source>
+        <translation>Su&amp;ma:</translation>
+    </message>
+    <message>
+        <location filename="../forms/sendcoinsentry.ui" line="42"/>
+        <source>Pay &amp;To:</source>
+        <translation>Płać &amp;Do:</translation>
+    </message>
+    <message>
+        <location filename="../forms/sendcoinsentry.ui" line="66"/>
+        <location filename="../sendcoinsentry.cpp" line="25"/>
+        <source>Enter a label for this address to add it to your address book</source>
+        <translation>Wprowadź etykietę dla tego adresu by dodać go do książki adresowej</translation>
+    </message>
+    <message>
+        <location filename="../forms/sendcoinsentry.ui" line="75"/>
+        <source>&amp;Label:</source>
+        <translation>&amp;Etykieta:</translation>
+    </message>
+    <message>
+        <location filename="../forms/sendcoinsentry.ui" line="93"/>
+        <source>The address to send the payment to  (e.g. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</source>
+        <translation>Adres do wysłania należności do  (np. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</translation>
+    </message>
+    <message>
+        <location filename="../forms/sendcoinsentry.ui" line="103"/>
+        <source>Choose address from address book</source>
+        <translation>Wybierz adres z książki adresowej</translation>
+    </message>
+    <message>
+        <location filename="../forms/sendcoinsentry.ui" line="113"/>
+        <source>Alt+A</source>
+        <translation>Alt+A</translation>
+    </message>
+    <message>
+        <location filename="../forms/sendcoinsentry.ui" line="120"/>
+        <source>Paste address from clipboard</source>
+        <translation>Wklej adres ze schowka</translation>
+    </message>
+    <message>
+        <location filename="../forms/sendcoinsentry.ui" line="130"/>
+        <source>Alt+P</source>
+        <translation>Alt+P</translation>
+    </message>
+    <message>
+        <location filename="../forms/sendcoinsentry.ui" line="137"/>
+        <source>Remove this recipient</source>
+        <translation>Usuń tego odbiorce</translation>
+    </message>
+    <message>
+        <location filename="../sendcoinsentry.cpp" line="26"/>
+        <source>Enter a Bitcoin address (e.g. 1NS17iag9jJgTH
