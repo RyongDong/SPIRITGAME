@@ -1902,4 +1902,61 @@ Adres: %4
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../verifymessagedialog.c
+        <location filename="../verifymessagedialog.cpp" line="28"/>
+        <source>Enter Bitcoin signature</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../verifymessagedialog.cpp" line="29"/>
+        <source>Click &quot;Verify Message&quot; to obtain address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../verifymessagedialog.cpp" line="55"/>
+        <location filename="../verifymessagedialog.cpp" line="62"/>
+        <source>Invalid Signature</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../verifymessagedialog.cpp" line="55"/>
+        <source>The signature could not be decoded. Please check the signature and try again.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../verifymessagedialog.cpp" line="62"/>
+        <source>The signature did not match the message digest. Please check the signature and try again.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../verifymessagedialog.cpp" line="72"/>
+        <source>Address not found in address book.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../verifymessagedialog.cpp" line="72"/>
+        <source>Address found in address book: %1</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>WalletModel</name>
+    <message>
+        <location filename="../walletmodel.cpp" line="158"/>
+        <source>Sending...</source>
+        <translation>Wysyłanie...</translation>
+    </message>
+</context>
+<context>
+    <name>WindowOptionsPage</name>
+    <message>
+        <location filename="../optionsdialog.cpp" line="313"/>
+        <source>Window</source>
+        <translation>Okno</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="316"/>
+        <source>&amp;Minimize to the tray instead of the taskbar</source>
+        <translation>&amp;Minimalizuj do paska przy zegarku zamiast do paska zadań</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog
