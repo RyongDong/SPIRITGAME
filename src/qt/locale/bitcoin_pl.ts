@@ -1527,4 +1527,45 @@ Adres: %4
         <translation>(niezaakceptowane)</translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp" line=
+        <location filename="../transactiondesc.cpp" line="186"/>
+        <location filename="../transactiondesc.cpp" line="194"/>
+        <location filename="../transactiondesc.cpp" line="209"/>
+        <source>&lt;b&gt;Debit:&lt;/b&gt; </source>
+        <translation>&lt;b&gt;Debet:&lt;/b&gt; </translation>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="200"/>
+        <source>&lt;b&gt;Transaction fee:&lt;/b&gt; </source>
+        <translation>&lt;b&gt;Prowizja transakcyjna:&lt;/b&gt; </translation>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="216"/>
+        <source>&lt;b&gt;Net amount:&lt;/b&gt; </source>
+        <translation>&lt;b&gt;Kwota netto:&lt;/b&gt; </translation>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="222"/>
+        <source>Message:</source>
+        <translation>Wiadomość:</translation>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="224"/>
+        <source>Comment:</source>
+        <translation>Komentarz:</translation>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="226"/>
+        <source>Transaction ID:</source>
+        <translation>ID transakcji:</translation>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="229"/>
+        <source>Generated coins must wait 120 blocks before they can be spent.  When you generated this block, it was broadcast to the network to be added to the block chain.  If it fails to get into the chain, it will change to &quot;not accepted&quot; and not be spendable.  This may occasionally happen if another node generates a block within a few seconds of yours.</source>
+        <translation>Wygenerowane monety muszą zaczekać 120 bloków zanim będzie można je wydać.  Kiedy wygenerowałeś ten blok, został on wyemitowany do sieci, aby dodać go do łańcucha bloków.  Jeśli to się nie powiedzie nie zostanie on zaakceptowany i wygenerowanych monet nie będzie można wysyłać.  Może się to czasami zdarzyć jeśli inny węzeł wygeneruje blok tuż przed tobą.</translation>
+    </message>
+</context>
+<context>
+    <name>TransactionDescDialog</name>
+    <message>
+        <location filename="../forms/transactiondescdialog.ui" line="14"/>
+   
