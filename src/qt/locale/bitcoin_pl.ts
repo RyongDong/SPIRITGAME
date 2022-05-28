@@ -2009,4 +2009,50 @@ Adres: %4
     <message>
         <location filename="../bitcoinstrings.cpp" line="50"/>
         <source>Specify configuration file (default: bitcoin.conf)</source>
-        <translati
+        <translation>Wskaż plik konfiguracyjny (domyślnie: bitcoin.conf)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="51"/>
+        <source>Specify pid file (default: bitcoind.pid)</source>
+        <translation>Wskaż plik pid (domyślnie: bitcoin.pid)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="52"/>
+        <source>Generate coins</source>
+        <translation>Generuj monety</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="53"/>
+        <source>Don&apos;t generate coins</source>
+        <translation>Nie generuj monet</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="54"/>
+        <source>Specify data directory</source>
+        <translation>Wskaż folder danych</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="55"/>
+        <source>Set database cache size in megabytes (default: 25)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="56"/>
+        <source>Set database disk log size in megabytes (default: 100)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="57"/>
+        <source>Specify connection timeout (in milliseconds)</source>
+        <translation>Wskaż czas oczekiwania bezczynności połączenia (w milisekundach)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="63"/>
+        <source>Listen for connections on &lt;port&gt; (default: 8333 or testnet: 18333)</source>
+        <translation>Nasłuchuj połączeń na &lt;port&gt; (domyślnie: 8333 lub testnet: 18333)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="64"/>
+        <source>Maintain at most &lt;n&gt; connections to peers (default: 125)</source>
+        <translation>Utrzymuj maksymalnie &lt;n&gt; połączeń z peerami (domyślnie: 125)</translation>
+   
