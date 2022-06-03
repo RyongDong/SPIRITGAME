@@ -2055,4 +2055,51 @@ Adres: %4
         <location filename="../bitcoinstrings.cpp" line="64"/>
         <source>Maintain at most &lt;n&gt; connections to peers (default: 125)</source>
         <translation>Utrzymuj maksymalnie &lt;n&gt; połączeń z peerami (domyślnie: 125)</translation>
-   
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="66"/>
+        <source>Connect only to the specified node</source>
+        <translation>Łącz tylko do wskazanego węzła</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="67"/>
+        <source>Connect to a node to retrieve peer addresses, and disconnect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="68"/>
+        <source>Specify your own public address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="69"/>
+        <source>Only connect to nodes in network &lt;net&gt; (IPv4 or IPv6)</source>
+        <translation>Łącz tylko z węzłami w sieci &lt;net&gt; (IPv4 lub IPv6)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="70"/>
+        <source>Try to discover public IP address (default: 1)</source>
+        <translation>Próbuj odkryć publiczny adres IP (domyślnie: 1)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="73"/>
+        <source>Bind to given address. Use [host]:port notation for IPv6</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="75"/>
+        <source>Threshold for disconnecting misbehaving peers (default: 100)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="76"/>
+        <source>Number of seconds to keep misbehaving peers from reconnecting (default: 86400)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="79"/>
+        <source>Maximum per-connection receive buffer, &lt;n&gt;*1000 bytes (default: 10000)</source>
+        <translation>Maksymalny bufor odbioru na połączenie, &lt;n&gt;*1000 bajtów (domyślnie: 10000)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" li
