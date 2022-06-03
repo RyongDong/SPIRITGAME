@@ -2102,4 +2102,51 @@ Adres: %4
         <translation>Maksymalny bufor odbioru na połączenie, &lt;n&gt;*1000 bajtów (domyślnie: 10000)</translation>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" li
+        <location filename="../bitcoinstrings.cpp" line="80"/>
+        <source>Maximum per-connection send buffer, &lt;n&gt;*1000 bytes (default: 10000)</source>
+        <translation>Maksymalny bufor wysyłu na połączenie, &lt;n&gt;*1000 bajtów (domyślnie: 10000)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="83"/>
+        <source>Detach block and address databases. Increases shutdown time (default: 0)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="86"/>
+        <source>Accept command line and JSON-RPC commands</source>
+        <translation>Akceptuj linię poleceń oraz polecenia JSON-RPC</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="87"/>
+        <source>Run in the background as a daemon and accept commands</source>
+        <translation>Uruchom w tle jako daemon i przyjmuj polecenia</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="88"/>
+        <source>Use the test network</source>
+        <translation>Użyj sieci testowej</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="89"/>
+        <source>Output extra debugging information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="90"/>
+        <source>Prepend debug output with timestamp</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="91"/>
+        <source>Send trace/debug info to console instead of debug.log file</source>
+        <translation>Wyślij informację/raport do konsoli zamiast do pliku debug.log.</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="92"/>
+        <source>Send trace/debug info to debugger</source>
+        <translation>Wyślij informację/raport do debuggera.</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="93"/>
+        <source>Username for JSON-RPC connections</source>
+        <translation>Nazwa użytkownika dla p
