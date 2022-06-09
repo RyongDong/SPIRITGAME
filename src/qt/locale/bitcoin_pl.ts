@@ -2434,4 +2434,64 @@ opcje SSL: (sprawdź Bitcoin Wiki dla instrukcje konfiguracji SSL)</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../bitcoinstrings.cpp" line="8
+        <location filename="../bitcoinstrings.cpp" line="85"/>
+        <source>Fee per KB to add to transactions you send</source>
+        <translation>
+</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="118"/>
+        <source>Warning: -paytxfee is set very high. This is the transaction fee you will pay if you send a transaction.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="133"/>
+        <source>Loading wallet...</source>
+        <translation>Wczytywanie portfela...</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="138"/>
+        <source>Cannot downgrade wallet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="139"/>
+        <source>Cannot initialize keypool</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="140"/>
+        <source>Cannot write default address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="141"/>
+        <source>Rescanning...</source>
+        <translation>Ponowne skanowanie...</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="144"/>
+        <source>Done loading</source>
+        <translation>Wczytywanie zakończone</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="8"/>
+        <source>To use the %s option</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="9"/>
+        <source>%s, you must set a rpcpassword in the configuration file:
+ %s
+It is recommended you use the following random password:
+rpcuser=bitcoinrpc
+rpcpassword=%s
+(you do not need to remember this password)
+If the file does not exist, create it with owner-readable-only file permissions.
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="18"/>
+        <source>Error</source>
+        <translation>Błąd</t
