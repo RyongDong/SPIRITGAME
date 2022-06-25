@@ -33,4 +33,51 @@ Denna produkten innehåller mjukvara utvecklad av OpenSSL Project för användni
 <context>
     <name>AddressBookPage</name>
     <message>
-        <locati
+        <location filename="../forms/addressbookpage.ui" line="14"/>
+        <source>Address Book</source>
+        <translation>Adressbok</translation>
+    </message>
+    <message>
+        <location filename="../forms/addressbookpage.ui" line="20"/>
+        <source>These are your Bitcoin addresses for receiving payments.  You may want to give a different one to each sender so you can keep track of who is paying you.</source>
+        <translation>Detta är dina Bitcoin-adresser för att ta emot betalningar.  Du kan ge varje avsändare en egen adress så att du kan hålla reda på vem som betalar dig.</translation>
+    </message>
+    <message>
+        <location filename="../forms/addressbookpage.ui" line="36"/>
+        <source>Double-click to edit address or label</source>
+        <translation>Dubbel-klicka för att ändra adressen eller etiketten</translation>
+    </message>
+    <message>
+        <location filename="../forms/addressbookpage.ui" line="63"/>
+        <source>Create a new address</source>
+        <translation>Skapa ny adress</translation>
+    </message>
+    <message>
+        <location filename="../forms/addressbookpage.ui" line="77"/>
+        <source>Copy the currently selected address to the system clipboard</source>
+        <translation>Kopiera den markerade adressen till systemets Urklipp</translation>
+    </message>
+    <message>
+        <location filename="../forms/addressbookpage.ui" line="66"/>
+        <source>&amp;New Address</source>
+        <translation>&amp;Ny adress</translation>
+    </message>
+    <message>
+        <location filename="../forms/addressbookpage.ui" line="80"/>
+        <source>&amp;Copy Address</source>
+        <translation>&amp;Kopiera adress</translation>
+    </message>
+    <message>
+        <location filename="../forms/addressbookpage.ui" line="91"/>
+        <source>Show &amp;QR Code</source>
+        <translation>Visa &amp;QR-kod</translation>
+    </message>
+    <message>
+        <location filename="../forms/addressbookpage.ui" line="102"/>
+        <source>Sign a message to prove you own this address</source>
+        <translation>Signera ett meddelande för att bevisa att du äger denna adress</translation>
+    </message>
+    <message>
+        <location filename="../forms/addressbookpage.ui" line="105"/>
+        <source>&amp;Sign Message</source>
+        <t
