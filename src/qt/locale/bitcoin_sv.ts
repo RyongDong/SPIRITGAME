@@ -184,4 +184,44 @@ Denna produkten innehåller mjukvara utvecklad av OpenSSL Project för användni
         <translation>Lås upp plånbok</translation>
     </message>
     <message>
-        <location filename="../askpassphrasedialog
+        <location filename="../askpassphrasedialog.cpp" line="45"/>
+        <source>This operation needs your wallet passphrase to decrypt the wallet.</source>
+        <translation>Denna operation behöver din plånboks lösenord för att dekryptera plånboken.</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="50"/>
+        <source>Decrypt wallet</source>
+        <translation>Dekryptera plånbok</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="53"/>
+        <source>Change passphrase</source>
+        <translation>Ändra lösenord</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="54"/>
+        <source>Enter the old and new passphrase to the wallet.</source>
+        <translation>Ange plånbokens gamla och nya lösenord.</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="100"/>
+        <source>Confirm wallet encryption</source>
+        <translation>Bekräfta kryptering av plånbok</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="101"/>
+        <source>WARNING: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!
+Are you sure you wish to encrypt your wallet?</source>
+        <translation>VARNING: Om du krypterar din plånbok och glömmer ditt lösenord, kommer du att &lt;b&gt;FÖRLORA ALLA DINA TILLGÅNGAR&lt;/b&gt;!
+Är du säker på att du vill kryptera din plånbok?</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="110"/>
+        <location filename="../askpassphrasedialog.cpp" line="159"/>
+        <source>Wallet encrypted</source>
+        <translation>Plånboken är krypterad</translation>
+    </message>
+    <message>
+        <location filename="../askpassphrasedialog.cpp" line="111"/>
+        <source>Bitcoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <translation>Programmet kommer nu att stänga ner för att färdigställa krypteringen. Tänk på att 
