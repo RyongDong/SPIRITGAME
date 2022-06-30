@@ -323,4 +323,60 @@ Are you sure you wish to encrypt your wallet?</source>
     </message>
     <message>
         <location filename="../bitcoingui.cpp" line="198"/>
-        <source>Edit the list of stored addresses and la
+        <source>Edit the list of stored addresses and labels</source>
+        <translation>Redigera listan med lagrade adresser och etiketter</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="203"/>
+        <source>&amp;Receive coins</source>
+        <translation>&amp;Ta emot bitcoins</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="204"/>
+        <source>Show the list of addresses for receiving payments</source>
+        <translation>Visa listan med adresser för att ta emot betalningar</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="209"/>
+        <source>&amp;Send coins</source>
+        <translation>&amp;Skicka bitcoins</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="216"/>
+        <source>Prove you control an address</source>
+        <translation>Bevisa att du kontrollerar en adress</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="235"/>
+        <source>E&amp;xit</source>
+        <translation>&amp;Avsluta</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="236"/>
+        <source>Quit application</source>
+        <translation>Avsluta programmet</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="239"/>
+        <source>&amp;About %1</source>
+        <translation>&amp;Om %1</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="240"/>
+        <source>Show information about Bitcoin</source>
+        <translation>Visa information om Bitcoin</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="242"/>
+        <source>About &amp;Qt</source>
+        <translation>Om &amp;Qt</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="243"/>
+        <source>Show information about Qt</source>
+        <translation>Visa information om Qt</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="245"/>
+        <source>&amp;Options...</source>
+        <translation>&amp;Altern
