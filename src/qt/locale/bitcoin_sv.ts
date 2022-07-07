@@ -429,4 +429,59 @@ Are you sure you wish to encrypt your wallet?</source>
     <message>
         <location filename="../bitcoingui.cpp" line="251"/>
         <source>Export the data in the current tab to a file</source>
-        <translation>Export
+        <translation>Exportera informationen i den nuvarande fliken till en fil</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="253"/>
+        <source>Encrypt or decrypt wallet</source>
+        <translation>Kryptera eller dekryptera plånbok</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="256"/>
+        <source>Backup wallet to another location</source>
+        <translation>Säkerhetskopiera plånboken till en annan plats</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="258"/>
+        <source>Change the passphrase used for wallet encryption</source>
+        <translation>Byt lösenord för kryptering av plånbok</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="259"/>
+        <source>&amp;Debug window</source>
+        <translation>&amp;Debug fönster</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="260"/>
+        <source>Open debugging and diagnostic console</source>
+        <translation>Öppna debug- och diagnostikkonsolen</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="261"/>
+        <source>&amp;Verify message...</source>
+        <translation>&amp;Verifiera meddelande...</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="262"/>
+        <source>Verify a message signature</source>
+        <translation>Verifiera meddelandets signatur</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="286"/>
+        <source>&amp;File</source>
+        <translation>&amp;Arkiv</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="296"/>
+        <source>&amp;Settings</source>
+        <translation>&amp;Inställningar</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="302"/>
+        <source>&amp;Help</source>
+        <translation>&amp;Hjälp</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="311"/>
+        <source>Tabs toolbar</source>
+        <translation>V
