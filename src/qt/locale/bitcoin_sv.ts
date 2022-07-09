@@ -530,4 +530,58 @@ Are you sure you wish to encrypt your wallet?</source>
     </message>
     <message numerus="yes">
         <location filename="../bitcoingui.cpp" line="567"/>
-        <source>%n day(s) a
+        <source>%n day(s) ago</source>
+        <translation><numerusform>%n dag sedan</numerusform><numerusform>%n dagar sedan</numerusform></translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="573"/>
+        <source>Up to date</source>
+        <translation>Uppdaterad</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="580"/>
+        <source>Catching up...</source>
+        <translation>Hämtar senaste...</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="590"/>
+        <source>Last received block was generated %1.</source>
+        <translation>Senast mottagna block genererades %1.</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="649"/>
+        <source>This transaction is over the size limit.  You can still send it for a fee of %1, which goes to the nodes that process your transaction and helps to support the network.  Do you want to pay the fee?</source>
+        <translation>Transaktionen överskrider storleksgränsen.  Du kan dock fortfarande skicka den mot en kostnad av %1. Denna avgift går till noderna som behandlar din transaktion och bidrar till nätverket.  Vill du betala denna avgift?</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="654"/>
+        <source>Confirm transaction fee</source>
+        <translation>Bekräfta överföringsavgift</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="681"/>
+        <source>Sent transaction</source>
+        <translation>Transaktion skickad</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="682"/>
+        <source>Incoming transaction</source>
+        <translation>Inkommande transaktion</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="683"/>
+        <source>Date: %1
+Amount: %2
+Type: %3
+Address: %4
+</source>
+        <translation>Datum: %1
+Belopp: %2
+Typ: %3
+Adress: %4
+</translation>
+    </message>
+    <message>
+        <location filename="../bitcoingui.cpp" line="804"/>
+        <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
+        <translation>Denna plånbok är &lt;b&gt;krypterad&lt;/b&g
