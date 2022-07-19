@@ -732,4 +732,62 @@ Adress: %4
     </message>
     <message>
         <location filename="../editaddressdialog.cpp" line="96"/>
-        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.<
+        <source>The entered address &quot;%1&quot; is not a valid Bitcoin address.</source>
+        <translation>Den angivna adressen &quot;%1&quot; är inte en giltig Bitcoin-adress.</translation>
+    </message>
+    <message>
+        <location filename="../editaddressdialog.cpp" line="101"/>
+        <source>Could not unlock wallet.</source>
+        <translation>Plånboken kunde inte låsas upp.</translation>
+    </message>
+    <message>
+        <location filename="../editaddressdialog.cpp" line="106"/>
+        <source>New key generation failed.</source>
+        <translation>Misslyckades med generering av ny nyckel.</translation>
+    </message>
+</context>
+<context>
+    <name>HelpMessageBox</name>
+    <message>
+        <location filename="../bitcoin.cpp" line="133"/>
+        <location filename="../bitcoin.cpp" line="143"/>
+        <source>Bitcoin-Qt</source>
+        <translation>Bitcoin-Qt</translation>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="133"/>
+        <source>version</source>
+        <translation>version</translation>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="135"/>
+        <source>Usage:</source>
+        <translation>Användning:</translation>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="136"/>
+        <source>options</source>
+        <translation>alternativ</translation>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="138"/>
+        <source>UI options</source>
+        <translation>UI alternativ</translation>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="139"/>
+        <source>Set language, for example &quot;de_DE&quot; (default: system locale)</source>
+        <translation>Ändra språk, till exempel &quot;de_DE&quot; (standard: systemets språk)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="140"/>
+        <source>Start minimized</source>
+        <translation>Starta som minimerad</translation>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="141"/>
+        <source>Show splash screen on startup (default: 1)</source>
+        <translation>Visa startbilden vid uppstart (standard: 1)</translation>
+    </message>
+</context>
+<con
