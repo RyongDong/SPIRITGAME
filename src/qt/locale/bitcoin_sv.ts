@@ -921,4 +921,55 @@ Adress: %4
     <message>
         <location filename="../messagepage.cpp" line="83"/>
         <source>%1 is not a valid address.</source>
-        <translation>%1 är ingen giltig adress.</translation
+        <translation>%1 är ingen giltig adress.</translation>
+    </message>
+    <message>
+        <location filename="../messagepage.cpp" line="90"/>
+        <source>%1 does not refer to a key.</source>
+        <translation>%1 refererar inte till en nyckel.</translation>
+    </message>
+    <message>
+        <location filename="../messagepage.cpp" line="105"/>
+        <source>Private key for %1 is not available.</source>
+        <translation>Privata nyckeln för %1 är inte tillgänglig.</translation>
+    </message>
+    <message>
+        <location filename="../messagepage.cpp" line="117"/>
+        <source>Sign failed</source>
+        <translation>Signering misslyckades</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkOptionsPage</name>
+    <message>
+        <location filename="../optionsdialog.cpp" line="345"/>
+        <source>Network</source>
+        <translation>Nätverk</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="347"/>
+        <source>Map port using &amp;UPnP</source>
+        <translation>Tilldela port med hjälp av &amp;UPnP</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="348"/>
+        <source>Automatically open the Bitcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Öppna automatiskt Bitcoin-klientens port på routern. Detta fungerar endast om din router har UPnP aktiverat.</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="351"/>
+        <source>&amp;Connect through SOCKS4 proxy:</source>
+        <translation>&amp;Anslut genom SOCKS4-proxy:</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="352"/>
+        <source>Connect to the Bitcon network through a SOCKS4 proxy (e.g. when connecting through Tor)</source>
+        <translation>Anslut till Bitcoin-nätverket genom en SOCKS4-proxy (t.ex. när du ansluter genom Tor)</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="357"/>
+        <source>Proxy &amp;IP:</source>
+        <translation>Proxy-&amp;IP: </translation>
+    </message>
+    <message>
+        <lo
