@@ -1024,4 +1024,58 @@ Adress: %4
         <translation>Obekräftade:</translation>
     </message>
     <message>
-        <location filename="../forms/overviewpage.u
+        <location filename="../forms/overviewpage.ui" line="40"/>
+        <source>Wallet</source>
+        <translation>Plånbok</translation>
+    </message>
+    <message>
+        <location filename="../forms/overviewpage.ui" line="197"/>
+        <source>&lt;b&gt;Recent transactions&lt;/b&gt;</source>
+        <translation>&lt;b&gt;Nyligen genomförda transaktioner&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <location filename="../forms/overviewpage.ui" line="105"/>
+        <source>Your current balance</source>
+        <translation>Ditt nuvarande saldo</translation>
+    </message>
+    <message>
+        <location filename="../forms/overviewpage.ui" line="134"/>
+        <source>Total of transactions that have yet to be confirmed, and do not yet count toward the current balance</source>
+        <translation>Totalt antal transaktioner som ännu inte bekräftats, och som ännu inte räknas med i aktuellt saldo</translation>
+    </message>
+    <message>
+        <location filename="../forms/overviewpage.ui" line="154"/>
+        <source>Total number of transactions in wallet</source>
+        <translation>Totalt antal transaktioner i plånboken</translation>
+    </message>
+    <message>
+        <location filename="../overviewpage.cpp" line="110"/>
+        <location filename="../overviewpage.cpp" line="111"/>
+        <source>out of sync</source>
+        <translation>osynkroniserad</translation>
+    </message>
+</context>
+<context>
+    <name>QRCodeDialog</name>
+    <message>
+        <location filename="../forms/qrcodedialog.ui" line="14"/>
+        <source>QR Code Dialog</source>
+        <translation>QR-kod dialogruta</translation>
+    </message>
+    <message>
+        <location filename="../forms/qrcodedialog.ui" line="32"/>
+        <source>QR Code</source>
+        <translation>QR-kod</translation>
+    </message>
+    <message>
+        <location filename="../forms/qrcodedialog.ui" line="55"/>
+        <source>Request Payment</source>
+        <translation>Begär Betalning</translation>
+    </message>
+    <message>
+        <location filename="../forms/qrcodedialog.ui" line="70"/>
+        <source>Amount:</source>
+        <translation>Belopp:</translation>
+    </message>
+    <message>
+        <location filename="../forms/qrcodedialog.ui" li
