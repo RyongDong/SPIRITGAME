@@ -1078,4 +1078,63 @@ Adress: %4
         <translation>Belopp:</translation>
     </message>
     <message>
-        <location filename="../forms/qrcodedialog.ui" li
+        <location filename="../forms/qrcodedialog.ui" line="105"/>
+        <source>BTC</source>
+        <translation>BTC</translation>
+    </message>
+    <message>
+        <location filename="../forms/qrcodedialog.ui" line="121"/>
+        <source>Label:</source>
+        <translation>Etikett:</translation>
+    </message>
+    <message>
+        <location filename="../forms/qrcodedialog.ui" line="144"/>
+        <source>Message:</source>
+        <translation>Meddelande:</translation>
+    </message>
+    <message>
+        <location filename="../forms/qrcodedialog.ui" line="186"/>
+        <source>&amp;Save As...</source>
+        <translation>&amp;Spara som...</translation>
+    </message>
+    <message>
+        <location filename="../qrcodedialog.cpp" line="45"/>
+        <source>Error encoding URI into QR Code.</source>
+        <translation>Fel vid skapande av QR-kod från URI.</translation>
+    </message>
+    <message>
+        <location filename="../qrcodedialog.cpp" line="63"/>
+        <source>Resulting URI too long, try to reduce the text for label / message.</source>
+        <translation>URI:n är för lång, försöka minska texten för etikett / meddelande.</translation>
+    </message>
+    <message>
+        <location filename="../qrcodedialog.cpp" line="120"/>
+        <source>Save QR Code</source>
+        <translation>Spara QR-kod</translation>
+    </message>
+    <message>
+        <location filename="../qrcodedialog.cpp" line="120"/>
+        <source>PNG Images (*.png)</source>
+        <translation>PNG-bilder (*.png)</translation>
+    </message>
+</context>
+<context>
+    <name>RPCConsole</name>
+    <message>
+        <location filename="../forms/rpcconsole.ui" line="14"/>
+        <source>Bitcoin debug window</source>
+        <translation>Bitcoin debug fönster</translation>
+    </message>
+    <message>
+        <location filename="../forms/rpcconsole.ui" line="46"/>
+        <source>Client name</source>
+        <translation>Klientnamn</translation>
+    </message>
+    <message>
+        <location filename="../forms/rpcconsole.ui" line="56"/>
+        <location filename="../forms/rpcconsole.ui" line="79"/>
+        <location filename="../forms/rpcconsole.ui" line="102"/>
+        <location filename="../forms/rpcconsole.ui" line="125"/>
+        <location filename="../forms/rpcconsole.ui" line="161"/>
+        <location filename="../forms/rpcconsole.ui" line="214"/>
+   
