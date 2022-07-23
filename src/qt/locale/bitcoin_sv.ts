@@ -1137,4 +1137,61 @@ Adress: %4
         <location filename="../forms/rpcconsole.ui" line="125"/>
         <location filename="../forms/rpcconsole.ui" line="161"/>
         <location filename="../forms/rpcconsole.ui" line="214"/>
-   
+        <location filename="../forms/rpcconsole.ui" line="237"/>
+        <location filename="../forms/rpcconsole.ui" line="260"/>
+        <location filename="../rpcconsole.cpp" line="245"/>
+        <source>N/A</source>
+        <translation>ej tillgänglig</translation>
+    </message>
+    <message>
+        <location filename="../forms/rpcconsole.ui" line="69"/>
+        <source>Client version</source>
+        <translation>Klient-version</translation>
+    </message>
+    <message>
+        <location filename="../forms/rpcconsole.ui" line="24"/>
+        <source>&amp;Information</source>
+        <translation>&amp;Information</translation>
+    </message>
+    <message>
+        <location filename="../forms/rpcconsole.ui" line="39"/>
+        <source>Client</source>
+        <translation>Klient</translation>
+    </message>
+    <message>
+        <location filename="../forms/rpcconsole.ui" line="115"/>
+        <source>Startup time</source>
+        <translation>Uppstartstid</translation>
+    </message>
+    <message>
+        <location filename="../forms/rpcconsole.ui" line="144"/>
+        <source>Network</source>
+        <translation>Nätverk</translation>
+    </message>
+    <message>
+        <location filename="../forms/rpcconsole.ui" line="151"/>
+        <source>Number of connections</source>
+        <translation>Antalet anslutningar</translation>
+    </message>
+    <message>
+        <location filename="../forms/rpcconsole.ui" line="174"/>
+        <source>On testnet</source>
+        <translation>På testnet</translation>
+    </message>
+    <message>
+        <location filename="../forms/rpcconsole.ui" line="197"/>
+        <source>Block chain</source>
+        <translation>Blockkedja</translation>
+    </message>
+    <message>
+        <location filename="../forms/rpcconsole.ui" line="204"/>
+        <source>Current number of blocks</source>
+        <translation>Aktuellt antal block</translation>
+    </message>
+    <message>
+        <location filename="../forms/rpcconsole.ui" line="227"/>
+        <source>Estimated total blocks</source>
+        <translation>Beräknade totala block</translation>
+    </message>
+    <message>
+        <location filename="../forms/rpccons
