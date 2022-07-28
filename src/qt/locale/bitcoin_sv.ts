@@ -1295,4 +1295,50 @@ Adress: %4
     </message>
     <message>
         <location filename="../forms/sendcoinsdialog.ui" line="147"/>
-        <source>&
+        <source>&amp;Send</source>
+        <translation>&amp;Skicka</translation>
+    </message>
+    <message>
+        <location filename="../sendcoinsdialog.cpp" line="94"/>
+        <source>&lt;b&gt;%1&lt;/b&gt; to %2 (%3)</source>
+        <translation>&lt;b&gt;%1&lt;/b&gt; till %2 (%3)</translation>
+    </message>
+    <message>
+        <location filename="../sendcoinsdialog.cpp" line="99"/>
+        <source>Confirm send coins</source>
+        <translation>Bekräfta skickade mynt</translation>
+    </message>
+    <message>
+        <location filename="../sendcoinsdialog.cpp" line="100"/>
+        <source>Are you sure you want to send %1?</source>
+        <translation>Är du säker på att du vill skicka %1?</translation>
+    </message>
+    <message>
+        <location filename="../sendcoinsdialog.cpp" line="100"/>
+        <source> and </source>
+        <translation> och </translation>
+    </message>
+    <message>
+        <location filename="../sendcoinsdialog.cpp" line="123"/>
+        <source>The recepient address is not valid, please recheck.</source>
+        <translation>Mottagarens adress är inte giltig, vänligen kontrollera igen.</translation>
+    </message>
+    <message>
+        <location filename="../sendcoinsdialog.cpp" line="128"/>
+        <source>The amount to pay must be larger than 0.</source>
+        <translation>Det betalade beloppet måste vara större än 0.</translation>
+    </message>
+    <message>
+        <location filename="../sendcoinsdialog.cpp" line="133"/>
+        <source>The amount exceeds your balance.</source>
+        <translation>Värdet överstiger ditt saldo.</translation>
+    </message>
+    <message>
+        <location filename="../sendcoinsdialog.cpp" line="138"/>
+        <source>The total exceeds your balance when the %1 transaction fee is included.</source>
+        <translation>Totalvärdet överstiger ditt saldo när transaktionsavgiften %1 är pålagd.</translation>
+    </message>
+    <message>
+        <location filename="../sendcoinsdialog.cpp" line="144"/>
+        <source>Duplicate address found, can only send to each address once per send operation.</source>
+        <translation>Dubblett av adress funnen,
