@@ -1387,4 +1387,63 @@ Adress: %4
         <source>The address to send the payment to  (e.g. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</source>
         <translation>Adressen som betalningen skall skickas till  (t.ex. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</translation>
     </message>
-    <messa
+    <message>
+        <location filename="../forms/sendcoinsentry.ui" line="103"/>
+        <source>Choose address from address book</source>
+        <translation>Välj adress från adresslistan</translation>
+    </message>
+    <message>
+        <location filename="../forms/sendcoinsentry.ui" line="113"/>
+        <source>Alt+A</source>
+        <translation>Alt+A</translation>
+    </message>
+    <message>
+        <location filename="../forms/sendcoinsentry.ui" line="120"/>
+        <source>Paste address from clipboard</source>
+        <translation>Klistra in adress från Urklipp</translation>
+    </message>
+    <message>
+        <location filename="../forms/sendcoinsentry.ui" line="130"/>
+        <source>Alt+P</source>
+        <translation>Alt+P</translation>
+    </message>
+    <message>
+        <location filename="../forms/sendcoinsentry.ui" line="137"/>
+        <source>Remove this recipient</source>
+        <translation>Ta bort denna mottagare</translation>
+    </message>
+    <message>
+        <location filename="../sendcoinsentry.cpp" line="26"/>
+        <source>Enter a Bitcoin address (e.g. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</source>
+        <translation>Ange en Bitcoin-adress (t.ex. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</translation>
+    </message>
+</context>
+<context>
+    <name>TransactionDesc</name>
+    <message>
+        <location filename="../transactiondesc.cpp" line="21"/>
+        <source>Open for %1 blocks</source>
+        <translation>Öppen för %1 block</translation>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="23"/>
+        <source>Open until %1</source>
+        <translation>Öppet till %1</translation>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="29"/>
+        <source>%1/offline?</source>
+        <translation>%1/nerkopplad?</translation>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="31"/>
+        <source>%1/unconfirmed</source>
+        <translation>%1/obekräftade</translation>
+    </message>
+    <message>
+        <location filename="../transactiondesc.cpp" line="33"/>
+        <source>%1 confirmations</source>
+        <translation>%1 bekräftelser</translation>
+    </message>
+    <message>
+        <location filename="../tra
