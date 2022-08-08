@@ -1554,4 +1554,46 @@ Adress: %4
         <translation>Transaktions-ID:</translation>
     </message>
     <message>
-        <location filename="../transactiondesc.cpp"
+        <location filename="../transactiondesc.cpp" line="229"/>
+        <source>Generated coins must wait 120 blocks before they can be spent.  When you generated this block, it was broadcast to the network to be added to the block chain.  If it fails to get into the chain, it will change to &quot;not accepted&quot; and not be spendable.  This may occasionally happen if another node generates a block within a few seconds of yours.</source>
+        <translation>Genererade mynt måste vänta 120 block innan de kan användas.  När du skapade detta block sändes det till nätverket för att läggas till i blockkedjan. Om blocket inte kommer in i kedjan kommer det att ändras till &quot;accepteras inte&quot; och kommer ej att gå att spendera.  Detta kan ibland hända om en annan nod genererar ett block nästan samtidigt som dig.</translation>
+    </message>
+</context>
+<context>
+    <name>TransactionDescDialog</name>
+    <message>
+        <location filename="../forms/transactiondescdialog.ui" line="14"/>
+        <source>Transaction details</source>
+        <translation>Transaktionsdetaljer</translation>
+    </message>
+    <message>
+        <location filename="../forms/transactiondescdialog.ui" line="20"/>
+        <source>This pane shows a detailed description of the transaction</source>
+        <translation>Den här panelen visar en detaljerad beskrivning av transaktionen</translation>
+    </message>
+</context>
+<context>
+    <name>TransactionTableModel</name>
+    <message>
+        <location filename="../transactiontablemodel.cpp" line="226"/>
+        <source>Date</source>
+        <translation>Datum</translation>
+    </message>
+    <message>
+        <location filename="../transactiontablemodel.cpp" line="226"/>
+        <source>Type</source>
+        <translation>Typ</translation>
+    </message>
+    <message>
+        <location filename="../transactiontablemodel.cpp" line="226"/>
+        <source>Address</source>
+        <translation>Adress</translation>
+    </message>
+    <message>
+        <location filename="../transactiontablemodel.cpp" line="226"/>
+        <source>Amount</source>
+        <translation>Mängd</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../transactiontablemodel.cpp" line="281"/>
+  
