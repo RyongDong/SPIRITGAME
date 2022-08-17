@@ -1755,4 +1755,63 @@ Adress: %4
     </message>
     <message>
         <location filename="../transactionview.cpp" line="85"/>
-        <source>Enter ad
+        <source>Enter address or label to search</source>
+        <translation>Sök efter adress eller etikett </translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="92"/>
+        <source>Min amount</source>
+        <translation>Minsta mängd</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="126"/>
+        <source>Copy address</source>
+        <translation>Kopiera adress</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="127"/>
+        <source>Copy label</source>
+        <translation>Kopiera etikett</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="128"/>
+        <source>Copy amount</source>
+        <translation>Kopiera belopp</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="129"/>
+        <source>Edit label</source>
+        <translation>Ändra etikett</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="130"/>
+        <source>Show transaction details</source>
+        <translation>Visa transaktionsdetaljer</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="270"/>
+        <source>Export Transaction Data</source>
+        <translation>Exportera Transaktionsdata</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="271"/>
+        <source>Comma separated file (*.csv)</source>
+        <translation>Kommaseparerad fil (*. csv)</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="279"/>
+        <source>Confirmed</source>
+        <translation>Bekräftad</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="280"/>
+        <source>Date</source>
+        <translation>Datum</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="281"/>
+        <source>Type</source>
+        <translation>Typ</translation>
+    </message>
+    <message>
+        <location filename="../transactionview.cpp" line="
