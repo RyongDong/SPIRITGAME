@@ -1867,4 +1867,51 @@ Adress: %4
         <translation>Skriv meddelandet och signaturen nedan (var noga med att kopiera rätt nyradstecken, mellanslag, tabbar och andra osynliga tecken) för att erhålla Bitcoin-adressen som användes för att signera meddelandet.</translation>
     </message>
     <message>
-        <location filename="../forms/
+        <location filename="../forms/verifymessagedialog.ui" line="62"/>
+        <source>Verify a message and obtain the Bitcoin address used to sign the message</source>
+        <translation>Verifiera ett meddelande och erhåll Bitcoin-adressen som användes för att signera meddelandet</translation>
+    </message>
+    <message>
+        <location filename="../forms/verifymessagedialog.ui" line="65"/>
+        <source>&amp;Verify Message</source>
+        <translation>&amp;Verifiera Meddelande</translation>
+    </message>
+    <message>
+        <location filename="../forms/verifymessagedialog.ui" line="79"/>
+        <source>Copy the currently selected address to the system clipboard</source>
+        <translation>Kopiera den markerade adressen till systemets Urklipp</translation>
+    </message>
+    <message>
+        <location filename="../forms/verifymessagedialog.ui" line="82"/>
+        <source>&amp;Copy Address</source>
+        <translation>&amp;Kopiera adress</translation>
+    </message>
+    <message>
+        <location filename="../forms/verifymessagedialog.ui" line="93"/>
+        <source>Reset all verify message fields</source>
+        <translation>Rensa alla fält</translation>
+    </message>
+    <message>
+        <location filename="../forms/verifymessagedialog.ui" line="96"/>
+        <source>Clear &amp;All</source>
+        <translation>Rensa &amp;alla</translation>
+    </message>
+    <message>
+        <location filename="../verifymessagedialog.cpp" line="28"/>
+        <source>Enter Bitcoin signature</source>
+        <translation>Ange Bitcoin-signatur</translation>
+    </message>
+    <message>
+        <location filename="../verifymessagedialog.cpp" line="29"/>
+        <source>Click &quot;Verify Message&quot; to obtain address</source>
+        <translation>Klicka på &quot;Verifiera meddelande&quot; för att få adressen</translation>
+    </message>
+    <message>
+        <location filename="../verifymessagedialog.cpp" line="55"/>
+        <location filename="../verifymessagedialog.cpp" line="62"/>
+        <source>Invalid Signature</source>
+        <translation>Ogiltig Signatur</translation>
+    </message>
+    <message>
+        <location filename="../verifymessagedialog.cpp" line="55"/>
+        <source>The signature could
