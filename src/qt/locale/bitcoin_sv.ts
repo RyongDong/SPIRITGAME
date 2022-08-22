@@ -1964,4 +1964,56 @@ Adress: %4
         <translation>M&amp;inimera vid stängning</translation>
     </message>
     <message>
-        <location filename="../optionsdi
+        <location filename="../optionsdialog.cpp" line="321"/>
+        <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Quit in the menu.</source>
+        <translation>Minimera applikationen istället för att stänga ner den när fönstret stängs. Detta innebär att programmet fotrsätter att köras tills du väljer Avsluta i menyn.</translation>
+    </message>
+</context>
+<context>
+    <name>bitcoin-core</name>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="43"/>
+        <source>Bitcoin version</source>
+        <translation>Bitcoin version</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="44"/>
+        <source>Usage:</source>
+        <translation>Användning:</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="45"/>
+        <source>Send command to -server or bitcoind</source>
+        <translation>Skicka kommando till -server eller bitcoind</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="46"/>
+        <source>List commands</source>
+        <translation>Lista kommandon</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="47"/>
+        <source>Get help for a command</source>
+        <translation>Få hjälp med ett kommando</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="49"/>
+        <source>Options:</source>
+        <translation>Inställningar:</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="50"/>
+        <source>Specify configuration file (default: bitcoin.conf)</source>
+        <translation>Ange konfigurationsfil (standard: bitcoin.conf)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="51"/>
+        <source>Specify pid file (default: bitcoind.pid)</source>
+        <translation>Ange pid fil (standard: bitcoind.pid)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="52"/>
+        <source>Generate coins</source>
+        <translation>Generera mynt</translation>
+    </message>
+   
