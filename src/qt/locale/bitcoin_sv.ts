@@ -2144,4 +2144,48 @@ Adress: %4
     <message>
         <location filename="../bitcoinstrings.cpp" line="93"/>
         <source>Username for JSON-RPC connections</source>
-        <translation>Använ
+        <translation>Användarnamn för JSON-RPC-anslutningar</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="94"/>
+        <source>Password for JSON-RPC connections</source>
+        <translation>Lösenord för JSON-RPC-anslutningar</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="95"/>
+        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 8332)</source>
+        <translation>Lyssna på JSON-RPC-anslutningar på &lt;port&gt; (förval: 8332)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="96"/>
+        <source>Allow JSON-RPC connections from specified IP address</source>
+        <translation>Tillåt JSON-RPC-anslutningar från specifika IP-adresser</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="97"/>
+        <source>Send commands to node running on &lt;ip&gt; (default: 127.0.0.1)</source>
+        <translation>Skicka kommandon till klient på &lt;ip&gt; (förval: 127.0.0.1)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="98"/>
+        <source>Execute command when the best block changes (%s in cmd is replaced by block hash)</source>
+        <translation>Exekvera kommando när bästa blocket ändras (%s i cmd är utbytt av blockhash)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="101"/>
+        <source>Upgrade wallet to latest format</source>
+        <translation>Uppgradera plånboken till senaste formatet</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="102"/>
+        <source>Set key pool size to &lt;n&gt; (default: 100)</source>
+        <translation>Sätt storleken på nyckelpoolen till &lt;n&gt; (förval: 100)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="103"/>
+        <source>Rescan the block chain for missing wallet transactions</source>
+        <translation>Sök i block-kedjan efter saknade wallet transaktioner</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="104"/>
+     
