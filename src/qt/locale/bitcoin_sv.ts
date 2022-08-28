@@ -2188,4 +2188,46 @@ Adress: %4
     </message>
     <message>
         <location filename="../bitcoinstrings.cpp" line="104"/>
-     
+        <source>How many blocks to check at startup (default: 2500, 0 = all)</source>
+        <translation>Hur många block att kontrollera vid uppstart (standardvärde: 2500, 0 = alla)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="105"/>
+        <source>How thorough the block verification is (0-6, default: 1)</source>
+        <translation>Hur grundlig blockverifikationen är (0-6, standardvärde: 1)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="106"/>
+        <source>Imports blocks from external blk000?.dat file</source>
+        <translation>Inporterar block från extern blk000?.dat fil</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="108"/>
+        <source>
+SSL options: (see the Bitcoin Wiki for SSL setup instructions)</source>
+        <translation>
+SSL-inställningar: (se Bitcoin-wikin för instruktioner)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="111"/>
+        <source>Use OpenSSL (https) for JSON-RPC connections</source>
+        <translation>Använd OpenSSL (https) för JSON-RPC-anslutningar</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="112"/>
+        <source>Server certificate file (default: server.cert)</source>
+        <translation>Serverns certifikatfil (förval: server.cert)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="113"/>
+        <source>Server private key (default: server.pem)</source>
+        <translation>Serverns privata nyckel (förval: server.pem)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="114"/>
+        <source>Acceptable ciphers (default: TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH)</source>
+        <translation>Accepterade krypteringsalgoritmer (förval: TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!AH:!3DES:@STRENGTH)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="145"/>
+        <source>Warning: Disk spac
