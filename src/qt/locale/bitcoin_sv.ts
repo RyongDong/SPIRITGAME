@@ -2319,4 +2319,46 @@ SSL-inställningar: (se Bitcoin-wikin för instruktioner)</translation>
         <translation>Okänt nätverk som anges i -noproxy: &apos;%s&apos;</translation>
     </message>
     <message>
-        <locatio
+        <location filename="../bitcoinstrings.cpp" line="127"/>
+        <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
+        <translation>Okänt nätverk som anges i -onlynet: &apos;%s&apos;</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="126"/>
+        <source>Unknown -socks proxy version requested: %i</source>
+        <translation>Okänd -socks proxy version begärd: %i</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="128"/>
+        <source>Cannot resolve -bind address: &apos;%s&apos;</source>
+        <translation>Kan inte matcha -bind adress: &apos;%s&apos;</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="129"/>
+        <source>Not listening on any port</source>
+        <translation>Lyssnar ej på någon port</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="130"/>
+        <source>Cannot resolve -externalip address: &apos;%s&apos;</source>
+        <translation>Kan inte matcha -externalip adress: &apos;%s&apos;</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="117"/>
+        <source>Invalid amount for -paytxfee=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Ogiltigt belopp för -paytxfee=&lt;belopp&gt;:&apos;%s&apos;</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="143"/>
+        <source>Error: could not start node</source>
+        <translation>Fel: kunde inte starta nod</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="31"/>
+        <source>Error: Wallet locked, unable to create transaction  </source>
+        <translation>Fel: Plånboken är låst, det går ej att skapa en transaktion  </translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="32"/>
+        <source>Error: This transaction requires a transaction fee of at least %s because of its amount, complexity, or use of recently received funds  </source>
+        <translation>Fel: Denna transa
