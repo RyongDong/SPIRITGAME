@@ -2401,4 +2401,46 @@ SSL-inställningar: (se Bitcoin-wikin för instruktioner)</translation>
     <message>
         <location filename="../bitcoinstrings.cpp" line="28"/>
         <source>Unable to bind to %s on this computer. Bitcoin is probably already running.</source>
-        <translation>Det går inte att binda till %s på den här
+        <translation>Det går inte att binda till %s på den här datorn. Bitcoin är förmodligen redan igång.</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="71"/>
+        <source>Find peers using internet relay chat (default: 0)</source>
+        <translation>Sök efter klienter med internet relay chat (standard: 0)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="72"/>
+        <source>Accept connections from outside (default: 1)</source>
+        <translation>Acceptera anslutningar utifrån (standard: 1)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="74"/>
+        <source>Find peers using DNS lookup (default: 1)</source>
+        <translation>Sök efter klienter med DNS sökningen (standard: 1)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="81"/>
+        <source>Use Universal Plug and Play to map the listening port (default: 1)</source>
+        <translation>Använd Universal Plug and Play för att mappa den lyssnande porten (standard: 1)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="82"/>
+        <source>Use Universal Plug and Play to map the listening port (default: 0)</source>
+        <translation>Använd Universal Plug and Play för att mappa den lyssnande porten (standard: 0)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="85"/>
+        <source>Fee per KB to add to transactions you send</source>
+        <translation>Avgift per KB att lägga till på transaktioner du skickar</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="118"/>
+        <source>Warning: -paytxfee is set very high. This is the transaction fee you will pay if you send a transaction.</source>
+        <translation>Varning: -paytxfee är satt väldigt hög. Detta är avgiften du kommer betala för varje transaktion.</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="133"/>
+        <source>Loading wallet...</source>
+        <translation>Laddar plånbok...</translation>
+    </message>
+   
