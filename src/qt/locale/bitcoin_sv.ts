@@ -2361,4 +2361,44 @@ SSL-inställningar: (se Bitcoin-wikin för instruktioner)</translation>
     <message>
         <location filename="../bitcoinstrings.cpp" line="32"/>
         <source>Error: This transaction requires a transaction fee of at least %s because of its amount, complexity, or use of recently received funds  </source>
-        <translation>Fel: Denna transa
+        <translation>Fel: Denna transaktion kräver en transaktionsavgift på minst %s på grund av dess storlek, komplexitet, eller användning av senast mottagna bitcoins  </translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="35"/>
+        <source>Error: Transaction creation failed  </source>
+        <translation>Fel: Transaktionen gick inte att skapa  </translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="36"/>
+        <source>Sending...</source>
+        <translation>Skickar...</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="37"/>
+        <source>Error: The transaction was rejected.  This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.</source>
+        <translation>Fel: Transaktionen avslogs.  Detta kan hända om några av mynten i plånboken redan spenderats, t.ex om du använt en kopia av wallet.dat och mynt spenderades i kopian men inte markerats som spenderas här.</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="41"/>
+        <source>Invalid amount</source>
+        <translation>Ogiltig mängd</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="42"/>
+        <source>Insufficient funds</source>
+        <translation>Otillräckligt med bitcoins</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="131"/>
+        <source>Loading block index...</source>
+        <translation>Laddar blockindex...</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="65"/>
+        <source>Add a node to connect to and attempt to keep the connection open</source>
+        <translation>Lägg till en nod att koppla upp mot och försök att hålla anslutningen öppen</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="28"/>
+        <source>Unable to bind to %s on this computer. Bitcoin is probably already running.</source>
+        <translation>Det går inte att binda till %s på den här
