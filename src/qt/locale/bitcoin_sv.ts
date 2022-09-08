@@ -2500,4 +2500,21 @@ Om filen inte existerar, skapa den med enbart ägarläsbara filrättigheter.
     <message>
         <location filename="../bitcoinstrings.cpp" line="19"/>
         <source>An error occured while setting up the RPC port %i for listening: %s</source>
-        <transl
+        <translation>Ett fel uppstod vid upprättandet av RPC port %i för att lyssna: %s</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="20"/>
+        <source>You must set rpcpassword=&lt;password&gt; in the configuration file:
+%s
+If the file does not exist, create it with owner-readable-only file permissions.</source>
+        <translation>Du behöver välja ett rpclösensord i konfigurationsfilen:
+%s
+Om filen inte existerar, skapa den med filrättigheten endast läsbar för ägaren.</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="25"/>
+        <source>Warning: Please check that your computer&apos;s date and time are correct.  If your clock is wrong Bitcoin will not work properly.</source>
+        <translation>Varning: Vänligen kolla så din dators datum och tid är korrekt.  Om din klocka går fel kommer Bitcoin inte fungera korrekt.</translation>
+    </message>
+</context>
+</TS>
