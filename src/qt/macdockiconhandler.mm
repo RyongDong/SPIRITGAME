@@ -57,4 +57,43 @@ MacDockIconHandler::MacDockIconHandler() : QObject()
 
 MacDockIconHandler::~MacDockIconHandler()
 {
-    [this->m_dockI
+    [this->m_dockIconClickEventHandler release];
+    delete this->m_dummyWidget;
+}
+
+QMenu *MacDockIconHandler::dockMenu()
+{
+    return this->m_dockMenu;
+}
+
+void MacDockIconHandler::setIcon(const QIcon &icon)
+{
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    NSImage *image;
+    if (icon.isNull())
+        image = [[NSImage imageNamed:@"NSApplicationIcon"] retain];
+    else {
+        QSize size = icon.actualSize(QSize(128, 128));
+        QPixmap pixmap = icon.pixmap(size);
+        CGImageRef cgImage = pixmap.toMacCGImageRef();
+        image = [[NSImage alloc] initWithCGImage:cgImage size:NSZeroSize];
+        CFRelease(cgImage);
+    }
+
+    [NSApp setApplicationIconImage:image];
+    [image release];
+    [pool release];
+}
+
+MacDockIconHandler *MacDockIconHandler::instance()
+{
+    static MacDockIconHandler *s_instance = NULL;
+    if (!s_instance)
+        s_instance = new MacDockIconHandler();
+    return s_instance;
+}
+
+void MacDockIconHandler::handleDockIconClickEvent()
+{
+    emit this->dockIconClicked();
+}
