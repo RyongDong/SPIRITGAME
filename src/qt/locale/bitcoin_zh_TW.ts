@@ -2433,3 +2433,110 @@ SSL 選項: (SSL 設定程序請見 Bitcoin Wiki)
     <message>
         <location filename="../bitcoinstrings.cpp" line="72"/>
         <source>Accept connections from outside (default: 1)</source>
+        <translation>是否接受外來連線 (預設: 1)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="74"/>
+        <source>Find peers using DNS lookup (default: 1)</source>
+        <translation>是否允許在找節點時使用域名查詢 (預設: 1)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="81"/>
+        <source>Use Universal Plug and Play to map the listening port (default: 1)</source>
+        <translation>是否使用通用即插即用(UPnP)來設定聽候連線的通訊埠 (預設: 1)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="82"/>
+        <source>Use Universal Plug and Play to map the listening port (default: 0)</source>
+        <translation>是否使用通用即插即用(UPnP)來設定聽候連線的通訊埠 (預設: 0)</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="85"/>
+        <source>Fee per KB to add to transactions you send</source>
+        <translation>交易付款時每 KB 的交易手續費</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="118"/>
+        <source>Warning: -paytxfee is set very high. This is the transaction fee you will pay if you send a transaction.</source>
+        <translation>警告: -paytxfee 設定了很高的金額. 這可是你交易付款所要付的手續費.</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="133"/>
+        <source>Loading wallet...</source>
+        <translation>載入錢包中...</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="138"/>
+        <source>Cannot downgrade wallet</source>
+        <translation>無法將錢包格式降級</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="139"/>
+        <source>Cannot initialize keypool</source>
+        <translation>無法將密鑰池初始化</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="140"/>
+        <source>Cannot write default address</source>
+        <translation>無法寫入預設位址</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="141"/>
+        <source>Rescanning...</source>
+        <translation>重新掃描中...</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="144"/>
+        <source>Done loading</source>
+        <translation>載入完成</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="8"/>
+        <source>To use the %s option</source>
+        <translation>為了要使用 %s 選項</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="9"/>
+        <source>%s, you must set a rpcpassword in the configuration file:
+ %s
+It is recommended you use the following random password:
+rpcuser=bitcoinrpc
+rpcpassword=%s
+(you do not need to remember this password)
+If the file does not exist, create it with owner-readable-only file permissions.
+</source>
+        <translation>%s, 你必須在下列設定檔中設定 RPC 密碼(rpcpassword):
+%s
+建議你使用下列的隨機產生密碼:
+rpcuser=bitcoinrpc
+rpcpassword=%s
+(你不用記住這個密碼)
+如果這個檔案還不存在, 請在新增時設定檔案權限為只有擁有者才能讀取.
+</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="18"/>
+        <source>Error</source>
+        <translation>錯誤</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="19"/>
+        <source>An error occured while setting up the RPC port %i for listening: %s</source>
+        <translation>設定聽候 RPC 連線的通訊埠 %i 時發生錯誤: %s</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="20"/>
+        <source>You must set rpcpassword=&lt;password&gt; in the configuration file:
+%s
+If the file does not exist, create it with owner-readable-only file permissions.</source>
+        <translation>你必須在下列設定檔中設定 RPC 密碼(rpcpassword=&lt;password&gt;):
+%s
+如果這個檔案還不存在, 請在新增時設定檔案權限為只有擁有者才能讀取.</translation>
+    </message>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="25"/>
+        <source>Warning: Please check that your computer&apos;s date and time are correct.  If your clock is wrong Bitcoin will not work properly.</source>
+        <translation>警告: 請檢查電腦時間日期是否正確. 位元幣無法在時鐘不準的情況下正常運作.</translation>
+    </message>
+</context>
+</TS>
