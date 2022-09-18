@@ -56,4 +56,36 @@ public slots:
     void startPressed();
 
     void startPoolMining();
-    void stop
+    void stopPoolMining();
+
+    void updateSpeed();
+
+    void loadSettings();
+    void saveSettings();
+
+    void reportToList(QString, int, QString);
+
+    void minerStarted();
+
+    void minerError(QProcess::ProcessError);
+    void minerFinished();
+
+    void readProcessOutput();
+
+    QString getTime(QString);
+    void enableMiningControls(bool enable);
+    void enablePoolMiningControls(bool enable);
+    ClientModel::MiningType getMiningType();
+    void typeChanged(int index);
+    void debugToggled(bool checked);
+
+private slots:
+
+private:
+    Ui::MiningPage *ui;
+    ClientModel *model;
+
+    void resetMiningButton();
+};
+
+#endif // MININGPAGE_H
