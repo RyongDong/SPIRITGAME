@@ -17,4 +17,15 @@ public:
     explicit MonitoredDataMapper(QObject *parent=0);
 
     void addMapping(QWidget *widget, int section);
-    void addMapping(QWidget *widget, int 
+    void addMapping(QWidget *widget, int section, const QByteArray &propertyName);
+private:
+    void addChangeMonitor(QWidget *widget);
+
+signals:
+    void viewModified();
+
+};
+
+
+
+#endif // MONITOREDDATAMAPPER_H
