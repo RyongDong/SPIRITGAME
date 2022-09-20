@@ -50,4 +50,20 @@ private:
         Freedesktop, /**< Use DBus org.freedesktop.Notifications */
         QSystemTray, /**< Use QSystemTray::showMessage */
         Growl12,        /**< Use the Growl 1.2 notification system (Mac only) */
-        Gro
+        Growl13        /**< Use the Growl 1.3 notification system (Mac only) */
+    };
+    QString programName;
+    Mode mode;
+    QSystemTrayIcon *trayIcon;
+#ifdef USE_DBUS
+    QDBusInterface *interface;
+
+    void notifyDBus(Class cls, const QString &title, const QString &text, const QIcon &icon, int millisTimeout);
+#endif
+    void notifySystray(Class cls, const QString &title, const QString &text, const QIcon &icon, int millisTimeout);
+#ifdef Q_WS_MAC
+    void notifyGrowl(Class cls, const QString &title, const QString &text, const QIcon &icon);
+#endif
+};
+
+#endif // NOTIFICATOR_H
