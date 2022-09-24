@@ -185,4 +185,57 @@ void OptionsDialog::on_cancelButton_clicked()
 
 void OptionsDialog::on_applyButton_clicked()
 {
-    mapper-
+    mapper->submit();
+    ui->applyButton->setEnabled(false);
+}
+
+void OptionsDialog::showRestartWarning_Proxy()
+{
+    if(!fRestartWarningDisplayed_Proxy)
+    {
+        QMessageBox::warning(this, tr("Warning"), tr("This setting will take effect after restarting Nuggets."), QMessageBox::Ok);
+        fRestartWarningDisplayed_Proxy = true;
+    }
+}
+
+void OptionsDialog::showRestartWarning_Lang()
+{
+    if(!fRestartWarningDisplayed_Lang)
+    {
+        QMessageBox::warning(this, tr("Warning"), tr("This setting will take effect after restarting Nuggets."), QMessageBox::Ok);
+        fRestartWarningDisplayed_Lang = true;
+    }
+}
+
+void OptionsDialog::updateDisplayUnit()
+{
+    if(model)
+    {
+        // Update transactionFee with the current unit
+        ui->transactionFee->setDisplayUnit(model->getDisplayUnit());
+    }
+}
+
+bool OptionsDialog::eventFilter(QObject *object, QEvent *event)
+{
+    if(object == ui->proxyIp && event->type() == QEvent::FocusOut)
+    {
+        // Check proxyIP for a valid IPv4/IPv6 address
+        CService addr;
+        if(!LookupNumeric(ui->proxyIp->text().toStdString().c_str(), addr))
+        {
+            ui->proxyIp->setValid(false);
+            fProxyIpValid = false;
+            ui->statusLabel->setStyleSheet("QLabel { color: red; }");
+            ui->statusLabel->setText(tr("The supplied proxy address is invalid."));
+            emit proxyIpValid(false);
+        }
+        else
+        {
+            fProxyIpValid = true;
+            ui->statusLabel->clear();
+            emit proxyIpValid(true);
+        }
+    }
+    return QDialog::eventFilter(object, event);
+}
