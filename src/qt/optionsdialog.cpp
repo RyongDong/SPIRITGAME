@@ -102,4 +102,87 @@ OptionsDialog::OptionsDialog(QWidget *parent) :
     connect(mapper, SIGNAL(viewModified()), this, SLOT(enableSaveButtons()));
     /* disable save buttons when new data loaded */
     connect(mapper, SIGNAL(currentIndexChanged(int)), this, SLOT(disableSaveButtons()));
-    /* disable/enable save butto
+    /* disable/enable save buttons when proxy IP is invalid/valid */
+    connect(this, SIGNAL(proxyIpValid(bool)), this, SLOT(setSaveButtonState(bool)));
+}
+
+OptionsDialog::~OptionsDialog()
+{
+    delete ui;
+}
+
+void OptionsDialog::setModel(OptionsModel *model)
+{
+    this->model = model;
+
+    if(model)
+    {
+        connect(model, SIGNAL(displayUnitChanged(int)), this, SLOT(updateDisplayUnit()));
+
+        mapper->setModel(model);
+        setMapper();
+        mapper->toFirst();
+    }
+
+    // update the display unit, to not use the default ("BTC")
+    updateDisplayUnit();
+}
+
+void OptionsDialog::setMapper()
+{
+    /* Main */
+    mapper->addMapping(ui->transactionFee, OptionsModel::Fee);
+    mapper->addMapping(ui->bitcoinAtStartup, OptionsModel::StartAtStartup);
+    mapper->addMapping(ui->detachDatabases, OptionsModel::DetachDatabases);
+
+    /* Network */
+    mapper->addMapping(ui->mapPortUpnp, OptionsModel::MapPortUPnP);
+    mapper->addMapping(ui->connectSocks, OptionsModel::ProxyUse);
+    mapper->addMapping(ui->socksVersion, OptionsModel::ProxySocksVersion);
+    mapper->addMapping(ui->proxyIp, OptionsModel::ProxyIP);
+    mapper->addMapping(ui->proxyPort, OptionsModel::ProxyPort);
+
+    /* Window */
+#ifndef Q_WS_MAC
+    mapper->addMapping(ui->minimizeToTray, OptionsModel::MinimizeToTray);
+    mapper->addMapping(ui->minimizeOnClose, OptionsModel::MinimizeOnClose);
+#endif
+
+    /* Display */
+    mapper->addMapping(ui->lang, OptionsModel::Language);
+    mapper->addMapping(ui->unit, OptionsModel::DisplayUnit);
+    mapper->addMapping(ui->displayAddresses, OptionsModel::DisplayAddresses);
+}
+
+void OptionsDialog::enableSaveButtons()
+{
+    // prevent enabling of the save buttons when data modified, if there is an invalid proxy address present
+    if(fProxyIpValid)
+        setSaveButtonState(true);
+}
+
+void OptionsDialog::disableSaveButtons()
+{
+    setSaveButtonState(false);
+}
+
+void OptionsDialog::setSaveButtonState(bool fState)
+{
+    ui->applyButton->setEnabled(fState);
+    ui->okButton->setEnabled(fState);
+}
+
+void OptionsDialog::on_okButton_clicked()
+{
+    mapper->submit();
+    accept();
+}
+
+void OptionsDialog::on_cancelButton_clicked()
+{
+    reject();
+}
+
+void OptionsDialog::on_applyButton_clicked()
+{
+    mapper-
