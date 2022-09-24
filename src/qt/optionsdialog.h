@@ -30,3 +30,25 @@ private slots:
     /* disable apply button and OK button */
     void disableSaveButtons();
     /* set apply button and OK button state (enabled / disabled) */
+    void setSaveButtonState(bool fState);
+    void on_okButton_clicked();
+    void on_cancelButton_clicked();
+    void on_applyButton_clicked();
+
+    void showRestartWarning_Proxy();
+    void showRestartWarning_Lang();
+    void updateDisplayUnit();
+
+signals:
+    void proxyIpValid(bool fValid);
+
+private:
+    Ui::OptionsDialog *ui;
+    OptionsModel *model;
+    MonitoredDataMapper *mapper;
+    bool fRestartWarningDisplayed_Proxy;
+    bool fRestartWarningDisplayed_Lang;
+    bool fProxyIpValid;
+};
+
+#endif // OPTIONSDIALOG_H
