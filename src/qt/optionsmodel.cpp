@@ -52,4 +52,67 @@ void OptionsModel::Init()
     // command-line options to override the GUI settings:
     if (settings.contains("fUseUPnP"))
         SoftSetBoolArg("-upnp", settings.value("fUseUPnP").toBool());
-    if (settings.contains("ad
+    if (settings.contains("addrProxy") && settings.value("fUseProxy").toBool())
+        SoftSetArg("-proxy", settings.value("addrProxy").toString().toStdString());
+    if (settings.contains("nSocksVersion") && settings.value("fUseProxy").toBool())
+        SoftSetArg("-socks", settings.value("nSocksVersion").toString().toStdString());
+    if (settings.contains("detachDB"))
+        SoftSetBoolArg("-detachdb", settings.value("detachDB").toBool());
+    if (!language.isEmpty())
+        SoftSetArg("-lang", language.toStdString());
+}
+
+bool OptionsModel::Upgrade()
+{
+    QSettings settings;
+
+    if (settings.contains("bImportFinished"))
+        return false; // Already upgraded
+
+    settings.setValue("bImportFinished", true);
+
+    // Move settings from old wallet.dat (if any):
+    CWalletDB walletdb("wallet.dat");
+
+    QList<QString> intOptions;
+    intOptions << "nDisplayUnit" << "nTransactionFee";
+    foreach(QString key, intOptions)
+    {
+        int value = 0;
+        if (walletdb.ReadSetting(key.toStdString(), value))
+        {
+            settings.setValue(key, value);
+            walletdb.EraseSetting(key.toStdString());
+        }
+    }
+    QList<QString> boolOptions;
+    boolOptions << "bDisplayAddresses" << "fMinimizeToTray" << "fMinimizeOnClose" << "fUseProxy" << "fUseUPnP";
+    foreach(QString key, boolOptions)
+    {
+        bool value = false;
+        if (walletdb.ReadSetting(key.toStdString(), value))
+        {
+            settings.setValue(key, value);
+            walletdb.EraseSetting(key.toStdString());
+        }
+    }
+    try
+    {
+        CAddress addrProxyAddress;
+        if (walletdb.ReadSetting("addrProxy", addrProxyAddress))
+        {
+            settings.setValue("addrProxy", addrProxyAddress.ToStringIPPort().c_str());
+            walletdb.EraseSetting("addrProxy");
+        }
+    }
+    catch (std::ios_base::failure &e)
+    {
+        // 0.6.0rc1 saved this as a CService, which causes failure when parsing as a CAddress
+        CService addrProxy;
+        if (walletdb.ReadSetting("addrProxy", addrProxy))
+        {
+            settings.setValue("addrProxy", addrProxy.ToStringIPPort().c_str());
+            walletdb.EraseSetting("addrProxy");
+        }
+    }
+    ApplyProx
