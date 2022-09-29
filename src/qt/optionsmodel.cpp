@@ -189,4 +189,59 @@ bool OptionsModel::setData(const QModelIndex & index, const QVariant & value, in
             break;
         case MinimizeToTray:
             fMinimizeToTray = value.toBool();
-            setting
+            settings.setValue("fMinimizeToTray", fMinimizeToTray);
+            break;
+        case MapPortUPnP:
+            fUseUPnP = value.toBool();
+            settings.setValue("fUseUPnP", fUseUPnP);
+            MapPort();
+            break;
+        case MinimizeOnClose:
+            fMinimizeOnClose = value.toBool();
+            settings.setValue("fMinimizeOnClose", fMinimizeOnClose);
+            break;
+        case ProxyUse:
+            settings.setValue("fUseProxy", value.toBool());
+            ApplyProxySettings();
+            break;
+        case ProxyIP:
+            {
+                CService addrProxy("127.0.0.1", 9050);
+                GetProxy(NET_IPV4, addrProxy);
+                CNetAddr addr(value.toString().toStdString());
+                addrProxy.SetIP(addr);
+                settings.setValue("addrProxy", addrProxy.ToStringIPPort().c_str());
+                successful = ApplyProxySettings();
+            }
+            break;
+        case ProxyPort:
+            {
+                CService addrProxy("127.0.0.1", 9050);
+                GetProxy(NET_IPV4, addrProxy);
+                addrProxy.SetPort(value.toInt());
+                settings.setValue("addrProxy", addrProxy.ToStringIPPort().c_str());
+                successful = ApplyProxySettings();
+            }
+            break;
+        case ProxySocksVersion:
+            settings.setValue("nSocksVersion", value.toInt());
+            ApplyProxySettings();
+            break;
+        case Fee:
+            nTransactionFee = value.toLongLong();
+            settings.setValue("nTransactionFee", nTransactionFee);
+            break;
+        case DisplayUnit:
+            nDisplayUnit = value.toInt();
+            settings.setValue("nDisplayUnit", nDisplayUnit);
+            emit displayUnitChanged(nDisplayUnit);
+            break;
+        case DisplayAddresses:
+            bDisplayAddresses = value.toBool();
+            settings.setValue("bDisplayAddresses", bDisplayAddresses);
+            break;
+        case DetachDatabases: {
+            bool fDetachDB = value.toBool();
+            bitdb.SetDetach(fDetachDB);
+            settings.setValue("detachDB", fDetachDB);
+   
