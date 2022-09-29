@@ -115,4 +115,78 @@ bool OptionsModel::Upgrade()
             walletdb.EraseSetting("addrProxy");
         }
     }
-    ApplyProx
+    ApplyProxySettings();
+    Init();
+
+    return true;
+}
+
+
+int OptionsModel::rowCount(const QModelIndex & parent) const
+{
+    return OptionIDRowCount;
+}
+
+QVariant OptionsModel::data(const QModelIndex & index, int role) const
+{
+    if(role == Qt::EditRole)
+    {
+        QSettings settings;
+        switch(index.row())
+        {
+        case StartAtStartup:
+            return QVariant(GUIUtil::GetStartOnSystemStartup());
+        case MinimizeToTray:
+            return QVariant(fMinimizeToTray);
+        case MapPortUPnP:
+            return settings.value("fUseUPnP", GetBoolArg("-upnp", true));
+        case MinimizeOnClose:
+            return QVariant(fMinimizeOnClose);
+        case ProxyUse:
+            return settings.value("fUseProxy", false);
+        case ProxyIP: {
+            CService addrProxy;
+            if (GetProxy(NET_IPV4, addrProxy))
+                return QVariant(QString::fromStdString(addrProxy.ToStringIP()));
+            else
+                return QVariant(QString::fromStdString("127.0.0.1"));
+        }
+        case ProxyPort: {
+            CService addrProxy;
+            if (GetProxy(NET_IPV4, addrProxy))
+                return QVariant(addrProxy.GetPort());
+            else
+                return 9050;
+        }
+        case ProxySocksVersion:
+            return settings.value("nSocksVersion", 5);
+        case Fee:
+            return QVariant(nTransactionFee);
+        case DisplayUnit:
+            return QVariant(nDisplayUnit);
+        case DisplayAddresses:
+            return QVariant(bDisplayAddresses);
+        case DetachDatabases:
+            return QVariant(bitdb.GetDetach());
+        case Language:
+            return settings.value("language", "");
+        default:
+            return QVariant();
+        }
+    }
+    return QVariant();
+}
+bool OptionsModel::setData(const QModelIndex & index, const QVariant & value, int role)
+{
+    bool successful = true; /* set to false on parse error */
+    if(role == Qt::EditRole)
+    {
+        QSettings settings;
+        switch(index.row())
+        {
+        case StartAtStartup:
+            successful = GUIUtil::SetStartOnSystemStartup(value.toBool());
+            break;
+        case MinimizeToTray:
+            fMinimizeToTray = value.toBool();
+            setting
