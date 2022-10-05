@@ -244,4 +244,41 @@ bool OptionsModel::setData(const QModelIndex & index, const QVariant & value, in
             bool fDetachDB = value.toBool();
             bitdb.SetDetach(fDetachDB);
             settings.setValue("detachDB", fDetachDB);
-   
+            }
+            break;
+        case Language:
+            settings.setValue("language", value);
+            break;
+        default:
+            break;
+        }
+    }
+    emit dataChanged(index, index);
+
+    return successful;
+}
+
+qint64 OptionsModel::getTransactionFee()
+{
+    return nTransactionFee;
+}
+
+bool OptionsModel::getMinimizeToTray()
+{
+    return fMinimizeToTray;
+}
+
+bool OptionsModel::getMinimizeOnClose()
+{
+    return fMinimizeOnClose;
+}
+
+int OptionsModel::getDisplayUnit()
+{
+    return nDisplayUnit;
+}
+
+bool OptionsModel::getDisplayAddresses()
+{
+    return bDisplayAddresses;
+}
