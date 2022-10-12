@@ -15,4 +15,19 @@ public:
     QVariant value() const;
     void setValue(const QVariant &value);
 
-    /** Specify model role to use as ordinal value (defaults to Qt::User
+    /** Specify model role to use as ordinal value (defaults to Qt::UserRole) */
+    void setRole(int role);
+
+signals:
+    void valueChanged();
+
+public slots:
+
+private:
+    int role;
+
+private slots:
+    void handleSelectionChanged(int idx);
+};
+
+#endif // QVALUECOMBOBOX_H
