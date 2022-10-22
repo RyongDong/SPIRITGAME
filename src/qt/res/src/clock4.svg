@@ -241,3 +241,21 @@
        id="path4438"
        inkscape:connector-curvature="0" />
   </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Shine"
+     style="display:inline"
+     sodipodi:insensitive="true">
+    <path
+       sodipodi:type="arc"
+       style="fill:url(#radialGradient4440);fill-opacity:1;stroke:none"
+       id="path4353"
+       sodipodi:cx="8.0433397"
+       sodipodi:cy="8.1334372"
+       sodipodi:rx="7.3686199"
+       sodipodi:ry="7.4368792"
+       d="m 15.41196,8.1334372 a 7.3686199,7.4368792 0 1 1 -14.73724019,0 7.3686199,7.4368792 0 1 1 14.73724019,0 z"
+       transform="matrix(0.91562931,0,0,0.91562931,0.64737218,0.56658541)" />
+  </g>
+</svg>
