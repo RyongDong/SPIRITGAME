@@ -98,4 +98,75 @@ void SendCoinsEntry::on_deleteButton_clicked()
 bool SendCoinsEntry::validate()
 {
     // Check input validity
-    bool re
+    bool retval = true;
+
+    if(!ui->payAmount->validate())
+    {
+        retval = false;
+    }
+    else
+    {
+        if(ui->payAmount->value() <= 0)
+        {
+            // Cannot send 0 coins or less
+            ui->payAmount->setValid(false);
+            retval = false;
+        }
+    }
+
+    if(!ui->payTo->hasAcceptableInput() ||
+       (model && !model->validateAddress(ui->payTo->text())))
+    {
+        ui->payTo->setValid(false);
+        retval = false;
+    }
+
+    return retval;
+}
+
+SendCoinsRecipient SendCoinsEntry::getValue()
+{
+    SendCoinsRecipient rv;
+
+    rv.address = ui->payTo->text();
+    rv.label = ui->addAsLabel->text();
+    rv.amount = ui->payAmount->value();
+
+    return rv;
+}
+
+QWidget *SendCoinsEntry::setupTabChain(QWidget *prev)
+{
+    QWidget::setTabOrder(prev, ui->payTo);
+    QWidget::setTabOrder(ui->payTo, ui->addressBookButton);
+    QWidget::setTabOrder(ui->addressBookButton, ui->pasteButton);
+    QWidget::setTabOrder(ui->pasteButton, ui->deleteButton);
+    QWidget::setTabOrder(ui->deleteButton, ui->addAsLabel);
+    return ui->payAmount->setupTabChain(ui->addAsLabel);
+}
+
+void SendCoinsEntry::setValue(const SendCoinsRecipient &value)
+{
+    ui->payTo->setText(value.address);
+    ui->addAsLabel->setText(value.label);
+    ui->payAmount->setValue(value.amount);
+}
+
+bool SendCoinsEntry::isClear()
+{
+    return ui->payTo->text().isEmpty();
+}
+
+void SendCoinsEntry::setFocus()
+{
+    ui->payTo->setFocus();
+}
+
+void SendCoinsEntry::updateDisplayUnit()
+{
+    if(model && model->getOptionsModel())
+    {
+        // Update payAmount with the current unit
+        ui->payAmount->setDisplayUnit(model->getOptionsModel()->getDisplayUnit());
+    }
+}
