@@ -164,4 +164,44 @@ QString TransactionDesc::toHTML(CWallet *wallet, CWalletTx &wtx)
                     {
                         // Offline transaction
                         CTxDestination address;
-                        i
+                        if (ExtractDestination(txout.scriptPubKey, address))
+                        {
+                            strHTML += "<b>" + tr("To") + ":</b> ";
+                            if (wallet->mapAddressBook.count(address) && !wallet->mapAddressBook[address].empty())
+                                strHTML += GUIUtil::HtmlEscape(wallet->mapAddressBook[address]) + " ";
+                            strHTML += GUIUtil::HtmlEscape(CBitcoinAddress(address).ToString());
+                            strHTML += "<br>";
+                        }
+                    }
+
+                    strHTML += "<b>" + tr("Debit") + ":</b> " + BitcoinUnits::formatWithUnit(BitcoinUnits::BTC, -txout.nValue) + "<br>";
+                }
+
+                if (fAllToMe)
+                {
+                    // Payment to self
+                    int64 nChange = wtx.GetChange();
+                    int64 nValue = nCredit - nChange;
+                    strHTML += "<b>" + tr("Debit") + ":</b> " + BitcoinUnits::formatWithUnit(BitcoinUnits::BTC, -nValue) + "<br>";
+                    strHTML += "<b>" + tr("Credit") + ":</b> " + BitcoinUnits::formatWithUnit(BitcoinUnits::BTC, nValue) + "<br>";
+                }
+
+                int64 nTxFee = nDebit - wtx.GetValueOut();
+                if (nTxFee > 0)
+                    strHTML += "<b>" + tr("Transaction fee") + ":</b> " + BitcoinUnits::formatWithUnit(BitcoinUnits::BTC, -nTxFee) + "<br>";
+            }
+            else
+            {
+                //
+                // Mixed debit transaction
+                //
+                BOOST_FOREACH(const CTxIn& txin, wtx.vin)
+                    if (wallet->IsMine(txin))
+                        strHTML += "<b>" + tr("Debit") + ":</b> " + BitcoinUnits::formatWithUnit(BitcoinUnits::BTC, -wallet->GetDebit(txin)) + "<br>";
+                BOOST_FOREACH(const CTxOut& txout, wtx.vout)
+                    if (wallet->IsMine(txout))
+                        strHTML += "<b>" + tr("Credit") + ":</b> " + BitcoinUnits::formatWithUnit(BitcoinUnits::BTC, wallet->GetCredit(txout)) + "<br>";
+            }
+        }
+
+        strHTML += "<b>" + tr("Net amount") + ":</b> " + BitcoinUnits::formatWithUnit(BitcoinUnits::B
