@@ -85,4 +85,45 @@ public:
     {
     }
 
-    Transacti
+    TransactionRecord(uint256 hash, int64 time,
+                Type type, const std::string &address,
+                int64 debit, int64 credit):
+            hash(hash), time(time), type(type), address(address), debit(debit), credit(credit),
+            idx(0)
+    {
+    }
+
+    /** Decompose CWallet transaction to model transaction records.
+     */
+    static bool showTransaction(const CWalletTx &wtx);
+    static QList<TransactionRecord> decomposeTransaction(const CWallet *wallet, const CWalletTx &wtx);
+
+    /** @name Immutable transaction attributes
+      @{*/
+    uint256 hash;
+    int64 time;
+    Type type;
+    std::string address;
+    int64 debit;
+    int64 credit;
+    /**@}*/
+
+    /** Subtransaction index, for sort key */
+    int idx;
+
+    /** Status: can change with block chain update */
+    TransactionStatus status;
+
+    /** Return the unique identifier for this transaction (part) */
+    std::string getTxID();
+
+    /** Update status from core wallet tx.
+     */
+    void updateStatus(const CWalletTx &wtx);
+
+    /** Return whether a status update is needed.
+     */
+    bool statusUpdateNeeded();
+};
+
+#endif // TRANSACTIONRECORD_H
