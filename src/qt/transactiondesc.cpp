@@ -204,4 +204,48 @@ QString TransactionDesc::toHTML(CWallet *wallet, CWalletTx &wtx)
             }
         }
 
-        strHTML += "<b>" + tr("Net amount") + ":</b> " + BitcoinUnits::formatWithUnit(BitcoinUnits::B
+        strHTML += "<b>" + tr("Net amount") + ":</b> " + BitcoinUnits::formatWithUnit(BitcoinUnits::BTC, nNet, true) + "<br>";
+
+        //
+        // Message
+        //
+        if (!wtx.mapValue["message"].empty())
+            strHTML += "<br><b>" + tr("Message") + ":</b><br>" + GUIUtil::HtmlEscape(wtx.mapValue["message"], true) + "<br>";
+        if (!wtx.mapValue["comment"].empty())
+            strHTML += "<br><b>" + tr("Comment") + ":</b><br>" + GUIUtil::HtmlEscape(wtx.mapValue["comment"], true) + "<br>";
+
+        strHTML += "<b>" + tr("Transaction ID") + ":</b> " + wtx.GetHash().ToString().c_str() + "<br>";
+
+        if (wtx.IsCoinBase())
+            strHTML += "<br>" + tr("Generated coins must mature 90 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to \"not accepted\" and it won't be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.") + "<br>";
+
+        //
+        // Debug view
+        //
+        if (fDebug)
+        {
+            strHTML += "<hr><br>" + tr("Debug information") + "<br><br>";
+            BOOST_FOREACH(const CTxIn& txin, wtx.vin)
+                if(wallet->IsMine(txin))
+                    strHTML += "<b>" + tr("Debit") + ":</b> " + BitcoinUnits::formatWithUnit(BitcoinUnits::BTC, -wallet->GetDebit(txin)) + "<br>";
+            BOOST_FOREACH(const CTxOut& txout, wtx.vout)
+                if(wallet->IsMine(txout))
+                    strHTML += "<b>" + tr("Credit") + ":</b> " + BitcoinUnits::formatWithUnit(BitcoinUnits::BTC, wallet->GetCredit(txout)) + "<br>";
+
+            strHTML += "<br><b>" + tr("Transaction") + ":</b><br>";
+            strHTML += GUIUtil::HtmlEscape(wtx.ToString(), true);
+
+            CTxDB txdb("r"); // To fetch source txouts
+
+            strHTML += "<br><b>" + tr("Inputs") + ":</b>";
+            strHTML += "<ul>";
+
+            {
+                LOCK(wallet->cs_wallet);
+                BOOST_FOREACH(const CTxIn& txin, wtx.vin)
+                {
+                    COutPoint prevout = txin.prevout;
+
+                    CTransaction prev;
+                    if(txdb.ReadDiskTx(prevout.hash, prev))
+                    {
