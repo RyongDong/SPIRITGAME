@@ -39,4 +39,68 @@ struct TxLessThan
     {
         return a.hash < b;
     }
-    bool op
+    bool operator()(const uint256 &a, const TransactionRecord &b) const
+    {
+        return a < b.hash;
+    }
+};
+
+// Private implementation
+class TransactionTablePriv
+{
+public:
+    TransactionTablePriv(CWallet *wallet, TransactionTableModel *parent):
+            wallet(wallet),
+            parent(parent)
+    {
+    }
+    CWallet *wallet;
+    TransactionTableModel *parent;
+
+    /* Local cache of wallet.
+     * As it is in the same order as the CWallet, by definition
+     * this is sorted by sha256.
+     */
+    QList<TransactionRecord> cachedWallet;
+
+    /* Query entire wallet anew from core.
+     */
+    void refreshWallet()
+    {
+        OutputDebugStringF("refreshWallet\n");
+        cachedWallet.clear();
+        {
+            LOCK(wallet->cs_wallet);
+            for(std::map<uint256, CWalletTx>::iterator it = wallet->mapWallet.begin(); it != wallet->mapWallet.end(); ++it)
+            {
+                if(TransactionRecord::showTransaction(it->second))
+                    cachedWallet.append(TransactionRecord::decomposeTransaction(wallet, it->second));
+            }
+        }
+    }
+
+    /* Update our model of the wallet incrementally, to synchronize our model of the wallet
+       with that of the core.
+
+       Call with transaction that was added, removed or changed.
+     */
+    void updateWallet(const uint256 &hash, int status)
+    {
+        OutputDebugStringF("updateWallet %s %i\n", hash.ToString().c_str(), status);
+        {
+            LOCK(wallet->cs_wallet);
+
+            // Find transaction in wallet
+            std::map<uint256, CWalletTx>::iterator mi = wallet->mapWallet.find(hash);
+            bool inWallet = mi != wallet->mapWallet.end();
+
+            // Find bounds of this transaction in model
+            QList<TransactionRecord>::iterator lower = qLowerBound(
+                cachedWallet.begin(), cachedWallet.end(), hash, TxLessThan());
+            QList<TransactionRecord>::iterator upper = qUpperBound(
+                cachedWallet.begin(), cachedWallet.end(), hash, TxLessThan());
+            int lowerIndex = (lower - cachedWallet.begin());
+            int upperIndex = (upper - cachedWallet.begin());
+            bool inModel = (lower != upper);
+
+            // Determine 
