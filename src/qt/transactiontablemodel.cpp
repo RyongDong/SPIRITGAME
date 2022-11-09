@@ -292,4 +292,74 @@ QString TransactionTableModel::formatTxStatus(const TransactionRecord *wtx) cons
         status = tr("Unconfirmed (%1 of %2 confirmations)").arg(wtx->status.depth).arg(TransactionRecord::NumConfirmations);
         break;
     case TransactionStatus::HaveConfirmations:
-        status = tr("Confirmed (%1 confirmations)").arg(wtx-
+        status = tr("Confirmed (%1 confirmations)").arg(wtx->status.depth);
+        break;
+    }
+    if(wtx->type == TransactionRecord::Generated)
+    {
+        switch(wtx->status.maturity)
+        {
+        case TransactionStatus::Immature:
+            status += "\n" + tr("Mined balance will be available when it matures in %n more block(s)", "", wtx->status.matures_in);
+            break;
+        case TransactionStatus::Mature:
+            break;
+        case TransactionStatus::MaturesWarning:
+            status += "\n" + tr("This block was not received by any other nodes and will probably not be accepted!");
+            break;
+        case TransactionStatus::NotAccepted:
+            status += "\n" + tr("Generated but not accepted");
+            break;
+        }
+    }
+
+    return status;
+}
+
+QString TransactionTableModel::formatTxDate(const TransactionRecord *wtx) const
+{
+    if(wtx->time)
+    {
+        return GUIUtil::dateTimeStr(wtx->time);
+    }
+    else
+    {
+        return QString();
+    }
+}
+
+/* Look up address in address book, if found return label (address)
+   otherwise just return (address)
+ */
+QString TransactionTableModel::lookupAddress(const std::string &address, bool tooltip) const
+{
+    QString label = walletModel->getAddressTableModel()->labelForAddress(QString::fromStdString(address));
+    QString description;
+    if(!label.isEmpty())
+    {
+        description += label + QString(" ");
+    }
+    if(label.isEmpty() || walletModel->getOptionsModel()->getDisplayAddresses() || tooltip)
+    {
+        description += QString("(") + QString::fromStdString(address) + QString(")");
+    }
+    return description;
+}
+
+QString TransactionTableModel::formatTxType(const TransactionRecord *wtx) const
+{
+    switch(wtx->type)
+    {
+    case TransactionRecord::RecvWithAddress:
+        return tr("Received with");
+    case TransactionRecord::RecvFromOther:
+        return tr("Received from");
+    case TransactionRecord::SendToAddress:
+    case TransactionRecord::SendToOther:
+        return tr("Sent to");
+    case TransactionRecord::SendToSelf:
+        return tr("Payment to yourself");
+    case TransactionRecord::Generated:
+        return tr("Mined");
+    default:
+    
