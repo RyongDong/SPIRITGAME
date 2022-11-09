@@ -153,4 +153,76 @@ public:
                 {
                     OutputDebugStringF("Warning: updateWallet: Got CT_DELETED, but transaction is not in model\n");
                     break;
-             
+                }
+                // Removed -- remove entire transaction from table
+                parent->beginRemoveRows(QModelIndex(), lowerIndex, upperIndex-1);
+                cachedWallet.erase(lower, upper);
+                parent->endRemoveRows();
+                break;
+            case CT_UPDATED:
+                // Miscellaneous updates -- nothing to do, status update will take care of this, and is only computed for
+                // visible transactions.
+                break;
+            }
+        }
+    }
+
+    int size()
+    {
+        return cachedWallet.size();
+    }
+
+    TransactionRecord *index(int idx)
+    {
+        if(idx >= 0 && idx < cachedWallet.size())
+        {
+            TransactionRecord *rec = &cachedWallet[idx];
+
+            // If a status update is needed (blocks came in since last check),
+            //  update the status of this transaction from the wallet. Otherwise,
+            // simply re-use the cached status.
+            if(rec->statusUpdateNeeded())
+            {
+                {
+                    LOCK(wallet->cs_wallet);
+                    std::map<uint256, CWalletTx>::iterator mi = wallet->mapWallet.find(rec->hash);
+
+                    if(mi != wallet->mapWallet.end())
+                    {
+                        rec->updateStatus(mi->second);
+                    }
+                }
+            }
+            return rec;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    QString describe(TransactionRecord *rec)
+    {
+        {
+            LOCK(wallet->cs_wallet);
+            std::map<uint256, CWalletTx>::iterator mi = wallet->mapWallet.find(rec->hash);
+            if(mi != wallet->mapWallet.end())
+            {
+                return TransactionDesc::toHTML(wallet, mi->second);
+            }
+        }
+        return QString("");
+    }
+
+};
+
+TransactionTableModel::TransactionTableModel(CWallet* wallet, WalletModel *parent):
+        QAbstractTableModel(parent),
+        wallet(wallet),
+        walletModel(parent),
+        priv(new TransactionTablePriv(wallet, this)),
+        cachedNumBlocks(0)
+{
+    columns << QString() << tr("Date") << tr("Type") << tr("Address") << tr("Amount");
+
+    priv->refreshWallet(
