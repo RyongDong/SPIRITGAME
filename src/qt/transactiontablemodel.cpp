@@ -103,4 +103,54 @@ public:
             int upperIndex = (upper - cachedWallet.begin());
             bool inModel = (lower != upper);
 
-            // Determine 
+            // Determine whether to show transaction or not
+            bool showTransaction = (inWallet && TransactionRecord::showTransaction(mi->second));
+
+            if(status == CT_UPDATED)
+            {
+                if(showTransaction && !inModel)
+                    status = CT_NEW; /* Not in model, but want to show, treat as new */
+                if(!showTransaction && inModel)
+                    status = CT_DELETED; /* In model, but want to hide, treat as deleted */
+            }
+
+            OutputDebugStringF("   inWallet=%i inModel=%i Index=%i-%i showTransaction=%i derivedStatus=%i\n",
+                     inWallet, inModel, lowerIndex, upperIndex, showTransaction, status);
+
+            switch(status)
+            {
+            case CT_NEW:
+                if(inModel)
+                {
+                    OutputDebugStringF("Warning: updateWallet: Got CT_NEW, but transaction is already in model\n");
+                    break;
+                }
+                if(!inWallet)
+                {
+                    OutputDebugStringF("Warning: updateWallet: Got CT_NEW, but transaction is not in wallet\n");
+                    break;
+                }
+                if(showTransaction)
+                {
+                    // Added -- insert at the right position
+                    QList<TransactionRecord> toInsert =
+                            TransactionRecord::decomposeTransaction(wallet, mi->second);
+                    if(!toInsert.isEmpty()) /* only if something to insert */
+                    {
+                        parent->beginInsertRows(QModelIndex(), lowerIndex, lowerIndex+toInsert.size()-1);
+                        int insert_idx = lowerIndex;
+                        foreach(const TransactionRecord &rec, toInsert)
+                        {
+                            cachedWallet.insert(insert_idx, rec);
+                            insert_idx += 1;
+                        }
+                        parent->endInsertRows();
+                    }
+                }
+                break;
+            case CT_DELETED:
+                if(!inModel)
+                {
+                    OutputDebugStringF("Warning: updateWallet: Got CT_DELETED, but transaction is not in model\n");
+                    break;
+             
