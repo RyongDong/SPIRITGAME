@@ -225,4 +225,71 @@ TransactionTableModel::TransactionTableModel(CWallet* wallet, WalletModel *paren
 {
     columns << QString() << tr("Date") << tr("Type") << tr("Address") << tr("Amount");
 
-    priv->refreshWallet(
+    priv->refreshWallet();
+
+    QTimer *timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(updateConfirmations()));
+    timer->start(MODEL_UPDATE_DELAY);
+
+    connect(walletModel->getOptionsModel(), SIGNAL(displayUnitChanged(int)), this, SLOT(updateDisplayUnit()));
+}
+
+TransactionTableModel::~TransactionTableModel()
+{
+    delete priv;
+}
+
+void TransactionTableModel::updateTransaction(const QString &hash, int status)
+{
+    uint256 updated;
+    updated.SetHex(hash.toStdString());
+
+    priv->updateWallet(updated, status);
+}
+
+void TransactionTableModel::updateConfirmations()
+{
+    if(nBestHeight != cachedNumBlocks)
+    {
+        cachedNumBlocks = nBestHeight;
+        // Blocks came in since last poll.
+        // Invalidate status (number of confirmations) and (possibly) description
+        //  for all rows. Qt is smart enough to only actually request the data for the
+        //  visible rows.
+        emit dataChanged(index(0, Status), index(priv->size()-1, Status));
+        emit dataChanged(index(0, ToAddress), index(priv->size()-1, ToAddress));
+    }
+}
+
+int TransactionTableModel::rowCount(const QModelIndex &parent) const
+{
+    Q_UNUSED(parent);
+    return priv->size();
+}
+
+int TransactionTableModel::columnCount(const QModelIndex &parent) const
+{
+    Q_UNUSED(parent);
+    return columns.length();
+}
+
+QString TransactionTableModel::formatTxStatus(const TransactionRecord *wtx) const
+{
+    QString status;
+
+    switch(wtx->status.status)
+    {
+    case TransactionStatus::OpenUntilBlock:
+        status = tr("Open for %n block(s)","",wtx->status.open_for);
+        break;
+    case TransactionStatus::OpenUntilDate:
+        status = tr("Open until %1").arg(GUIUtil::dateTimeStr(wtx->status.open_for));
+        break;
+    case TransactionStatus::Offline:
+        status = tr("Offline (%1 confirmations)").arg(wtx->status.depth);
+        break;
+    case TransactionStatus::Unconfirmed:
+        status = tr("Unconfirmed (%1 of %2 confirmations)").arg(wtx->status.depth).arg(TransactionRecord::NumConfirmations);
+        break;
+    case TransactionStatus::HaveConfirmations:
+        status = tr("Confirmed (%1 confirmations)").arg(wtx-
