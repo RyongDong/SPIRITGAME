@@ -362,4 +362,75 @@ QString TransactionTableModel::formatTxType(const TransactionRecord *wtx) const
     case TransactionRecord::Generated:
         return tr("Mined");
     default:
-    
+        return QString();
+    }
+}
+
+QVariant TransactionTableModel::txAddressDecoration(const TransactionRecord *wtx) const
+{
+    switch(wtx->type)
+    {
+    case TransactionRecord::Generated:
+        return QIcon(":/icons/tx_mined");
+    case TransactionRecord::RecvWithAddress:
+    case TransactionRecord::RecvFromOther:
+        return QIcon(":/icons/tx_input");
+    case TransactionRecord::SendToAddress:
+    case TransactionRecord::SendToOther:
+        return QIcon(":/icons/tx_output");
+    default:
+        return QIcon(":/icons/tx_inout");
+    }
+    return QVariant();
+}
+
+QString TransactionTableModel::formatTxToAddress(const TransactionRecord *wtx, bool tooltip) const
+{
+    switch(wtx->type)
+    {
+    case TransactionRecord::RecvFromOther:
+        return QString::fromStdString(wtx->address);
+    case TransactionRecord::RecvWithAddress:
+    case TransactionRecord::SendToAddress:
+        return lookupAddress(wtx->address, tooltip);
+    case TransactionRecord::SendToOther:
+        return QString::fromStdString(wtx->address);
+    case TransactionRecord::SendToSelf:
+    case TransactionRecord::Generated:
+    default:
+        return tr("(n/a)");
+    }
+}
+
+QVariant TransactionTableModel::addressColor(const TransactionRecord *wtx) const
+{
+    // Show addresses without label in a less visible color
+    switch(wtx->type)
+    {
+    case TransactionRecord::RecvWithAddress:
+    case TransactionRecord::SendToAddress:
+        {
+        QString label = walletModel->getAddressTableModel()->labelForAddress(QString::fromStdString(wtx->address));
+        if(label.isEmpty())
+            return COLOR_BAREADDRESS;
+        } break;
+    case TransactionRecord::SendToSelf:
+    case TransactionRecord::Generated:
+        return COLOR_BAREADDRESS;
+    default:
+        break;
+    }
+    return QVariant();
+}
+
+QString TransactionTableModel::formatTxAmount(const TransactionRecord *wtx, bool showUnconfirmed) const
+{
+    QString str = BitcoinUnits::format(walletModel->getOptionsModel()->getDisplayUnit(), wtx->credit + wtx->debit);
+    if(showUnconfirmed)
+    {
+        if(!wtx->status.confirmed || wtx->status.maturity != TransactionStatus::Mature)
+        {
+            str = QString("[") + str + QString("]");
+        }
+    }
+    return Q
