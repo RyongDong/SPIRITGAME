@@ -494,4 +494,76 @@ QString TransactionTableModel::formatTooltip(const TransactionRecord *rec) const
 
 QVariant TransactionTableModel::data(const QModelIndex &index, int role) const
 {
-    
+    if(!index.isValid())
+        return QVariant();
+    TransactionRecord *rec = static_cast<TransactionRecord*>(index.internalPointer());
+
+    switch(role)
+    {
+    case Qt::DecorationRole:
+        switch(index.column())
+        {
+        case Status:
+            return txStatusDecoration(rec);
+        case ToAddress:
+            return txAddressDecoration(rec);
+        }
+        break;
+    case Qt::DisplayRole:
+        switch(index.column())
+        {
+        case Date:
+            return formatTxDate(rec);
+        case Type:
+            return formatTxType(rec);
+        case ToAddress:
+            return formatTxToAddress(rec, false);
+        case Amount:
+            return formatTxAmount(rec);
+        }
+        break;
+    case Qt::EditRole:
+        // Edit role is used for sorting, so return the unformatted values
+        switch(index.column())
+        {
+        case Status:
+            return QString::fromStdString(rec->status.sortKey);
+        case Date:
+            return rec->time;
+        case Type:
+            return formatTxType(rec);
+        case ToAddress:
+            return formatTxToAddress(rec, true);
+        case Amount:
+            return rec->credit + rec->debit;
+        }
+        break;
+    case Qt::ToolTipRole:
+        return formatTooltip(rec);
+    case Qt::TextAlignmentRole:
+        return column_alignments[index.column()];
+    case Qt::ForegroundRole:
+        // Non-confirmed transactions are grey
+        if(!rec->status.confirmed)
+        {
+            return COLOR_UNCONFIRMED;
+        }
+        if(index.column() == Amount && (rec->credit+rec->debit) < 0)
+        {
+            return COLOR_NEGATIVE;
+        }
+        if(index.column() == ToAddress)
+        {
+            return addressColor(rec);
+        }
+        break;
+    case TypeRole:
+        return rec->type;
+    case DateRole:
+        return QDateTime::fromTime_t(static_cast<uint>(rec->time));
+    case LongDescriptionRole:
+        return priv->describe(rec);
+    case AddressRole:
+        return QString::fromStdString(rec->address);
+    case LabelRole:
+        return walletModel->getAddressTableModel()->labelForAddress(QString::fromStdString(rec->addres
