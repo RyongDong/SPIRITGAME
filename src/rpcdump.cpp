@@ -50,4 +50,44 @@ Value importprivkey(const Array& params, bool fHelp)
 
     if (!fGood) throw JSONRPCError(-5,"Invalid private key");
 
-  
+    CKey key;
+    bool fCompressed;
+    CSecret secret = vchSecret.GetSecret(fCompressed);
+    key.SetSecret(secret, fCompressed);
+    CKeyID vchAddress = key.GetPubKey().GetID();
+    {
+        LOCK2(cs_main, pwalletMain->cs_wallet);
+
+        pwalletMain->MarkDirty();
+        pwalletMain->SetAddressBookName(vchAddress, strLabel);
+
+        if (!pwalletMain->AddKey(key))
+            throw JSONRPCError(-4,"Error adding key to wallet");
+
+        pwalletMain->ScanForWalletTransactions(pindexGenesisBlock, true);
+        pwalletMain->ReacceptWalletTransactions();
+    }
+
+    return Value::null;
+}
+
+Value dumpprivkey(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() != 1)
+        throw runtime_error(
+        "dumpprivkey <nuggetsaddress>\n"
+        "Reveals the private key corresponding to <nuggetsaddress>.");
+
+    string strAddress = params[0].get_str();
+    CBitcoinAddress address;
+    if (!address.SetString(strAddress))
+    throw JSONRPCError(-5, "Invalid Nuggets address");
+    CKeyID keyID;
+    if (!address.GetKeyID(keyID))
+        throw JSONRPCError(-3, "Address does not refer to a key");
+    CSecret vchSecret;
+    bool fCompressed;
+    if (!pwalletMain->GetSecret(keyID, vchSecret, fCompressed))
+        throw JSONRPCError(-4,"Private key for address " + strAddress + " is not known");
+    return CBitcoinSecret(vchSecret, fCompressed).ToString();
+}
