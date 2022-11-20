@@ -216,4 +216,70 @@ Value createrawtransaction(const Array& params, bool fHelp)
 
         const Value& vout_v = find_value(o, "vout");
         if (vout_v.type() != int_type)
-            th
+            throw JSONRPCError(-8, "Invalid parameter, missing vout key");
+        int nOutput = vout_v.get_int();
+        if (nOutput < 0)
+            throw JSONRPCError(-8, "Invalid parameter, vout must be positive");
+
+        CTxIn in(COutPoint(uint256(txid), nOutput));
+        rawTx.vin.push_back(in);
+    }
+
+    set<CBitcoinAddress> setAddress;
+    BOOST_FOREACH(const Pair& s, sendTo)
+    {
+        CBitcoinAddress address(s.name_);
+        if (!address.IsValid())
+            throw JSONRPCError(-5, string("Invalid Bitcoin address:")+s.name_);
+
+        if (setAddress.count(address))
+            throw JSONRPCError(-8, string("Invalid parameter, duplicated address: ")+s.name_);
+        setAddress.insert(address);
+
+        CScript scriptPubKey;
+        scriptPubKey.SetDestination(address.Get());
+        int64 nAmount = AmountFromValue(s.value_);
+
+        CTxOut out(nAmount, scriptPubKey);
+        rawTx.vout.push_back(out);
+    }
+
+    CDataStream ss(SER_NETWORK, PROTOCOL_VERSION);
+    ss << rawTx;
+    return HexStr(ss.begin(), ss.end());
+}
+
+Value decoderawtransaction(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() != 1)
+        throw runtime_error(
+            "decoderawtransaction <hex string>\n"
+            "Return a JSON object representing the serialized, hex-encoded transaction.");
+
+    RPCTypeCheck(params, list_of(str_type));
+
+    vector<unsigned char> txData(ParseHex(params[0].get_str()));
+    CDataStream ssData(txData, SER_NETWORK, PROTOCOL_VERSION);
+    CTransaction tx;
+    try {
+        ssData >> tx;
+    }
+    catch (std::exception &e) {
+        throw JSONRPCError(-22, "TX decode failed");
+    }
+
+    Object result;
+    TxToJSON(tx, 0, result);
+
+    return result;
+}
+
+Value signrawtransaction(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() < 1 || params.size() > 4)
+        throw runtime_error(
+            "signrawtransaction <hex string> [{\"txid\":txid,\"vout\":n,\"scriptPubKey\":hex},...] [<privatekey1>,...] [sighashtype=\"ALL\"]\n"
+            "Sign inputs for raw transaction (serialized, hex-encoded).\n"
+            "Second optional argument is an array of previous transaction outputs that\n"
+            "this transaction depends on but may not yet be in the blockchain.\n"
+            "
