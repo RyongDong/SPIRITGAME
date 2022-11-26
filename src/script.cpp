@@ -156,4 +156,47 @@ const char* GetOpName(opcodetype opcode)
     case OP_TUCK                   : return "OP_TUCK";
 
     // splice ops
-    case OP_CAT          
+    case OP_CAT                    : return "OP_CAT";
+    case OP_SUBSTR                 : return "OP_SUBSTR";
+    case OP_LEFT                   : return "OP_LEFT";
+    case OP_RIGHT                  : return "OP_RIGHT";
+    case OP_SIZE                   : return "OP_SIZE";
+
+    // bit logic
+    case OP_INVERT                 : return "OP_INVERT";
+    case OP_AND                    : return "OP_AND";
+    case OP_OR                     : return "OP_OR";
+    case OP_XOR                    : return "OP_XOR";
+    case OP_EQUAL                  : return "OP_EQUAL";
+    case OP_EQUALVERIFY            : return "OP_EQUALVERIFY";
+    case OP_RESERVED1              : return "OP_RESERVED1";
+    case OP_RESERVED2              : return "OP_RESERVED2";
+
+    // numeric
+    case OP_1ADD                   : return "OP_1ADD";
+    case OP_1SUB                   : return "OP_1SUB";
+    case OP_2MUL                   : return "OP_2MUL";
+    case OP_2DIV                   : return "OP_2DIV";
+    case OP_NEGATE                 : return "OP_NEGATE";
+    case OP_ABS                    : return "OP_ABS";
+    case OP_NOT                    : return "OP_NOT";
+    case OP_0NOTEQUAL              : return "OP_0NOTEQUAL";
+    case OP_ADD                    : return "OP_ADD";
+    case OP_SUB                    : return "OP_SUB";
+    case OP_MUL                    : return "OP_MUL";
+    case OP_DIV                    : return "OP_DIV";
+    case OP_MOD                    : return "OP_MOD";
+    case OP_LSHIFT                 : return "OP_LSHIFT";
+    case OP_RSHIFT                 : return "OP_RSHIFT";
+    case OP_BOOLAND                : return "OP_BOOLAND";
+    case OP_BOOLOR                 : return "OP_BOOLOR";
+    case OP_NUMEQUAL               : return "OP_NUMEQUAL";
+    case OP_NUMEQUALVERIFY         : return "OP_NUMEQUALVERIFY";
+    case OP_NUMNOTEQUAL            : return "OP_NUMNOTEQUAL";
+    case OP_LESSTHAN               : return "OP_LESSTHAN";
+    case OP_GREATERTHAN            : return "OP_GREATERTHAN";
+    case OP_LESSTHANOREQUAL        : return "OP_LESSTHANOREQUAL";
+    case OP_GREATERTHANOREQUAL     : return "OP_GREATERTHANOREQUAL";
+    case OP_MIN                    : return "OP_MIN";
+    case OP_MAX                    : return "OP_MAX";
+    
