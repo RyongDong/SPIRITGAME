@@ -199,4 +199,66 @@ const char* GetOpName(opcodetype opcode)
     case OP_GREATERTHANOREQUAL     : return "OP_GREATERTHANOREQUAL";
     case OP_MIN                    : return "OP_MIN";
     case OP_MAX                    : return "OP_MAX";
-    
+    case OP_WITHIN                 : return "OP_WITHIN";
+
+    // crypto
+    case OP_RIPEMD160              : return "OP_RIPEMD160";
+    case OP_SHA1                   : return "OP_SHA1";
+    case OP_SHA256                 : return "OP_SHA256";
+    case OP_HASH160                : return "OP_HASH160";
+    case OP_HASH256                : return "OP_HASH256";
+    case OP_CODESEPARATOR          : return "OP_CODESEPARATOR";
+    case OP_CHECKSIG               : return "OP_CHECKSIG";
+    case OP_CHECKSIGVERIFY         : return "OP_CHECKSIGVERIFY";
+    case OP_CHECKMULTISIG          : return "OP_CHECKMULTISIG";
+    case OP_CHECKMULTISIGVERIFY    : return "OP_CHECKMULTISIGVERIFY";
+
+    // expanson
+    case OP_NOP1                   : return "OP_NOP1";
+    case OP_NOP2                   : return "OP_NOP2";
+    case OP_NOP3                   : return "OP_NOP3";
+    case OP_NOP4                   : return "OP_NOP4";
+    case OP_NOP5                   : return "OP_NOP5";
+    case OP_NOP6                   : return "OP_NOP6";
+    case OP_NOP7                   : return "OP_NOP7";
+    case OP_NOP8                   : return "OP_NOP8";
+    case OP_NOP9                   : return "OP_NOP9";
+    case OP_NOP10                  : return "OP_NOP10";
+
+
+
+    // template matching params
+    case OP_PUBKEYHASH             : return "OP_PUBKEYHASH";
+    case OP_PUBKEY                 : return "OP_PUBKEY";
+
+    case OP_INVALIDOPCODE          : return "OP_INVALIDOPCODE";
+    default:
+        return "OP_UNKNOWN";
+    }
+}
+
+bool EvalScript(vector<vector<unsigned char> >& stack, const CScript& script, const CTransaction& txTo, unsigned int nIn, int nHashType)
+{
+    CAutoBN_CTX pctx;
+    CScript::const_iterator pc = script.begin();
+    CScript::const_iterator pend = script.end();
+    CScript::const_iterator pbegincodehash = script.begin();
+    opcodetype opcode;
+    valtype vchPushValue;
+    vector<bool> vfExec;
+    vector<valtype> altstack;
+    if (script.size() > 10000)
+        return false;
+    int nOpCount = 0;
+
+
+    try
+    {
+        while (pc < pend)
+        {
+            bool fExec = !count(vfExec.begin(), vfExec.end(), false);
+
+            //
+            // Read instruction
+            //
+            if (!script.GetOp(pc, op
