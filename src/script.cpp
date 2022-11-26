@@ -261,4 +261,72 @@ bool EvalScript(vector<vector<unsigned char> >& stack, const CScript& script, co
             //
             // Read instruction
             //
-            if (!script.GetOp(pc, op
+            if (!script.GetOp(pc, opcode, vchPushValue))
+                return false;
+            if (vchPushValue.size() > 520)
+                return false;
+            if (opcode > OP_16 && ++nOpCount > 201)
+                return false;
+
+            if (opcode == OP_CAT ||
+                opcode == OP_SUBSTR ||
+                opcode == OP_LEFT ||
+                opcode == OP_RIGHT ||
+                opcode == OP_INVERT ||
+                opcode == OP_AND ||
+                opcode == OP_OR ||
+                opcode == OP_XOR ||
+                opcode == OP_2MUL ||
+                opcode == OP_2DIV ||
+                opcode == OP_MUL ||
+                opcode == OP_DIV ||
+                opcode == OP_MOD ||
+                opcode == OP_LSHIFT ||
+                opcode == OP_RSHIFT)
+                return false;
+
+            if (fExec && 0 <= opcode && opcode <= OP_PUSHDATA4)
+                stack.push_back(vchPushValue);
+            else if (fExec || (OP_IF <= opcode && opcode <= OP_ENDIF))
+            switch (opcode)
+            {
+                //
+                // Push value
+                //
+                case OP_1NEGATE:
+                case OP_1:
+                case OP_2:
+                case OP_3:
+                case OP_4:
+                case OP_5:
+                case OP_6:
+                case OP_7:
+                case OP_8:
+                case OP_9:
+                case OP_10:
+                case OP_11:
+                case OP_12:
+                case OP_13:
+                case OP_14:
+                case OP_15:
+                case OP_16:
+                {
+                    // ( -- value)
+                    CBigNum bn((int)opcode - (int)(OP_1 - 1));
+                    stack.push_back(bn.getvch());
+                }
+                break;
+
+
+                //
+                // Control
+                //
+                case OP_NOP:
+                case OP_NOP1: case OP_NOP2: case OP_NOP3: case OP_NOP4: case OP_NOP5:
+                case OP_NOP6: case OP_NOP7: case OP_NOP8: case OP_NOP9: case OP_NOP10:
+                break;
+
+                case OP_IF:
+                case OP_NOTIF:
+                {
+                    // <expression> if [stateme
