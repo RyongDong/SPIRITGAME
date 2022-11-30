@@ -329,4 +329,79 @@ bool EvalScript(vector<vector<unsigned char> >& stack, const CScript& script, co
                 case OP_IF:
                 case OP_NOTIF:
                 {
-                    // <expression> if [stateme
+                    // <expression> if [statements] [else [statements]] endif
+                    bool fValue = false;
+                    if (fExec)
+                    {
+                        if (stack.size() < 1)
+                            return false;
+                        valtype& vch = stacktop(-1);
+                        fValue = CastToBool(vch);
+                        if (opcode == OP_NOTIF)
+                            fValue = !fValue;
+                        popstack(stack);
+                    }
+                    vfExec.push_back(fValue);
+                }
+                break;
+
+                case OP_ELSE:
+                {
+                    if (vfExec.empty())
+                        return false;
+                    vfExec.back() = !vfExec.back();
+                }
+                break;
+
+                case OP_ENDIF:
+                {
+                    if (vfExec.empty())
+                        return false;
+                    vfExec.pop_back();
+                }
+                break;
+
+                case OP_VERIFY:
+                {
+                    // (true -- ) or
+                    // (false -- false) and return
+                    if (stack.size() < 1)
+                        return false;
+                    bool fValue = CastToBool(stacktop(-1));
+                    if (fValue)
+                        popstack(stack);
+                    else
+                        return false;
+                }
+                break;
+
+                case OP_RETURN:
+                {
+                    return false;
+                }
+                break;
+
+
+                //
+                // Stack ops
+                //
+                case OP_TOALTSTACK:
+                {
+                    if (stack.size() < 1)
+                        return false;
+                    altstack.push_back(stacktop(-1));
+                    popstack(stack);
+                }
+                break;
+
+                case OP_FROMALTSTACK:
+                {
+                    if (altstack.size() < 1)
+                        return false;
+                    stack.push_back(altstacktop(-1));
+                    popstack(altstack);
+                }
+                break;
+
+                case OP_2DROP:
+    
