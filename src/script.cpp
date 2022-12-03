@@ -404,4 +404,69 @@ bool EvalScript(vector<vector<unsigned char> >& stack, const CScript& script, co
                 break;
 
                 case OP_2DROP:
-    
+                {
+                    // (x1 x2 -- )
+                    if (stack.size() < 2)
+                        return false;
+                    popstack(stack);
+                    popstack(stack);
+                }
+                break;
+
+                case OP_2DUP:
+                {
+                    // (x1 x2 -- x1 x2 x1 x2)
+                    if (stack.size() < 2)
+                        return false;
+                    valtype vch1 = stacktop(-2);
+                    valtype vch2 = stacktop(-1);
+                    stack.push_back(vch1);
+                    stack.push_back(vch2);
+                }
+                break;
+
+                case OP_3DUP:
+                {
+                    // (x1 x2 x3 -- x1 x2 x3 x1 x2 x3)
+                    if (stack.size() < 3)
+                        return false;
+                    valtype vch1 = stacktop(-3);
+                    valtype vch2 = stacktop(-2);
+                    valtype vch3 = stacktop(-1);
+                    stack.push_back(vch1);
+                    stack.push_back(vch2);
+                    stack.push_back(vch3);
+                }
+                break;
+
+                case OP_2OVER:
+                {
+                    // (x1 x2 x3 x4 -- x1 x2 x3 x4 x1 x2)
+                    if (stack.size() < 4)
+                        return false;
+                    valtype vch1 = stacktop(-4);
+                    valtype vch2 = stacktop(-3);
+                    stack.push_back(vch1);
+                    stack.push_back(vch2);
+                }
+                break;
+
+                case OP_2ROT:
+                {
+                    // (x1 x2 x3 x4 x5 x6 -- x3 x4 x5 x6 x1 x2)
+                    if (stack.size() < 6)
+                        return false;
+                    valtype vch1 = stacktop(-6);
+                    valtype vch2 = stacktop(-5);
+                    stack.erase(stack.end()-6, stack.end()-4);
+                    stack.push_back(vch1);
+                    stack.push_back(vch2);
+                }
+                break;
+
+                case OP_2SWAP:
+                {
+                    // (x1 x2 x3 x4 -- x3 x4 x1 x2)
+                    if (stack.size() < 4)
+                        return false;
+                    swap(stacktop(-4), stacktop
