@@ -543,4 +543,68 @@ bool EvalScript(vector<vector<unsigned char> >& stack, const CScript& script, co
                     if (n < 0 || n >= (int)stack.size())
                         return false;
                     valtype vch = stacktop(-n-1);
-     
+                    if (opcode == OP_ROLL)
+                        stack.erase(stack.end()-n-1);
+                    stack.push_back(vch);
+                }
+                break;
+
+                case OP_ROT:
+                {
+                    // (x1 x2 x3 -- x2 x3 x1)
+                    //  x2 x1 x3  after first swap
+                    //  x2 x3 x1  after second swap
+                    if (stack.size() < 3)
+                        return false;
+                    swap(stacktop(-3), stacktop(-2));
+                    swap(stacktop(-2), stacktop(-1));
+                }
+                break;
+
+                case OP_SWAP:
+                {
+                    // (x1 x2 -- x2 x1)
+                    if (stack.size() < 2)
+                        return false;
+                    swap(stacktop(-2), stacktop(-1));
+                }
+                break;
+
+                case OP_TUCK:
+                {
+                    // (x1 x2 -- x2 x1 x2)
+                    if (stack.size() < 2)
+                        return false;
+                    valtype vch = stacktop(-1);
+                    stack.insert(stack.end()-2, vch);
+                }
+                break;
+
+
+                //
+                // Splice ops
+                //
+                case OP_CAT:
+                {
+                    // (x1 x2 -- out)
+                    if (stack.size() < 2)
+                        return false;
+                    valtype& vch1 = stacktop(-2);
+                    valtype& vch2 = stacktop(-1);
+                    vch1.insert(vch1.end(), vch2.begin(), vch2.end());
+                    popstack(stack);
+                    if (stacktop(-1).size() > 520)
+                        return false;
+                }
+                break;
+
+                case OP_SUBSTR:
+                {
+                    // (in begin size -- out)
+                    if (stack.size() < 3)
+                        return false;
+                    valtype& vch = stacktop(-3);
+                    int nBegin = CastToBigNum(stacktop(-2)).getint();
+                    int nEnd = nBegin + CastToBigNum(stacktop(-1)).getint();
+                    if (nBegin < 0 || nEnd < nBegin)
+                        return false
