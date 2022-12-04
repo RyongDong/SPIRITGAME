@@ -607,4 +607,69 @@ bool EvalScript(vector<vector<unsigned char> >& stack, const CScript& script, co
                     int nBegin = CastToBigNum(stacktop(-2)).getint();
                     int nEnd = nBegin + CastToBigNum(stacktop(-1)).getint();
                     if (nBegin < 0 || nEnd < nBegin)
-                        return false
+                        return false;
+                    if (nBegin > (int)vch.size())
+                        nBegin = vch.size();
+                    if (nEnd > (int)vch.size())
+                        nEnd = vch.size();
+                    vch.erase(vch.begin() + nEnd, vch.end());
+                    vch.erase(vch.begin(), vch.begin() + nBegin);
+                    popstack(stack);
+                    popstack(stack);
+                }
+                break;
+
+                case OP_LEFT:
+                case OP_RIGHT:
+                {
+                    // (in size -- out)
+                    if (stack.size() < 2)
+                        return false;
+                    valtype& vch = stacktop(-2);
+                    int nSize = CastToBigNum(stacktop(-1)).getint();
+                    if (nSize < 0)
+                        return false;
+                    if (nSize > (int)vch.size())
+                        nSize = vch.size();
+                    if (opcode == OP_LEFT)
+                        vch.erase(vch.begin() + nSize, vch.end());
+                    else
+                        vch.erase(vch.begin(), vch.end() - nSize);
+                    popstack(stack);
+                }
+                break;
+
+                case OP_SIZE:
+                {
+                    // (in -- in size)
+                    if (stack.size() < 1)
+                        return false;
+                    CBigNum bn(stacktop(-1).size());
+                    stack.push_back(bn.getvch());
+                }
+                break;
+
+
+                //
+                // Bitwise logic
+                //
+                case OP_INVERT:
+                {
+                    // (in - out)
+                    if (stack.size() < 1)
+                        return false;
+                    valtype& vch = stacktop(-1);
+                    for (unsigned int i = 0; i < vch.size(); i++)
+                        vch[i] = ~vch[i];
+                }
+                break;
+
+                case OP_AND:
+                case OP_OR:
+                case OP_XOR:
+                {
+                    // (x1 x2 - out)
+                    if (stack.size() < 2)
+                        return false;
+                    valtype& vch1 = stacktop(-2);
+                 
