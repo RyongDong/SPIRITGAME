@@ -730,4 +730,62 @@ bool EvalScript(vector<vector<unsigned char> >& stack, const CScript& script, co
                 case OP_2MUL:
                 case OP_2DIV:
                 case OP_NEGATE:
-                c
+                case OP_ABS:
+                case OP_NOT:
+                case OP_0NOTEQUAL:
+                {
+                    // (in -- out)
+                    if (stack.size() < 1)
+                        return false;
+                    CBigNum bn = CastToBigNum(stacktop(-1));
+                    switch (opcode)
+                    {
+                    case OP_1ADD:       bn += bnOne; break;
+                    case OP_1SUB:       bn -= bnOne; break;
+                    case OP_2MUL:       bn <<= 1; break;
+                    case OP_2DIV:       bn >>= 1; break;
+                    case OP_NEGATE:     bn = -bn; break;
+                    case OP_ABS:        if (bn < bnZero) bn = -bn; break;
+                    case OP_NOT:        bn = (bn == bnZero); break;
+                    case OP_0NOTEQUAL:  bn = (bn != bnZero); break;
+                    default:            assert(!"invalid opcode"); break;
+                    }
+                    popstack(stack);
+                    stack.push_back(bn.getvch());
+                }
+                break;
+
+                case OP_ADD:
+                case OP_SUB:
+                case OP_MUL:
+                case OP_DIV:
+                case OP_MOD:
+                case OP_LSHIFT:
+                case OP_RSHIFT:
+                case OP_BOOLAND:
+                case OP_BOOLOR:
+                case OP_NUMEQUAL:
+                case OP_NUMEQUALVERIFY:
+                case OP_NUMNOTEQUAL:
+                case OP_LESSTHAN:
+                case OP_GREATERTHAN:
+                case OP_LESSTHANOREQUAL:
+                case OP_GREATERTHANOREQUAL:
+                case OP_MIN:
+                case OP_MAX:
+                {
+                    // (x1 x2 -- out)
+                    if (stack.size() < 2)
+                        return false;
+                    CBigNum bn1 = CastToBigNum(stacktop(-2));
+                    CBigNum bn2 = CastToBigNum(stacktop(-1));
+                    CBigNum bn;
+                    switch (opcode)
+                    {
+                    case OP_ADD:
+                        bn = bn1 + bn2;
+                        break;
+
+                    case OP_SUB:
+                        bn = bn1 - bn2;
+                        
