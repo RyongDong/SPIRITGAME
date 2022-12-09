@@ -788,4 +788,54 @@ bool EvalScript(vector<vector<unsigned char> >& stack, const CScript& script, co
 
                     case OP_SUB:
                         bn = bn1 - bn2;
-                        
+                        break;
+
+                    case OP_MUL:
+                        if (!BN_mul(&bn, &bn1, &bn2, pctx))
+                            return false;
+                        break;
+
+                    case OP_DIV:
+                        if (!BN_div(&bn, NULL, &bn1, &bn2, pctx))
+                            return false;
+                        break;
+
+                    case OP_MOD:
+                        if (!BN_mod(&bn, &bn1, &bn2, pctx))
+                            return false;
+                        break;
+
+                    case OP_LSHIFT:
+                        if (bn2 < bnZero || bn2 > CBigNum(2048))
+                            return false;
+                        bn = bn1 << bn2.getulong();
+                        break;
+
+                    case OP_RSHIFT:
+                        if (bn2 < bnZero || bn2 > CBigNum(2048))
+                            return false;
+                        bn = bn1 >> bn2.getulong();
+                        break;
+
+                    case OP_BOOLAND:             bn = (bn1 != bnZero && bn2 != bnZero); break;
+                    case OP_BOOLOR:              bn = (bn1 != bnZero || bn2 != bnZero); break;
+                    case OP_NUMEQUAL:            bn = (bn1 == bn2); break;
+                    case OP_NUMEQUALVERIFY:      bn = (bn1 == bn2); break;
+                    case OP_NUMNOTEQUAL:         bn = (bn1 != bn2); break;
+                    case OP_LESSTHAN:            bn = (bn1 < bn2); break;
+                    case OP_GREATERTHAN:         bn = (bn1 > bn2); break;
+                    case OP_LESSTHANOREQUAL:     bn = (bn1 <= bn2); break;
+                    case OP_GREATERTHANOREQUAL:  bn = (bn1 >= bn2); break;
+                    case OP_MIN:                 bn = (bn1 < bn2 ? bn1 : bn2); break;
+                    case OP_MAX:                 bn = (bn1 > bn2 ? bn1 : bn2); break;
+                    default:                     assert(!"invalid opcode"); break;
+                    }
+                    popstack(stack);
+                    popstack(stack);
+                    stack.push_back(bn.getvch());
+
+                    if (opcode == OP_NUMEQUALVERIFY)
+                    {
+                        if (CastToBool(stacktop(-1)))
+                            popstack(stack);
+        
