@@ -838,4 +838,64 @@ bool EvalScript(vector<vector<unsigned char> >& stack, const CScript& script, co
                     {
                         if (CastToBool(stacktop(-1)))
                             popstack(stack);
-        
+                        else
+                            return false;
+                    }
+                }
+                break;
+
+                case OP_WITHIN:
+                {
+                    // (x min max -- out)
+                    if (stack.size() < 3)
+                        return false;
+                    CBigNum bn1 = CastToBigNum(stacktop(-3));
+                    CBigNum bn2 = CastToBigNum(stacktop(-2));
+                    CBigNum bn3 = CastToBigNum(stacktop(-1));
+                    bool fValue = (bn2 <= bn1 && bn1 < bn3);
+                    popstack(stack);
+                    popstack(stack);
+                    popstack(stack);
+                    stack.push_back(fValue ? vchTrue : vchFalse);
+                }
+                break;
+
+
+                //
+                // Crypto
+                //
+                case OP_RIPEMD160:
+                case OP_SHA1:
+                case OP_SHA256:
+                case OP_HASH160:
+                case OP_HASH256:
+                {
+                    // (in -- hash)
+                    if (stack.size() < 1)
+                        return false;
+                    valtype& vch = stacktop(-1);
+                    valtype vchHash((opcode == OP_RIPEMD160 || opcode == OP_SHA1 || opcode == OP_HASH160) ? 20 : 32);
+                    if (opcode == OP_RIPEMD160)
+                        RIPEMD160(&vch[0], vch.size(), &vchHash[0]);
+                    else if (opcode == OP_SHA1)
+                        SHA1(&vch[0], vch.size(), &vchHash[0]);
+                    else if (opcode == OP_SHA256)
+                        SHA256(&vch[0], vch.size(), &vchHash[0]);
+                    else if (opcode == OP_HASH160)
+                    {
+                        uint160 hash160 = Hash160(vch);
+                        memcpy(&vchHash[0], &hash160, sizeof(hash160));
+                    }
+                    else if (opcode == OP_HASH256)
+                    {
+                        uint256 hash = Hash(vch.begin(), vch.end());
+                        memcpy(&vchHash[0], &hash, sizeof(hash));
+                    }
+                    popstack(stack);
+                    stack.push_back(vchHash);
+                }
+                break;
+
+                case OP_CODESEPARATOR:
+                {
+     
