@@ -1011,4 +1011,92 @@ bool EvalScript(vector<vector<unsigned char> >& stack, const CScript& script, co
                 }
                 break;
 
-                defaul
+                default:
+                    return false;
+            }
+
+            // Size limits
+            if (stack.size() + altstack.size() > 1000)
+                return false;
+        }
+    }
+    catch (...)
+    {
+        return false;
+    }
+
+
+    if (!vfExec.empty())
+        return false;
+
+    return true;
+}
+
+
+
+
+
+
+
+
+
+uint256 SignatureHash(CScript scriptCode, const CTransaction& txTo, unsigned int nIn, int nHashType)
+{
+    if (nIn >= txTo.vin.size())
+    {
+        printf("ERROR: SignatureHash() : nIn=%d out of range\n", nIn);
+        return 1;
+    }
+    CTransaction txTmp(txTo);
+
+    // In case concatenating two scripts ends up with two codeseparators,
+    // or an extra one at the end, this prevents all those possible incompatibilities.
+    scriptCode.FindAndDelete(CScript(OP_CODESEPARATOR));
+
+    // Blank out other inputs' signatures
+    for (unsigned int i = 0; i < txTmp.vin.size(); i++)
+        txTmp.vin[i].scriptSig = CScript();
+    txTmp.vin[nIn].scriptSig = scriptCode;
+
+    // Blank out some of the outputs
+    if ((nHashType & 0x1f) == SIGHASH_NONE)
+    {
+        // Wildcard payee
+        txTmp.vout.clear();
+
+        // Let the others update at will
+        for (unsigned int i = 0; i < txTmp.vin.size(); i++)
+            if (i != nIn)
+                txTmp.vin[i].nSequence = 0;
+    }
+    else if ((nHashType & 0x1f) == SIGHASH_SINGLE)
+    {
+        // Only lockin the txout payee at same index as txin
+        unsigned int nOut = nIn;
+        if (nOut >= txTmp.vout.size())
+        {
+            printf("ERROR: SignatureHash() : nOut=%d out of range\n", nOut);
+            return 1;
+        }
+        txTmp.vout.resize(nOut+1);
+        for (unsigned int i = 0; i < nOut; i++)
+            txTmp.vout[i].SetNull();
+
+        // Let the others update at will
+        for (unsigned int i = 0; i < txTmp.vin.size(); i++)
+            if (i != nIn)
+                txTmp.vin[i].nSequence = 0;
+    }
+
+    // Blank out other inputs completely, not recommended for open transactions
+    if (nHashType & SIGHASH_ANYONECANPAY)
+    {
+        txTmp.vin[0] = txTmp.vin[nIn];
+        txTmp.vin.resize(1);
+    }
+
+    // Serialize and hash
+    CDataStream ss(SER_GETHASH, 0);
+    ss.reserve(10000);
+    ss << txTmp << nHashType;
+ 
