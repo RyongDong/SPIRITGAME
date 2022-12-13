@@ -898,4 +898,60 @@ bool EvalScript(vector<vector<unsigned char> >& stack, const CScript& script, co
 
                 case OP_CODESEPARATOR:
                 {
-     
+                    // Hash starts after the code separator
+                    pbegincodehash = pc;
+                }
+                break;
+
+                case OP_CHECKSIG:
+                case OP_CHECKSIGVERIFY:
+                {
+                    // (sig pubkey -- bool)
+                    if (stack.size() < 2)
+                        return false;
+
+                    valtype& vchSig    = stacktop(-2);
+                    valtype& vchPubKey = stacktop(-1);
+
+                    ////// debug print
+                    //PrintHex(vchSig.begin(), vchSig.end(), "sig: %s\n");
+                    //PrintHex(vchPubKey.begin(), vchPubKey.end(), "pubkey: %s\n");
+
+                    // Subset of script starting at the most recent codeseparator
+                    CScript scriptCode(pbegincodehash, pend);
+
+                    // Drop the signature, since there's no way for a signature to sign itself
+                    scriptCode.FindAndDelete(CScript(vchSig));
+
+                    bool fSuccess = CheckSig(vchSig, vchPubKey, scriptCode, txTo, nIn, nHashType);
+
+                    popstack(stack);
+                    popstack(stack);
+                    stack.push_back(fSuccess ? vchTrue : vchFalse);
+                    if (opcode == OP_CHECKSIGVERIFY)
+                    {
+                        if (fSuccess)
+                            popstack(stack);
+                        else
+                            return false;
+                    }
+                }
+                break;
+
+                case OP_CHECKMULTISIG:
+                case OP_CHECKMULTISIGVERIFY:
+                {
+                    // ([sig ...] num_of_signatures [pubkey ...] num_of_pubkeys -- bool)
+
+                    int i = 1;
+                    if ((int)stack.size() < i)
+                        return false;
+
+                    int nKeysCount = CastToBigNum(stacktop(-i)).getint();
+                    if (nKeysCount < 0 || nKeysCount > 20)
+                        return false;
+                    nOpCount += nKeysCount;
+                    if (nOpCount > 201)
+                        return false;
+                    int ikey = ++i;
+                    i += nKeysCount
