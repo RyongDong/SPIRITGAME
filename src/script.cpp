@@ -954,4 +954,61 @@ bool EvalScript(vector<vector<unsigned char> >& stack, const CScript& script, co
                     if (nOpCount > 201)
                         return false;
                     int ikey = ++i;
-                    i += nKeysCount
+                    i += nKeysCount;
+                    if ((int)stack.size() < i)
+                        return false;
+
+                    int nSigsCount = CastToBigNum(stacktop(-i)).getint();
+                    if (nSigsCount < 0 || nSigsCount > nKeysCount)
+                        return false;
+                    int isig = ++i;
+                    i += nSigsCount;
+                    if ((int)stack.size() < i)
+                        return false;
+
+                    // Subset of script starting at the most recent codeseparator
+                    CScript scriptCode(pbegincodehash, pend);
+
+                    // Drop the signatures, since there's no way for a signature to sign itself
+                    for (int k = 0; k < nSigsCount; k++)
+                    {
+                        valtype& vchSig = stacktop(-isig-k);
+                        scriptCode.FindAndDelete(CScript(vchSig));
+                    }
+
+                    bool fSuccess = true;
+                    while (fSuccess && nSigsCount > 0)
+                    {
+                        valtype& vchSig    = stacktop(-isig);
+                        valtype& vchPubKey = stacktop(-ikey);
+
+                        // Check signature
+                        if (CheckSig(vchSig, vchPubKey, scriptCode, txTo, nIn, nHashType))
+                        {
+                            isig++;
+                            nSigsCount--;
+                        }
+                        ikey++;
+                        nKeysCount--;
+
+                        // If there are more signatures left than keys left,
+                        // then too many signatures have failed
+                        if (nSigsCount > nKeysCount)
+                            fSuccess = false;
+                    }
+
+                    while (i-- > 0)
+                        popstack(stack);
+                    stack.push_back(fSuccess ? vchTrue : vchFalse);
+
+                    if (opcode == OP_CHECKMULTISIGVERIFY)
+                    {
+                        if (fSuccess)
+                            popstack(stack);
+                        else
+                            return false;
+                    }
+                }
+                break;
+
+                defaul
