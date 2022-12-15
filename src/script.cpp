@@ -1161,4 +1161,77 @@ public:
 };
 
 bool CheckSig(vector<unsigned char> vchSig, vector<unsigned char> vchPubKey, CScript scriptCode,
-              const CTransaction& txTo, unsigned int nIn, int n
+              const CTransaction& txTo, unsigned int nIn, int nHashType)
+{
+    static CSignatureCache signatureCache;
+
+    // Hash type is one byte tacked on to the end of the signature
+    if (vchSig.empty())
+        return false;
+    if (nHashType == 0)
+        nHashType = vchSig.back();
+    else if (nHashType != vchSig.back())
+        return false;
+    vchSig.pop_back();
+
+    uint256 sighash = SignatureHash(scriptCode, txTo, nIn, nHashType);
+
+    if (signatureCache.Get(sighash, vchSig, vchPubKey))
+        return true;
+
+    CKey key;
+    if (!key.SetPubKey(vchPubKey))
+        return false;
+
+    if (!key.Verify(sighash, vchSig))
+        return false;
+
+    signatureCache.Set(sighash, vchSig, vchPubKey);
+    return true;
+}
+
+
+
+
+
+
+
+
+
+//
+// Return public keys or hashes from scriptPubKey, for 'standard' transaction types.
+//
+bool Solver(const CScript& scriptPubKey, txnouttype& typeRet, vector<vector<unsigned char> >& vSolutionsRet)
+{
+    // Templates
+    static map<txnouttype, CScript> mTemplates;
+    if (mTemplates.empty())
+    {
+        // Standard tx, sender provides pubkey, receiver adds signature
+        mTemplates.insert(make_pair(TX_PUBKEY, CScript() << OP_PUBKEY << OP_CHECKSIG));
+
+        // Bitcoin address tx, sender provides hash of pubkey, receiver provides signature and pubkey
+        mTemplates.insert(make_pair(TX_PUBKEYHASH, CScript() << OP_DUP << OP_HASH160 << OP_PUBKEYHASH << OP_EQUALVERIFY << OP_CHECKSIG));
+
+        // Sender provides N pubkeys, receivers provides M signatures
+        mTemplates.insert(make_pair(TX_MULTISIG, CScript() << OP_SMALLINTEGER << OP_PUBKEYS << OP_SMALLINTEGER << OP_CHECKMULTISIG));
+    }
+
+    // Shortcut for pay-to-script-hash, which are more constrained than the other types:
+    // it is always OP_HASH160 20 [20 byte hash] OP_EQUAL
+    if (scriptPubKey.IsPayToScriptHash())
+    {
+        typeRet = TX_SCRIPTHASH;
+        vector<unsigned char> hashBytes(scriptPubKey.begin()+2, scriptPubKey.begin()+22);
+        vSolutionsRet.push_back(hashBytes);
+        return true;
+    }
+
+    // Scan templates
+    const CScript& script1 = scriptPubKey;
+    BOOST_FOREACH(const PAIRTYPE(txnouttype, CScript)& tplate, mTemplates)
+    {
+        const CScript& script2 = tplate.second;
+        vSolutionsRet.clear();
+
+        opcodetype opcode1, op
