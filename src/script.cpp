@@ -1452,4 +1452,79 @@ public:
     bool operator()(const CScriptID &scriptID) const { return keystore->HaveCScript(scriptID); }
 };
 
-bool IsMine(const CKeyStore &keystore, cons
+bool IsMine(const CKeyStore &keystore, const CTxDestination &dest)
+{
+    return boost::apply_visitor(CKeyStoreIsMineVisitor(&keystore), dest);
+}
+
+bool IsMine(const CKeyStore &keystore, const CScript& scriptPubKey)
+{
+    vector<valtype> vSolutions;
+    txnouttype whichType;
+    if (!Solver(scriptPubKey, whichType, vSolutions))
+        return false;
+
+    CKeyID keyID;
+    switch (whichType)
+    {
+    case TX_NONSTANDARD:
+        return false;
+    case TX_PUBKEY:
+        keyID = CPubKey(vSolutions[0]).GetID();
+        return keystore.HaveKey(keyID);
+    case TX_PUBKEYHASH:
+        keyID = CKeyID(uint160(vSolutions[0]));
+        return keystore.HaveKey(keyID);
+    case TX_SCRIPTHASH:
+    {
+        CScript subscript;
+        if (!keystore.GetCScript(CScriptID(uint160(vSolutions[0])), subscript))
+            return false;
+        return IsMine(keystore, subscript);
+    }
+    case TX_MULTISIG:
+    {
+        // Only consider transactions "mine" if we own ALL the
+        // keys involved. multi-signature transactions that are
+        // partially owned (somebody else has a key that can spend
+        // them) enable spend-out-from-under-you attacks, especially
+        // in shared-wallet situations.
+        vector<valtype> keys(vSolutions.begin()+1, vSolutions.begin()+vSolutions.size()-1);
+        return HaveKeys(keys, keystore) == keys.size();
+    }
+    }
+    return false;
+}
+
+bool ExtractDestination(const CScript& scriptPubKey, CTxDestination& addressRet)
+{
+    vector<valtype> vSolutions;
+    txnouttype whichType;
+    if (!Solver(scriptPubKey, whichType, vSolutions))
+        return false;
+
+    if (whichType == TX_PUBKEY)
+    {
+        addressRet = CPubKey(vSolutions[0]).GetID();
+        return true;
+    }
+    else if (whichType == TX_PUBKEYHASH)
+    {
+        addressRet = CKeyID(uint160(vSolutions[0]));
+        return true;
+    }
+    else if (whichType == TX_SCRIPTHASH)
+    {
+        addressRet = CScriptID(uint160(vSolutions[0]));
+        return true;
+    }
+    // Multisig txns have more than one address...
+    return false;
+}
+
+bool ExtractDestinations(const CScript& scriptPubKey, txnouttype& typeRet, vector<CTxDestination>& addressRet, int& nRequiredRet)
+{
+    addressRet.clear();
+    typeRet = TX_NONSTANDARD;
+    vector<valtype> vSolutions;
+    if (!Solver
