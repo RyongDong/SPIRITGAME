@@ -1724,4 +1724,75 @@ static CScript CombineSignatures(CScript scriptPubKey, const CTransaction& txTo,
     case TX_PUBKEY:
     case TX_PUBKEYHASH:
         // Signatures are bigger than placeholders or empty scripts:
-        if (
+        if (sigs1.empty() || sigs1[0].empty())
+            return PushAll(sigs2);
+        return PushAll(sigs1);
+    case TX_SCRIPTHASH:
+        if (sigs1.empty() || sigs1.back().empty())
+            return PushAll(sigs2);
+        else if (sigs2.empty() || sigs2.back().empty())
+            return PushAll(sigs1);
+        else
+        {
+            // Recurse to combine:
+            valtype spk = sigs1.back();
+            CScript pubKey2(spk.begin(), spk.end());
+
+            txnouttype txType2;
+            vector<vector<unsigned char> > vSolutions2;
+            Solver(pubKey2, txType2, vSolutions2);
+            sigs1.pop_back();
+            sigs2.pop_back();
+            CScript result = CombineSignatures(pubKey2, txTo, nIn, txType2, vSolutions2, sigs1, sigs2);
+            result << spk;
+            return result;
+        }
+    case TX_MULTISIG:
+        return CombineMultisig(scriptPubKey, txTo, nIn, vSolutions, sigs1, sigs2);
+    }
+
+    return CScript();
+}
+
+CScript CombineSignatures(CScript scriptPubKey, const CTransaction& txTo, unsigned int nIn,
+                          const CScript& scriptSig1, const CScript& scriptSig2)
+{
+    txnouttype txType;
+    vector<vector<unsigned char> > vSolutions;
+    Solver(scriptPubKey, txType, vSolutions);
+
+    vector<valtype> stack1;
+    EvalScript(stack1, scriptSig1, CTransaction(), 0, 0);
+    vector<valtype> stack2;
+    EvalScript(stack2, scriptSig2, CTransaction(), 0, 0);
+
+    return CombineSignatures(scriptPubKey, txTo, nIn, txType, vSolutions, stack1, stack2);
+}
+
+unsigned int CScript::GetSigOpCount(bool fAccurate) const
+{
+    unsigned int n = 0;
+    const_iterator pc = begin();
+    opcodetype lastOpcode = OP_INVALIDOPCODE;
+    while (pc < end())
+    {
+        opcodetype opcode;
+        if (!GetOp(pc, opcode))
+            break;
+        if (opcode == OP_CHECKSIG || opcode == OP_CHECKSIGVERIFY)
+            n++;
+        else if (opcode == OP_CHECKMULTISIG || opcode == OP_CHECKMULTISIGVERIFY)
+        {
+            if (fAccurate && lastOpcode >= OP_1 && lastOpcode <= OP_16)
+                n += DecodeOP_N(lastOpcode);
+            else
+                n += 20;
+        }
+        lastOpcode = opcode;
+    }
+    return n;
+}
+
+unsigned int CScript::GetSigOpCount(const CScript& scriptSig) const
+{
+    if
