@@ -234,4 +234,73 @@ inline std::string StackString(const std::vector<std::vector<unsigned char> >& v
 class CScript : public std::vector<unsigned char>
 {
 protected:
-    CScript& push_int64(i
+    CScript& push_int64(int64 n)
+    {
+        if (n == -1 || (n >= 1 && n <= 16))
+        {
+            push_back(n + (OP_1 - 1));
+        }
+        else
+        {
+            CBigNum bn(n);
+            *this << bn.getvch();
+        }
+        return *this;
+    }
+
+    CScript& push_uint64(uint64 n)
+    {
+        if (n >= 1 && n <= 16)
+        {
+            push_back(n + (OP_1 - 1));
+        }
+        else
+        {
+            CBigNum bn(n);
+            *this << bn.getvch();
+        }
+        return *this;
+    }
+
+public:
+    CScript() { }
+    CScript(const CScript& b) : std::vector<unsigned char>(b.begin(), b.end()) { }
+    CScript(const_iterator pbegin, const_iterator pend) : std::vector<unsigned char>(pbegin, pend) { }
+#ifndef _MSC_VER
+    CScript(const unsigned char* pbegin, const unsigned char* pend) : std::vector<unsigned char>(pbegin, pend) { }
+#endif
+
+    CScript& operator+=(const CScript& b)
+    {
+        insert(end(), b.begin(), b.end());
+        return *this;
+    }
+
+    friend CScript operator+(const CScript& a, const CScript& b)
+    {
+        CScript ret = a;
+        ret += b;
+        return ret;
+    }
+
+
+    //explicit CScript(char b) is not portable.  Use 'signed char' or 'unsigned char'.
+    explicit CScript(signed char b)    { operator<<(b); }
+    explicit CScript(short b)          { operator<<(b); }
+    explicit CScript(int b)            { operator<<(b); }
+    explicit CScript(long b)           { operator<<(b); }
+    explicit CScript(int64 b)          { operator<<(b); }
+    explicit CScript(unsigned char b)  { operator<<(b); }
+    explicit CScript(unsigned int b)   { operator<<(b); }
+    explicit CScript(unsigned short b) { operator<<(b); }
+    explicit CScript(unsigned long b)  { operator<<(b); }
+    explicit CScript(uint64 b)         { operator<<(b); }
+
+    explicit CScript(opcodetype b)     { operator<<(b); }
+    explicit CScript(const uint256& b) { operator<<(b); }
+    explicit CScript(const CBigNum& b) { operator<<(b); }
+    explicit CScript(const std::vector<unsigned char>& b) { operator<<(b); }
+
+
+    //CScript& operator<<(char b) is not portable.  Use 'signed char' or 'unsigned char'.
+    CScript& operator<<(sig
