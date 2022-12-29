@@ -303,4 +303,70 @@ public:
 
 
     //CScript& operator<<(char b) is not portable.  Use 'signed char' or 'unsigned char'.
-    CScript& operator<<(sig
+    CScript& operator<<(signed char b)    { return push_int64(b); }
+    CScript& operator<<(short b)          { return push_int64(b); }
+    CScript& operator<<(int b)            { return push_int64(b); }
+    CScript& operator<<(long b)           { return push_int64(b); }
+    CScript& operator<<(int64 b)          { return push_int64(b); }
+    CScript& operator<<(unsigned char b)  { return push_uint64(b); }
+    CScript& operator<<(unsigned int b)   { return push_uint64(b); }
+    CScript& operator<<(unsigned short b) { return push_uint64(b); }
+    CScript& operator<<(unsigned long b)  { return push_uint64(b); }
+    CScript& operator<<(uint64 b)         { return push_uint64(b); }
+
+    CScript& operator<<(opcodetype opcode)
+    {
+        if (opcode < 0 || opcode > 0xff)
+            throw std::runtime_error("CScript::operator<<() : invalid opcode");
+        insert(end(), (unsigned char)opcode);
+        return *this;
+    }
+
+    CScript& operator<<(const uint160& b)
+    {
+        insert(end(), sizeof(b));
+        insert(end(), (unsigned char*)&b, (unsigned char*)&b + sizeof(b));
+        return *this;
+    }
+
+    CScript& operator<<(const uint256& b)
+    {
+        insert(end(), sizeof(b));
+        insert(end(), (unsigned char*)&b, (unsigned char*)&b + sizeof(b));
+        return *this;
+    }
+
+    CScript& operator<<(const CPubKey& key)
+    {
+        std::vector<unsigned char> vchKey = key.Raw();
+        return (*this) << vchKey;
+    }
+
+    CScript& operator<<(const CBigNum& b)
+    {
+        *this << b.getvch();
+        return *this;
+    }
+
+    CScript& operator<<(const std::vector<unsigned char>& b)
+    {
+        if (b.size() < OP_PUSHDATA1)
+        {
+            insert(end(), (unsigned char)b.size());
+        }
+        else if (b.size() <= 0xff)
+        {
+            insert(end(), OP_PUSHDATA1);
+            insert(end(), (unsigned char)b.size());
+        }
+        else if (b.size() <= 0xffff)
+        {
+            insert(end(), OP_PUSHDATA2);
+            unsigned short nSize = b.size();
+            insert(end(), (unsigned char*)&nSize, (unsigned char*)&nSize + sizeof(nSize));
+        }
+        else
+        {
+            insert(end(), OP_PUSHDATA4);
+            unsigned int nSize = b.size();
+            insert(end(), (unsigned ch
