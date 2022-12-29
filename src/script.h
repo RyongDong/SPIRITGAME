@@ -441,4 +441,82 @@ public:
             else if (opcode == OP_PUSHDATA2)
             {
                 if (end() - pc < 2)
-   
+                    return false;
+                nSize = 0;
+                memcpy(&nSize, &pc[0], 2);
+                pc += 2;
+            }
+            else if (opcode == OP_PUSHDATA4)
+            {
+                if (end() - pc < 4)
+                    return false;
+                memcpy(&nSize, &pc[0], 4);
+                pc += 4;
+            }
+            if (end() - pc < 0 || (unsigned int)(end() - pc) < nSize)
+                return false;
+            if (pvchRet)
+                pvchRet->assign(pc, pc + nSize);
+            pc += nSize;
+        }
+
+        opcodeRet = (opcodetype)opcode;
+        return true;
+    }
+
+    // Encode/decode small integers:
+    static int DecodeOP_N(opcodetype opcode)
+    {
+        if (opcode == OP_0)
+            return 0;
+        assert(opcode >= OP_1 && opcode <= OP_16);
+        return (int)opcode - (int)(OP_1 - 1);
+    }
+    static opcodetype EncodeOP_N(int n)
+    {
+        assert(n >= 0 && n <= 16);
+        if (n == 0)
+            return OP_0;
+        return (opcodetype)(OP_1+n-1);
+    }
+
+    int FindAndDelete(const CScript& b)
+    {
+        int nFound = 0;
+        if (b.empty())
+            return nFound;
+        iterator pc = begin();
+        opcodetype opcode;
+        do
+        {
+            while (end() - pc >= (long)b.size() && memcmp(&pc[0], &b[0], b.size()) == 0)
+            {
+                erase(pc, pc + b.size());
+                ++nFound;
+            }
+        }
+        while (GetOp(pc, opcode));
+        return nFound;
+    }
+    int Find(opcodetype op) const
+    {
+        int nFound = 0;
+        opcodetype opcode;
+        for (const_iterator pc = begin(); pc != end() && GetOp(pc, opcode);)
+            if (opcode == op)
+                ++nFound;
+        return nFound;
+    }
+
+    // Pre-version-0.6, Bitcoin always counted CHECKMULTISIGs
+    // as 20 sigops. With pay-to-script-hash, that changed:
+    // CHECKMULTISIGs serialized in scriptSigs are
+    // counted more accurately, assuming they are of the form
+    //  ... OP_N CHECKMULTISIG ...
+    unsigned int GetSigOpCount(bool fAccurate) const;
+
+    // Accurately count sigOps, including sigOps in
+    // pay-to-script-hash transactions:
+    unsigned int GetSigOpCount(const CScript& scriptSig) const;
+
+    bool IsPayToScriptHash() const;
