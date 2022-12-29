@@ -369,4 +369,76 @@ public:
         {
             insert(end(), OP_PUSHDATA4);
             unsigned int nSize = b.size();
-            insert(end(), (unsigned ch
+            insert(end(), (unsigned char*)&nSize, (unsigned char*)&nSize + sizeof(nSize));
+        }
+        insert(end(), b.begin(), b.end());
+        return *this;
+    }
+
+    CScript& operator<<(const CScript& b)
+    {
+        // I'm not sure if this should push the script or concatenate scripts.
+        // If there's ever a use for pushing a script onto a script, delete this member fn
+        assert(!"warning: pushing a CScript onto a CScript with << is probably not intended, use + to concatenate");
+        return *this;
+    }
+
+
+    bool GetOp(iterator& pc, opcodetype& opcodeRet, std::vector<unsigned char>& vchRet)
+    {
+         // Wrapper so it can be called with either iterator or const_iterator
+         const_iterator pc2 = pc;
+         bool fRet = GetOp2(pc2, opcodeRet, &vchRet);
+         pc = begin() + (pc2 - begin());
+         return fRet;
+    }
+
+    bool GetOp(iterator& pc, opcodetype& opcodeRet)
+    {
+         const_iterator pc2 = pc;
+         bool fRet = GetOp2(pc2, opcodeRet, NULL);
+         pc = begin() + (pc2 - begin());
+         return fRet;
+    }
+
+    bool GetOp(const_iterator& pc, opcodetype& opcodeRet, std::vector<unsigned char>& vchRet) const
+    {
+        return GetOp2(pc, opcodeRet, &vchRet);
+    }
+
+    bool GetOp(const_iterator& pc, opcodetype& opcodeRet) const
+    {
+        return GetOp2(pc, opcodeRet, NULL);
+    }
+
+    bool GetOp2(const_iterator& pc, opcodetype& opcodeRet, std::vector<unsigned char>* pvchRet) const
+    {
+        opcodeRet = OP_INVALIDOPCODE;
+        if (pvchRet)
+            pvchRet->clear();
+        if (pc >= end())
+            return false;
+
+        // Read instruction
+        if (end() - pc < 1)
+            return false;
+        unsigned int opcode = *pc++;
+
+        // Immediate operand
+        if (opcode <= OP_PUSHDATA4)
+        {
+            unsigned int nSize;
+            if (opcode < OP_PUSHDATA1)
+            {
+                nSize = opcode;
+            }
+            else if (opcode == OP_PUSHDATA1)
+            {
+                if (end() - pc < 1)
+                    return false;
+                nSize = *pc++;
+            }
+            else if (opcode == OP_PUSHDATA2)
+            {
+                if (end() - pc < 2)
+   
