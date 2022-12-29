@@ -119,4 +119,119 @@ enum opcodetype
     OP_CAT = 0x7e,
     OP_SUBSTR = 0x7f,
     OP_LEFT = 0x80,
-    O
+    OP_RIGHT = 0x81,
+    OP_SIZE = 0x82,
+
+    // bit logic
+    OP_INVERT = 0x83,
+    OP_AND = 0x84,
+    OP_OR = 0x85,
+    OP_XOR = 0x86,
+    OP_EQUAL = 0x87,
+    OP_EQUALVERIFY = 0x88,
+    OP_RESERVED1 = 0x89,
+    OP_RESERVED2 = 0x8a,
+
+    // numeric
+    OP_1ADD = 0x8b,
+    OP_1SUB = 0x8c,
+    OP_2MUL = 0x8d,
+    OP_2DIV = 0x8e,
+    OP_NEGATE = 0x8f,
+    OP_ABS = 0x90,
+    OP_NOT = 0x91,
+    OP_0NOTEQUAL = 0x92,
+
+    OP_ADD = 0x93,
+    OP_SUB = 0x94,
+    OP_MUL = 0x95,
+    OP_DIV = 0x96,
+    OP_MOD = 0x97,
+    OP_LSHIFT = 0x98,
+    OP_RSHIFT = 0x99,
+
+    OP_BOOLAND = 0x9a,
+    OP_BOOLOR = 0x9b,
+    OP_NUMEQUAL = 0x9c,
+    OP_NUMEQUALVERIFY = 0x9d,
+    OP_NUMNOTEQUAL = 0x9e,
+    OP_LESSTHAN = 0x9f,
+    OP_GREATERTHAN = 0xa0,
+    OP_LESSTHANOREQUAL = 0xa1,
+    OP_GREATERTHANOREQUAL = 0xa2,
+    OP_MIN = 0xa3,
+    OP_MAX = 0xa4,
+
+    OP_WITHIN = 0xa5,
+
+    // crypto
+    OP_RIPEMD160 = 0xa6,
+    OP_SHA1 = 0xa7,
+    OP_SHA256 = 0xa8,
+    OP_HASH160 = 0xa9,
+    OP_HASH256 = 0xaa,
+    OP_CODESEPARATOR = 0xab,
+    OP_CHECKSIG = 0xac,
+    OP_CHECKSIGVERIFY = 0xad,
+    OP_CHECKMULTISIG = 0xae,
+    OP_CHECKMULTISIGVERIFY = 0xaf,
+
+    // expansion
+    OP_NOP1 = 0xb0,
+    OP_NOP2 = 0xb1,
+    OP_NOP3 = 0xb2,
+    OP_NOP4 = 0xb3,
+    OP_NOP5 = 0xb4,
+    OP_NOP6 = 0xb5,
+    OP_NOP7 = 0xb6,
+    OP_NOP8 = 0xb7,
+    OP_NOP9 = 0xb8,
+    OP_NOP10 = 0xb9,
+
+
+
+    // template matching params
+    OP_SMALLINTEGER = 0xfa,
+    OP_PUBKEYS = 0xfb,
+    OP_PUBKEYHASH = 0xfd,
+    OP_PUBKEY = 0xfe,
+
+    OP_INVALIDOPCODE = 0xff,
+};
+
+const char* GetOpName(opcodetype opcode);
+
+
+
+inline std::string ValueString(const std::vector<unsigned char>& vch)
+{
+    if (vch.size() <= 4)
+        return strprintf("%d", CBigNum(vch).getint());
+    else
+        return HexStr(vch);
+}
+
+inline std::string StackString(const std::vector<std::vector<unsigned char> >& vStack)
+{
+    std::string str;
+    BOOST_FOREACH(const std::vector<unsigned char>& vch, vStack)
+    {
+        if (!str.empty())
+            str += " ";
+        str += ValueString(vch);
+    }
+    return str;
+}
+
+
+
+
+
+
+
+
+/** Serialized script, used inside transaction inputs and outputs */
+class CScript : public std::vector<unsigned char>
+{
+protected:
+    CScript& push_int64(i
