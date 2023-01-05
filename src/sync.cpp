@@ -126,4 +126,4 @@ void LeaveCritical()
     pop_lock();
 }
 
-#endif /* DEBUG_L
+#endif /* DEBUG_LOCKORDER */
