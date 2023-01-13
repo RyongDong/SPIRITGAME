@@ -152,4 +152,16 @@ BOOST_AUTO_TEST_CASE(boolargno)
     BOOST_CHECK(!GetBoolArg("-foo", true));
     BOOST_CHECK(!GetBoolArg("-foo", false));
 
- 
+    ResetArgs("-nofoo=0");
+    BOOST_CHECK(GetBoolArg("-foo"));
+    BOOST_CHECK(GetBoolArg("-foo", true));
+    BOOST_CHECK(GetBoolArg("-foo", false));
+
+    ResetArgs("-foo --nofoo");
+    BOOST_CHECK(GetBoolArg("-foo"));
+
+    ResetArgs("-nofoo -foo"); // foo always wins:
+    BOOST_CHECK(GetBoolArg("-foo"));
+}
+
+BOOST_AUTO_TEST_SUITE_END()
