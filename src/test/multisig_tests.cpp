@@ -281,4 +281,16 @@ BOOST_AUTO_TEST_CASE(multisig_Sign)
     {
         txTo[i].vin.resize(1);
         txTo[i].vout.resize(1);
-  
+        txTo[i].vin[0].prevout.n = i;
+        txTo[i].vin[0].prevout.hash = txFrom.GetHash();
+        txTo[i].vout[0].nValue = 1;
+    }
+
+    for (int i = 0; i < 3; i++)
+    {
+        BOOST_CHECK_MESSAGE(SignSignature(keystore, txFrom, txTo[i], 0), strprintf("SignSignature %d", i));
+    }
+}
+
+
+BOOST_AUTO_TEST_SUITE_END()
