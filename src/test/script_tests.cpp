@@ -405,4 +405,41 @@ BOOST_AUTO_TEST_CASE(script_combineSigs)
     sig1.push_back(SIGHASH_ALL);
     vector<unsigned char> sig2;
     uint256 hash2 = SignatureHash(scriptPubKey, txTo, 0, SIGHASH_NONE);
-    B
+    BOOST_CHECK(keys[1].Sign(hash2, sig2));
+    sig2.push_back(SIGHASH_NONE);
+    vector<unsigned char> sig3;
+    uint256 hash3 = SignatureHash(scriptPubKey, txTo, 0, SIGHASH_SINGLE);
+    BOOST_CHECK(keys[2].Sign(hash3, sig3));
+    sig3.push_back(SIGHASH_SINGLE);
+
+    // Not fussy about order (or even existence) of placeholders or signatures:
+    CScript partial1a = CScript() << OP_0 << sig1 << OP_0;
+    CScript partial1b = CScript() << OP_0 << OP_0 << sig1;
+    CScript partial2a = CScript() << OP_0 << sig2;
+    CScript partial2b = CScript() << sig2 << OP_0;
+    CScript partial3a = CScript() << sig3;
+    CScript partial3b = CScript() << OP_0 << OP_0 << sig3;
+    CScript partial3c = CScript() << OP_0 << sig3 << OP_0;
+    CScript complete12 = CScript() << OP_0 << sig1 << sig2;
+    CScript complete13 = CScript() << OP_0 << sig1 << sig3;
+    CScript complete23 = CScript() << OP_0 << sig2 << sig3;
+
+    combined = CombineSignatures(scriptPubKey, txTo, 0, partial1a, partial1b);
+    BOOST_CHECK(combined == partial1a);
+    combined = CombineSignatures(scriptPubKey, txTo, 0, partial1a, partial2a);
+    BOOST_CHECK(combined == complete12);
+    combined = CombineSignatures(scriptPubKey, txTo, 0, partial2a, partial1a);
+    BOOST_CHECK(combined == complete12);
+    combined = CombineSignatures(scriptPubKey, txTo, 0, partial1b, partial2b);
+    BOOST_CHECK(combined == complete12);
+    combined = CombineSignatures(scriptPubKey, txTo, 0, partial3b, partial1b);
+    BOOST_CHECK(combined == complete13);
+    combined = CombineSignatures(scriptPubKey, txTo, 0, partial2a, partial3a);
+    BOOST_CHECK(combined == complete23);
+    combined = CombineSignatures(scriptPubKey, txTo, 0, partial3b, partial2b);
+    BOOST_CHECK(combined == complete23);
+    combined = CombineSignatures(scriptPubKey, txTo, 0, partial3b, partial3a);
+    BOOST_CHECK(combined == partial3c);
+}
+
+BOOST_AUTO_TEST_SUITE_END()
