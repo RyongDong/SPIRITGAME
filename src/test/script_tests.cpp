@@ -361,4 +361,48 @@ BOOST_AUTO_TEST_CASE(script_combineSigs)
     SignSignature(keystore, txFrom, txTo, 0); // changes scriptSig
     combined = CombineSignatures(scriptPubKey, txTo, 0, scriptSig, empty);
     BOOST_CHECK(combined == scriptSig);
-    combined = C
+    combined = CombineSignatures(scriptPubKey, txTo, 0, empty, scriptSig);
+    BOOST_CHECK(combined == scriptSig);
+    CScript scriptSigCopy = scriptSig;
+    // Signing again will give a different, valid signature:
+    SignSignature(keystore, txFrom, txTo, 0);
+    combined = CombineSignatures(scriptPubKey, txTo, 0, scriptSigCopy, scriptSig);
+    BOOST_CHECK(combined == scriptSigCopy || combined == scriptSig);
+
+    // P2SH, single-signature case:
+    CScript pkSingle; pkSingle << keys[0].GetPubKey() << OP_CHECKSIG;
+    keystore.AddCScript(pkSingle);
+    scriptPubKey.SetDestination(pkSingle.GetID());
+    SignSignature(keystore, txFrom, txTo, 0);
+    combined = CombineSignatures(scriptPubKey, txTo, 0, scriptSig, empty);
+    BOOST_CHECK(combined == scriptSig);
+    combined = CombineSignatures(scriptPubKey, txTo, 0, empty, scriptSig);
+    BOOST_CHECK(combined == scriptSig);
+    scriptSigCopy = scriptSig;
+    SignSignature(keystore, txFrom, txTo, 0);
+    combined = CombineSignatures(scriptPubKey, txTo, 0, scriptSigCopy, scriptSig);
+    BOOST_CHECK(combined == scriptSigCopy || combined == scriptSig);
+    // dummy scriptSigCopy with placeholder, should always choose non-placeholder:
+    scriptSigCopy = CScript() << OP_0 << static_cast<vector<unsigned char> >(pkSingle);
+    combined = CombineSignatures(scriptPubKey, txTo, 0, scriptSigCopy, scriptSig);
+    BOOST_CHECK(combined == scriptSig);
+    combined = CombineSignatures(scriptPubKey, txTo, 0, scriptSig, scriptSigCopy);
+    BOOST_CHECK(combined == scriptSig);
+
+    // Hardest case:  Multisig 2-of-3
+    scriptPubKey.SetMultisig(2, keys);
+    keystore.AddCScript(scriptPubKey);
+    SignSignature(keystore, txFrom, txTo, 0);
+    combined = CombineSignatures(scriptPubKey, txTo, 0, scriptSig, empty);
+    BOOST_CHECK(combined == scriptSig);
+    combined = CombineSignatures(scriptPubKey, txTo, 0, empty, scriptSig);
+    BOOST_CHECK(combined == scriptSig);
+
+    // A couple of partially-signed versions:
+    vector<unsigned char> sig1;
+    uint256 hash1 = SignatureHash(scriptPubKey, txTo, 0, SIGHASH_ALL);
+    BOOST_CHECK(keys[0].Sign(hash1, sig1));
+    sig1.push_back(SIGHASH_ALL);
+    vector<unsigned char> sig2;
+    uint256 hash2 = SignatureHash(scriptPubKey, txTo, 0, SIGHASH_NONE);
+    B
