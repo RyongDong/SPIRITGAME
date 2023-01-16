@@ -304,4 +304,61 @@ BOOST_AUTO_TEST_CASE(script_CHECKMULTISIG23)
     BOOST_CHECK(!VerifyScript(badsig1, scriptPubKey23, txTo23, 0, true, 0));
 
     keys.clear();
-    keys.push_back(key2); keys.push_back(k
+    keys.push_back(key2); keys.push_back(key1); // sigs must be in correct order
+    CScript badsig2 = sign_multisig(scriptPubKey23, keys, txTo23);
+    BOOST_CHECK(!VerifyScript(badsig2, scriptPubKey23, txTo23, 0, true, 0));
+
+    keys.clear();
+    keys.push_back(key3); keys.push_back(key2); // sigs must be in correct order
+    CScript badsig3 = sign_multisig(scriptPubKey23, keys, txTo23);
+    BOOST_CHECK(!VerifyScript(badsig3, scriptPubKey23, txTo23, 0, true, 0));
+
+    keys.clear();
+    keys.push_back(key4); keys.push_back(key2); // sigs must match pubkeys
+    CScript badsig4 = sign_multisig(scriptPubKey23, keys, txTo23);
+    BOOST_CHECK(!VerifyScript(badsig4, scriptPubKey23, txTo23, 0, true, 0));
+
+    keys.clear();
+    keys.push_back(key1); keys.push_back(key4); // sigs must match pubkeys
+    CScript badsig5 = sign_multisig(scriptPubKey23, keys, txTo23);
+    BOOST_CHECK(!VerifyScript(badsig5, scriptPubKey23, txTo23, 0, true, 0));
+
+    keys.clear(); // Must have signatures
+    CScript badsig6 = sign_multisig(scriptPubKey23, keys, txTo23);
+    BOOST_CHECK(!VerifyScript(badsig6, scriptPubKey23, txTo23, 0, true, 0));
+}    
+
+BOOST_AUTO_TEST_CASE(script_combineSigs)
+{
+    // Test the CombineSignatures function
+    CBasicKeyStore keystore;
+    vector<CKey> keys;
+    for (int i = 0; i < 3; i++)
+    {
+        CKey key;
+        key.MakeNewKey(i%2 == 1);
+        keys.push_back(key);
+        keystore.AddKey(key);
+    }
+
+    CTransaction txFrom;
+    txFrom.vout.resize(1);
+    txFrom.vout[0].scriptPubKey.SetDestination(keys[0].GetPubKey().GetID());
+    CScript& scriptPubKey = txFrom.vout[0].scriptPubKey;
+    CTransaction txTo;
+    txTo.vin.resize(1);
+    txTo.vout.resize(1);
+    txTo.vin[0].prevout.n = 0;
+    txTo.vin[0].prevout.hash = txFrom.GetHash();
+    CScript& scriptSig = txTo.vin[0].scriptSig;
+    txTo.vout[0].nValue = 1;
+
+    CScript empty;
+    CScript combined = CombineSignatures(scriptPubKey, txTo, 0, empty, empty);
+    BOOST_CHECK(combined.empty());
+
+    // Single signature case:
+    SignSignature(keystore, txFrom, txTo, 0); // changes scriptSig
+    combined = CombineSignatures(scriptPubKey, txTo, 0, scriptSig, empty);
+    BOOST_CHECK(combined == scriptSig);
+    combined = C
