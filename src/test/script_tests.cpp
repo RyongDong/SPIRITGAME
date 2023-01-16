@@ -122,4 +122,63 @@ BOOST_AUTO_TEST_SUITE(script_tests)
 BOOST_AUTO_TEST_CASE(script_valid)
 {
     // Read tests from test/data/script_valid.json
-    // Format is an array
+    // Format is an array of arrays
+    // Inner arrays are [ "scriptSig", "scriptPubKey" ]
+    // ... where scriptSig and scriptPubKey are stringified
+    // scripts.
+    Array tests = read_json("script_valid.json");
+
+    BOOST_FOREACH(Value& tv, tests)
+    {
+        Array test = tv.get_array();
+        string strTest = write_string(tv, false);
+        if (test.size() < 2) // Allow size > 2; extra stuff ignored (useful for comments)
+        {
+            BOOST_ERROR("Bad test: " << strTest);
+            continue;
+        }
+        string scriptSigString = test[0].get_str();
+        CScript scriptSig = ParseScript(scriptSigString);
+        string scriptPubKeyString = test[1].get_str();
+        CScript scriptPubKey = ParseScript(scriptPubKeyString);
+
+        CTransaction tx;
+        BOOST_CHECK_MESSAGE(VerifyScript(scriptSig, scriptPubKey, tx, 0, true, SIGHASH_NONE), strTest);
+    }
+}
+
+BOOST_AUTO_TEST_CASE(script_invalid)
+{
+    // Scripts that should evaluate as invalid
+    Array tests = read_json("script_invalid.json");
+
+    BOOST_FOREACH(Value& tv, tests)
+    {
+        Array test = tv.get_array();
+        string strTest = write_string(tv, false);
+        if (test.size() < 2) // Allow size > 2; extra stuff ignored (useful for comments)
+        {
+            BOOST_ERROR("Bad test: " << strTest);
+            continue;
+        }
+        string scriptSigString = test[0].get_str();
+        CScript scriptSig = ParseScript(scriptSigString);
+        string scriptPubKeyString = test[1].get_str();
+        CScript scriptPubKey = ParseScript(scriptPubKeyString);
+
+        CTransaction tx;
+        BOOST_CHECK_MESSAGE(!VerifyScript(scriptSig, scriptPubKey, tx, 0, true, SIGHASH_NONE), strTest);
+    }
+}
+
+BOOST_AUTO_TEST_CASE(script_PushData)
+{
+    // Check that PUSHDATA1, PUSHDATA2, and PUSHDATA4 create the same value on
+    // the stack as the 1-75 opcodes do.
+    static const unsigned char direct[] = { 1, 0x5a };
+    static const unsigned char pushdata1[] = { OP_PUSHDATA1, 1, 0x5a };
+    static const unsigned char pushdata2[] = { OP_PUSHDATA2, 1, 0, 0x5a };
+    static const unsigned char pushdata4[] = { OP_PUSHDATA4, 1, 0, 0, 0, 0x5a };
+
+    vector<vector<unsigned char> > directStack;
+    BOOST_CHECK(EvalScript(directStack, CScript(&direct[0], &direct[sizeof(direct)]), CTransaction
