@@ -83,4 +83,65 @@ T* alignup(T* p)
 #endif
 #define unlink              _unlink
 #else
-#define _vsnprintf(a,b,c,d) vsnprintf(a,b,c
+#define _vsnprintf(a,b,c,d) vsnprintf(a,b,c,d)
+#define strlwr(psz)         to_lower(psz)
+#define _strlwr(psz)        to_lower(psz)
+#define MAX_PATH            1024
+inline void Sleep(int64 n)
+{
+    /*Boost has a year 2038 problem— if the request sleep time is past epoch+2^31 seconds the sleep returns instantly.
+      So we clamp our sleeps here to 10 years and hope that boost is fixed by 2028.*/
+    boost::thread::sleep(boost::get_system_time() + boost::posix_time::milliseconds(n>315576000000LL?315576000000LL:n));
+}
+#endif
+
+
+
+
+
+
+
+
+
+extern std::map<std::string, std::string> mapArgs;
+extern std::map<std::string, std::vector<std::string> > mapMultiArgs;
+extern bool fDebug;
+extern bool fDebugNet;
+extern bool fPrintToConsole;
+extern bool fPrintToDebugger;
+extern bool fRequestShutdown;
+extern bool fShutdown;
+extern bool fDaemon;
+extern bool fServer;
+extern bool fCommandLine;
+extern std::string strMiscWarning;
+extern bool fTestNet;
+extern bool fNoListen;
+extern bool fLogTimestamps;
+extern bool fReopenDebugLog;
+
+void RandAddSeed();
+void RandAddSeedPerfmon();
+int OutputDebugStringF(const char* pszFormat, ...);
+int my_snprintf(char* buffer, size_t limit, const char* format, ...);
+
+/* It is not allowed to use va_start with a pass-by-reference argument.
+   (C++ standard, 18.7, paragraph 3). Use a dummy argument to work around this, and use a
+   macro to keep similar semantics.
+*/
+std::string real_strprintf(const std::string &format, int dummy, ...);
+#define strprintf(format, ...) real_strprintf(format, 0, __VA_ARGS__)
+std::string vstrprintf(const std::string &format, va_list ap);
+
+bool error(const char *format, ...);
+void LogException(std::exception* pex, const char* pszThread);
+void PrintException(std::exception* pex, const char* pszThread);
+void PrintExceptionContinue(std::exception* pex, const char* pszThread);
+void ParseString(const std::string& str, char c, std::vector<std::string>& v);
+std::string FormatMoney(int64 n, bool fPlus=false);
+bool ParseMoney(const std::string& str, int64& nRet);
+bool ParseMoney(const char* pszIn, int64& nRet);
+std::vector<unsigned char> ParseHex(const char* psz);
+std::vector<unsigned char> ParseHex(const std::string& str);
+bool IsHex(const std::string& str);
+std::vector<unsigned char> DecodeBase64(const ch
