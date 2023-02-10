@@ -216,4 +216,94 @@ inline int64 atoi64(const std::string& str)
 #endif
 }
 
-inline in
+inline int atoi(const std::string& str)
+{
+    return atoi(str.c_str());
+}
+
+inline int roundint(double d)
+{
+    return (int)(d > 0 ? d + 0.5 : d - 0.5);
+}
+
+inline int64 roundint64(double d)
+{
+    return (int64)(d > 0 ? d + 0.5 : d - 0.5);
+}
+
+inline int64 abs64(int64 n)
+{
+    return (n >= 0 ? n : -n);
+}
+
+template<typename T>
+std::string HexStr(const T itbegin, const T itend, bool fSpaces=false)
+{
+    std::vector<char> rv;
+    static char hexmap[16] = { '0', '1', '2', '3', '4', '5', '6', '7',
+                               '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
+    rv.reserve((itend-itbegin)*3);
+    for(T it = itbegin; it < itend; ++it)
+    {
+        unsigned char val = (unsigned char)(*it);
+        if(fSpaces && it != itbegin)
+            rv.push_back(' ');
+        rv.push_back(hexmap[val>>4]);
+        rv.push_back(hexmap[val&15]);
+    }
+
+    return std::string(rv.begin(), rv.end());
+}
+
+inline std::string HexStr(const std::vector<unsigned char>& vch, bool fSpaces=false)
+{
+    return HexStr(vch.begin(), vch.end(), fSpaces);
+}
+
+template<typename T>
+void PrintHex(const T pbegin, const T pend, const char* pszFormat="%s", bool fSpaces=true)
+{
+    printf(pszFormat, HexStr(pbegin, pend, fSpaces).c_str());
+}
+
+inline void PrintHex(const std::vector<unsigned char>& vch, const char* pszFormat="%s", bool fSpaces=true)
+{
+    printf(pszFormat, HexStr(vch, fSpaces).c_str());
+}
+
+inline int64 GetPerformanceCounter()
+{
+    int64 nCounter = 0;
+#ifdef WIN32
+    QueryPerformanceCounter((LARGE_INTEGER*)&nCounter);
+#else
+    timeval t;
+    gettimeofday(&t, NULL);
+    nCounter = (int64) t.tv_sec * 1000000 + t.tv_usec;
+#endif
+    return nCounter;
+}
+
+inline int64 GetTimeMillis()
+{
+    return (boost::posix_time::ptime(boost::posix_time::microsec_clock::universal_time()) -
+            boost::posix_time::ptime(boost::gregorian::date(1970,1,1))).total_milliseconds();
+}
+
+inline std::string DateTimeStrFormat(const char* pszFormat, int64 nTime)
+{
+    time_t n = nTime;
+    struct tm* ptmTime = gmtime(&n);
+    char pszTime[200];
+    strftime(pszTime, sizeof(pszTime), pszFormat, ptmTime);
+    return pszTime;
+}
+
+template<typename T>
+void skipspaces(T& it)
+{
+    while (isspace(*it))
+        ++it;
+}
+
+inline bool IsSwit
