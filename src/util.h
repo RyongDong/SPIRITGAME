@@ -306,4 +306,85 @@ void skipspaces(T& it)
         ++it;
 }
 
-inline bool IsSwit
+inline bool IsSwitchChar(char c)
+{
+#ifdef WIN32
+    return c == '-' || c == '/';
+#else
+    return c == '-';
+#endif
+}
+
+/**
+ * Return string argument or default value
+ *
+ * @param strArg Argument to get (e.g. "-foo")
+ * @param default (e.g. "1")
+ * @return command-line argument or default value
+ */
+std::string GetArg(const std::string& strArg, const std::string& strDefault);
+
+/**
+ * Return integer argument or default value
+ *
+ * @param strArg Argument to get (e.g. "-foo")
+ * @param default (e.g. 1)
+ * @return command-line argument (0 if invalid number) or default value
+ */
+int64 GetArg(const std::string& strArg, int64 nDefault);
+
+/**
+ * Return boolean argument or default value
+ *
+ * @param strArg Argument to get (e.g. "-foo")
+ * @param default (true or false)
+ * @return command-line argument or default value
+ */
+bool GetBoolArg(const std::string& strArg, bool fDefault=false);
+
+/**
+ * Set an argument if it doesn't already have a value
+ *
+ * @param strArg Argument to set (e.g. "-foo")
+ * @param strValue Value (e.g. "1")
+ * @return true if argument gets set, false if it already had a value
+ */
+bool SoftSetArg(const std::string& strArg, const std::string& strValue);
+
+/**
+ * Set a boolean argument if it doesn't already have a value
+ *
+ * @param strArg Argument to set (e.g. "-foo")
+ * @param fValue Value (e.g. false)
+ * @return true if argument gets set, false if it already had a value
+ */
+bool SoftSetBoolArg(const std::string& strArg, bool fValue);
+
+
+
+
+
+
+
+
+
+// Randomize the stack to help protect against buffer overrun exploits
+#define IMPLEMENT_RANDOMIZE_STACK(ThreadFn)     \
+    {                                           \
+        static char nLoops;                     \
+        if (nLoops <= 0)                        \
+            nLoops = GetRand(20) + 1;           \
+        if (nLoops-- > 1)                       \
+        {                                       \
+            ThreadFn;                           \
+            return;                             \
+        }                                       \
+    }
+
+
+template<typename T1>
+inline uint256 Hash(const T1 pbegin, const T1 pend)
+{
+    static unsigned char pblank[1];
+    uint256 hash1;
+    SHA256((pbegin == pend ? pblank : (unsigned char*)&pbegin[0]), (pend - pbegin) * sizeof(pbegin[0])
