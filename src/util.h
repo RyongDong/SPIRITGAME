@@ -144,4 +144,76 @@ bool ParseMoney(const char* pszIn, int64& nRet);
 std::vector<unsigned char> ParseHex(const char* psz);
 std::vector<unsigned char> ParseHex(const std::string& str);
 bool IsHex(const std::string& str);
-std::vector<unsigned char> DecodeBase64(const ch
+std::vector<unsigned char> DecodeBase64(const char* p, bool* pfInvalid = NULL);
+std::string DecodeBase64(const std::string& str);
+std::string EncodeBase64(const unsigned char* pch, size_t len);
+std::string EncodeBase64(const std::string& str);
+std::vector<unsigned char> DecodeBase32(const char* p, bool* pfInvalid = NULL);
+std::string DecodeBase32(const std::string& str);
+std::string EncodeBase32(const unsigned char* pch, size_t len);
+std::string EncodeBase32(const std::string& str);
+void ParseParameters(int argc, const char*const argv[]);
+bool WildcardMatch(const char* psz, const char* mask);
+bool WildcardMatch(const std::string& str, const std::string& mask);
+void FileCommit(FILE *fileout);
+int GetFilesize(FILE* file);
+bool RenameOver(boost::filesystem::path src, boost::filesystem::path dest);
+boost::filesystem::path GetDefaultDataDir();
+const boost::filesystem::path &GetDataDir(bool fNetSpecific = true);
+boost::filesystem::path GetConfigFile();
+boost::filesystem::path GetPidFile();
+void CreatePidFile(const boost::filesystem::path &path, pid_t pid);
+void ReadConfigFile(std::map<std::string, std::string>& mapSettingsRet, std::map<std::string, std::vector<std::string> >& mapMultiSettingsRet);
+#ifdef WIN32
+boost::filesystem::path GetSpecialFolderPath(int nFolder, bool fCreate = true);
+#endif
+void ShrinkDebugFile();
+int GetRandInt(int nMax);
+uint64 GetRand(uint64 nMax);
+uint256 GetRandHash();
+int64 GetTime();
+void SetMockTime(int64 nMockTimeIn);
+int64 GetAdjustedTime();
+long hex2long(const char* hexString);
+std::string FormatFullVersion();
+std::string FormatSubVersion(const std::string& name, int nClientVersion, const std::vector<std::string>& comments);
+void AddTimeData(const CNetAddr& ip, int64 nTime);
+void runCommand(std::string strCommand);
+
+
+
+
+
+
+
+
+
+inline std::string i64tostr(int64 n)
+{
+    return strprintf("%"PRI64d, n);
+}
+
+inline std::string itostr(int n)
+{
+    return strprintf("%d", n);
+}
+
+inline int64 atoi64(const char* psz)
+{
+#ifdef _MSC_VER
+    return _atoi64(psz);
+#else
+    return strtoll(psz, NULL, 10);
+#endif
+}
+
+inline int64 atoi64(const std::string& str)
+{
+#ifdef _MSC_VER
+    return _atoi64(str.c_str());
+#else
+    return strtoll(str.c_str(), NULL, 10);
+#endif
+}
+
+inline in
