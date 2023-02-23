@@ -149,4 +149,55 @@ public:
     int64 GetBalance() const;
     int64 GetUnconfirmedBalance() const;
     int64 GetImmatureBalance() const;
-    bool CreateTransaction(c
+    bool CreateTransaction(const std::vector<std::pair<CScript, int64> >& vecSend, CWalletTx& wtxNew, CReserveKey& reservekey, int64& nFeeRet);
+    bool CreateTransaction(CScript scriptPubKey, int64 nValue, CWalletTx& wtxNew, CReserveKey& reservekey, int64& nFeeRet);
+    bool CommitTransaction(CWalletTx& wtxNew, CReserveKey& reservekey);
+    std::string SendMoney(CScript scriptPubKey, int64 nValue, CWalletTx& wtxNew, bool fAskFee=false);
+    std::string SendMoneyToDestination(const CTxDestination &address, int64 nValue, CWalletTx& wtxNew, bool fAskFee=false);
+
+    bool NewKeyPool();
+    bool TopUpKeyPool();
+    int64 AddReserveKey(const CKeyPool& keypool);
+    void ReserveKeyFromKeyPool(int64& nIndex, CKeyPool& keypool);
+    void KeepKey(int64 nIndex);
+    void ReturnKey(int64 nIndex);
+    bool GetKeyFromPool(CPubKey &key, bool fAllowReuse=true);
+    int64 GetOldestKeyPoolTime();
+    void GetAllReserveKeys(std::set<CKeyID>& setAddress);
+
+    bool IsMine(const CTxIn& txin) const;
+    int64 GetDebit(const CTxIn& txin) const;
+    bool IsMine(const CTxOut& txout) const
+    {
+        return ::IsMine(*this, txout.scriptPubKey);
+    }
+    int64 GetCredit(const CTxOut& txout) const
+    {
+        if (!MoneyRange(txout.nValue))
+            throw std::runtime_error("CWallet::GetCredit() : value out of range");
+        return (IsMine(txout) ? txout.nValue : 0);
+    }
+    bool IsChange(const CTxOut& txout) const;
+    int64 GetChange(const CTxOut& txout) const
+    {
+        if (!MoneyRange(txout.nValue))
+            throw std::runtime_error("CWallet::GetChange() : value out of range");
+        return (IsChange(txout) ? txout.nValue : 0);
+    }
+    bool IsMine(const CTransaction& tx) const
+    {
+        BOOST_FOREACH(const CTxOut& txout, tx.vout)
+            // If output is less than minimum value, then don't include transaction.
+            // This is to help deal with dust spam bloating the wallet.
+            if (IsMine(txout) && txout.nValue >= nMinimumInputValue)
+                return true;
+        return false;
+    }
+    bool IsFromMe(const CTransaction& tx) const
+    {
+        return (GetDebit(tx) > 0);
+    }
+    int64 GetDebit(const CTransaction& tx) const
+    {
+        int64 nDebit = 0;
+        BOOST_FOREA
