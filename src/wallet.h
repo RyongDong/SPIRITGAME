@@ -200,4 +200,71 @@ public:
     int64 GetDebit(const CTransaction& tx) const
     {
         int64 nDebit = 0;
-        BOOST_FOREA
+        BOOST_FOREACH(const CTxIn& txin, tx.vin)
+        {
+            nDebit += GetDebit(txin);
+            if (!MoneyRange(nDebit))
+                throw std::runtime_error("CWallet::GetDebit() : value out of range");
+        }
+        return nDebit;
+    }
+    int64 GetCredit(const CTransaction& tx) const
+    {
+        int64 nCredit = 0;
+        BOOST_FOREACH(const CTxOut& txout, tx.vout)
+        {
+            nCredit += GetCredit(txout);
+            if (!MoneyRange(nCredit))
+                throw std::runtime_error("CWallet::GetCredit() : value out of range");
+        }
+        return nCredit;
+    }
+    int64 GetChange(const CTransaction& tx) const
+    {
+        int64 nChange = 0;
+        BOOST_FOREACH(const CTxOut& txout, tx.vout)
+        {
+            nChange += GetChange(txout);
+            if (!MoneyRange(nChange))
+                throw std::runtime_error("CWallet::GetChange() : value out of range");
+        }
+        return nChange;
+    }
+    void SetBestChain(const CBlockLocator& loc);
+
+    int LoadWallet(bool& fFirstRunRet);
+
+    bool SetAddressBookName(const CTxDestination& address, const std::string& strName);
+
+    bool DelAddressBookName(const CTxDestination& address);
+
+    void UpdatedTransaction(const uint256 &hashTx);
+
+    void PrintWallet(const CBlock& block);
+
+    void Inventory(const uint256 &hash)
+    {
+        {
+            LOCK(cs_wallet);
+            std::map<uint256, int>::iterator mi = mapRequestCount.find(hash);
+            if (mi != mapRequestCount.end())
+                (*mi).second++;
+        }
+    }
+
+    int GetKeyPoolSize()
+    {
+        return setKeyPool.size();
+    }
+
+    bool GetTransaction(const uint256 &hashTx, CWalletTx& wtx);
+
+    bool SetDefaultKey(const CPubKey &vchPubKey);
+
+    // signify that a particular wallet feature is now used. this may change nWalletVersion and nWalletMaxVersion if those are lower
+    bool SetMinVersion(enum WalletFeature, CWalletDB* pwalletdbIn = NULL, bool fExplicit = false);
+
+    // change which version we're allowed to upgrade to (note that this does not immediately imply upgrading to that format)
+    bool SetMaxVersion(int nVersion);
+
+    // get the cu
