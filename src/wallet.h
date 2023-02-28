@@ -267,4 +267,87 @@ public:
     // change which version we're allowed to upgrade to (note that this does not immediately imply upgrading to that format)
     bool SetMaxVersion(int nVersion);
 
-    // get the cu
+    // get the current wallet format (the oldest client version guaranteed to understand this wallet)
+    int GetVersion() { return nWalletVersion; }
+
+    /** Address book entry changed.
+     * @note called with lock cs_wallet held.
+     */
+    boost::signals2::signal<void (CWallet *wallet, const CTxDestination &address, const std::string &label, bool isMine, ChangeType status)> NotifyAddressBookChanged;
+
+    /** Wallet transaction added, removed or updated.
+     * @note called with lock cs_wallet held.
+     */
+    boost::signals2::signal<void (CWallet *wallet, const uint256 &hashTx, ChangeType status)> NotifyTransactionChanged;
+};
+
+/** A key allocated from the key pool. */
+class CReserveKey
+{
+protected:
+    CWallet* pwallet;
+    int64 nIndex;
+    CPubKey vchPubKey;
+public:
+    CReserveKey(CWallet* pwalletIn)
+    {
+        nIndex = -1;
+        pwallet = pwalletIn;
+    }
+
+    ~CReserveKey()
+    {
+        if (!fShutdown)
+            ReturnKey();
+    }
+
+    void ReturnKey();
+    CPubKey GetReservedKey();
+    void KeepKey();
+};
+
+
+/** A transaction with a bunch of additional info that only the owner cares about. 
+ * It includes any unrecorded transactions needed to link it back to the block chain.
+ */
+class CWalletTx : public CMerkleTx
+{
+private:
+    const CWallet* pwallet;
+
+public:
+    std::vector<CMerkleTx> vtxPrev;
+    std::map<std::string, std::string> mapValue;
+    std::vector<std::pair<std::string, std::string> > vOrderForm;
+    unsigned int fTimeReceivedIsTxTime;
+    unsigned int nTimeReceived;  // time received by this node
+    char fFromMe;
+    std::string strFromAccount;
+    std::vector<char> vfSpent; // which outputs are already spent
+
+    // memory only
+    mutable bool fDebitCached;
+    mutable bool fCreditCached;
+    mutable bool fAvailableCreditCached;
+    mutable bool fChangeCached;
+    mutable int64 nDebitCached;
+    mutable int64 nCreditCached;
+    mutable int64 nAvailableCreditCached;
+    mutable int64 nChangeCached;
+
+    CWalletTx()
+    {
+        Init(NULL);
+    }
+
+    CWalletTx(const CWallet* pwalletIn)
+    {
+        Init(pwalletIn);
+    }
+
+    CWalletTx(const CWallet* pwalletIn, const CMerkleTx& txIn) : CMerkleTx(txIn)
+    {
+        Init(pwalletIn);
+    }
+
+    CWalletTx(const CWallet* pwalletIn, const
