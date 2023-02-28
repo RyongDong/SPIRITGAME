@@ -350,4 +350,86 @@ public:
         Init(pwalletIn);
     }
 
-    CWalletTx(const CWallet* pwalletIn, const
+    CWalletTx(const CWallet* pwalletIn, const CTransaction& txIn) : CMerkleTx(txIn)
+    {
+        Init(pwalletIn);
+    }
+
+    void Init(const CWallet* pwalletIn)
+    {
+        pwallet = pwalletIn;
+        vtxPrev.clear();
+        mapValue.clear();
+        vOrderForm.clear();
+        fTimeReceivedIsTxTime = false;
+        nTimeReceived = 0;
+        fFromMe = false;
+        strFromAccount.clear();
+        vfSpent.clear();
+        fDebitCached = false;
+        fCreditCached = false;
+        fAvailableCreditCached = false;
+        fChangeCached = false;
+        nDebitCached = 0;
+        nCreditCached = 0;
+        nAvailableCreditCached = 0;
+        nChangeCached = 0;
+    }
+
+    IMPLEMENT_SERIALIZE
+    (
+        CWalletTx* pthis = const_cast<CWalletTx*>(this);
+        if (fRead)
+            pthis->Init(NULL);
+        char fSpent = false;
+
+        if (!fRead)
+        {
+            pthis->mapValue["fromaccount"] = pthis->strFromAccount;
+
+            std::string str;
+            BOOST_FOREACH(char f, vfSpent)
+            {
+                str += (f ? '1' : '0');
+                if (f)
+                    fSpent = true;
+            }
+            pthis->mapValue["spent"] = str;
+        }
+
+        nSerSize += SerReadWrite(s, *(CMerkleTx*)this, nType, nVersion,ser_action);
+        READWRITE(vtxPrev);
+        READWRITE(mapValue);
+        READWRITE(vOrderForm);
+        READWRITE(fTimeReceivedIsTxTime);
+        READWRITE(nTimeReceived);
+        READWRITE(fFromMe);
+        READWRITE(fSpent);
+
+        if (fRead)
+        {
+            pthis->strFromAccount = pthis->mapValue["fromaccount"];
+
+            if (mapValue.count("spent"))
+                BOOST_FOREACH(char c, pthis->mapValue["spent"])
+                    pthis->vfSpent.push_back(c != '0');
+            else
+                pthis->vfSpent.assign(vout.size(), fSpent);
+        }
+
+        pthis->mapValue.erase("fromaccount");
+        pthis->mapValue.erase("version");
+        pthis->mapValue.erase("spent");
+    )
+
+    // marks certain txout's as spent
+    // returns true if any update took place
+    bool UpdateSpent(const std::vector<char>& vfNewSpent)
+    {
+        bool fReturn = false;
+        for (unsigned int i = 0; i < vfNewSpent.size(); i++)
+        {
+            if (i == vfSpent.size())
+                break;
+
+            if (vfNewSpent[i]
