@@ -432,4 +432,81 @@ public:
             if (i == vfSpent.size())
                 break;
 
-            if (vfNewSpent[i]
+            if (vfNewSpent[i] && !vfSpent[i])
+            {
+                vfSpent[i] = true;
+                fReturn = true;
+                fAvailableCreditCached = false;
+            }
+        }
+        return fReturn;
+    }
+
+    // make sure balances are recalculated
+    void MarkDirty()
+    {
+        fCreditCached = false;
+        fAvailableCreditCached = false;
+        fDebitCached = false;
+        fChangeCached = false;
+    }
+
+    void BindWallet(CWallet *pwalletIn)
+    {
+        pwallet = pwalletIn;
+        MarkDirty();
+    }
+
+    void MarkSpent(unsigned int nOut)
+    {
+        if (nOut >= vout.size())
+            throw std::runtime_error("CWalletTx::MarkSpent() : nOut out of range");
+        vfSpent.resize(vout.size());
+        if (!vfSpent[nOut])
+        {
+            vfSpent[nOut] = true;
+            fAvailableCreditCached = false;
+        }
+    }
+
+    bool IsSpent(unsigned int nOut) const
+    {
+        if (nOut >= vout.size())
+            throw std::runtime_error("CWalletTx::IsSpent() : nOut out of range");
+        if (nOut >= vfSpent.size())
+            return false;
+        return (!!vfSpent[nOut]);
+    }
+
+    int64 GetDebit() const
+    {
+        if (vin.empty())
+            return 0;
+        if (fDebitCached)
+            return nDebitCached;
+        nDebitCached = pwallet->GetDebit(*this);
+        fDebitCached = true;
+        return nDebitCached;
+    }
+
+    int64 GetCredit(bool fUseCache=true) const
+    {
+        // Must wait until coinbase is safely deep enough in the chain before valuing it
+        if (IsCoinBase() && GetBlocksToMaturity() > 0)
+            return 0;
+
+        // GetBalance can assume transactions in mapWallet won't change
+        if (fUseCache && fCreditCached)
+            return nCreditCached;
+        nCreditCached = pwallet->GetCredit(*this);
+        fCreditCached = true;
+        return nCreditCached;
+    }
+
+    int64 GetAvailableCredit(bool fUseCache=true) const
+    {
+        // Must wait until coinbase is safely deep enough in the chain before valuing it
+        if (IsCoinBase() && GetBlocksToMaturity() > 0)
+            return 0;
+
+        if (fUseCache && fAvailab
