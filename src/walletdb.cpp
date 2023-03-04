@@ -231,4 +231,64 @@ int CWalletDB::LoadWallet(CWallet* pwallet)
                     key.SetPrivKey(wkey.vchPrivKey);
                     if (key.GetPubKey() != vchPubKey)
                     {
-                        printf("Error reading wallet database: CWa
+                        printf("Error reading wallet database: CWalletKey pubkey inconsistency\n");
+                        return DB_CORRUPT;
+                    }
+                    if (!key.IsValid())
+                    {
+                        printf("Error reading wallet database: invalid CWalletKey\n");
+                        return DB_CORRUPT;
+                    }
+                }
+                if (!pwallet->LoadKey(key))
+                {
+                    printf("Error reading wallet database: LoadKey failed\n");
+                    return DB_CORRUPT;
+                }
+            }
+            else if (strType == "mkey")
+            {
+                unsigned int nID;
+                ssKey >> nID;
+                CMasterKey kMasterKey;
+                ssValue >> kMasterKey;
+                if(pwallet->mapMasterKeys.count(nID) != 0)
+                {
+                    printf("Error reading wallet database: duplicate CMasterKey id %u\n", nID);
+                    return DB_CORRUPT;
+                }
+                pwallet->mapMasterKeys[nID] = kMasterKey;
+                if (pwallet->nMasterKeyMaxID < nID)
+                    pwallet->nMasterKeyMaxID = nID;
+            }
+            else if (strType == "ckey")
+            {
+                vector<unsigned char> vchPubKey;
+                ssKey >> vchPubKey;
+                vector<unsigned char> vchPrivKey;
+                ssValue >> vchPrivKey;
+                if (!pwallet->LoadCryptedKey(vchPubKey, vchPrivKey))
+                {
+                    printf("Error reading wallet database: LoadCryptedKey failed\n");
+                    return DB_CORRUPT;
+                }
+                fIsEncrypted = true;
+            }
+            else if (strType == "defaultkey")
+            {
+                ssValue >> pwallet->vchDefaultKey;
+            }
+            else if (strType == "pool")
+            {
+                int64 nIndex;
+                ssKey >> nIndex;
+                pwallet->setKeyPool.insert(nIndex);
+            }
+            else if (strType == "version")
+            {
+                ssValue >> nFileVersion;
+                if (nFileVersion == 10300)
+                    nFileVersion = 300;
+            }
+            else if (strType == "cscript")
+   
