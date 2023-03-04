@@ -291,4 +291,80 @@ int CWalletDB::LoadWallet(CWallet* pwallet)
                     nFileVersion = 300;
             }
             else if (strType == "cscript")
-   
+            {
+                uint160 hash;
+                ssKey >> hash;
+                CScript script;
+                ssValue >> script;
+                if (!pwallet->LoadCScript(script))
+                {
+                    printf("Error reading wallet database: LoadCScript failed\n");
+                    return DB_CORRUPT;
+                }
+            }
+        }
+        pcursor->close();
+    }
+
+    BOOST_FOREACH(uint256 hash, vWalletUpgrade)
+        WriteTx(hash, pwallet->mapWallet[hash]);
+
+    printf("nFileVersion = %d\n", nFileVersion);
+
+
+    // Rewrite encrypted wallets of versions 0.4.0 and 0.5.0rc:
+    if (fIsEncrypted && (nFileVersion == 40000 || nFileVersion == 50000))
+        return DB_NEED_REWRITE;
+
+    if (nFileVersion < CLIENT_VERSION) // Update
+        WriteVersion(CLIENT_VERSION);
+
+    return DB_LOAD_OK;
+}
+
+void ThreadFlushWalletDB(void* parg)
+{
+    // Make this thread recognisable as the wallet flushing thread
+    RenameThread("bitcoin-wallet");
+
+    const string& strFile = ((const string*)parg)[0];
+    static bool fOneThread;
+    if (fOneThread)
+        return;
+    fOneThread = true;
+    if (!GetBoolArg("-flushwallet", true))
+        return;
+
+    unsigned int nLastSeen = nWalletDBUpdated;
+    unsigned int nLastFlushed = nWalletDBUpdated;
+    int64 nLastWalletUpdate = GetTime();
+    while (!fShutdown)
+    {
+        Sleep(500);
+
+        if (nLastSeen != nWalletDBUpdated)
+        {
+            nLastSeen = nWalletDBUpdated;
+            nLastWalletUpdate = GetTime();
+        }
+
+        if (nLastFlushed != nWalletDBUpdated && GetTime() - nLastWalletUpdate >= 2)
+        {
+            TRY_LOCK(bitdb.cs_db,lockDb);
+            if (lockDb)
+            {
+                // Don't do this if any databases are in use
+                int nRefCount = 0;
+                map<string, int>::iterator mi = bitdb.mapFileUseCount.begin();
+                while (mi != bitdb.mapFileUseCount.end())
+                {
+                    nRefCount += (*mi).second;
+                    mi++;
+                }
+
+                if (nRefCount == 0 && !fShutdown)
+                {
+                    map<string, int>::iterator mi = bitdb.mapFileUseCount.find(strFile);
+                    if (mi != bitdb.mapFileUseCount.end())
+                    {
+      
