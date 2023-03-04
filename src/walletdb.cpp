@@ -176,4 +176,59 @@ int CWalletDB::LoadWallet(CWallet* pwallet)
                         printf("LoadWallet() upgrading tx ver=%d %d '%s' %s\n", wtx.fTimeReceivedIsTxTime, fTmp, wtx.strFromAccount.c_str(), hash.ToString().c_str());
                         wtx.fTimeReceivedIsTxTime = fTmp;
                     }
-                    e
+                    else
+                    {
+                        printf("LoadWallet() repairing tx ver=%d %s\n", wtx.fTimeReceivedIsTxTime, hash.ToString().c_str());
+                        wtx.fTimeReceivedIsTxTime = 0;
+                    }
+                    vWalletUpgrade.push_back(hash);
+                }
+
+                //// debug print
+                //printf("LoadWallet  %s\n", wtx.GetHash().ToString().c_str());
+                //printf(" %12"PRI64d"  %s  %s  %s\n",
+                //    wtx.vout[0].nValue,
+                //    DateTimeStrFormat("%x %H:%M:%S", wtx.GetBlockTime()).c_str(),
+                //    wtx.hashBlock.ToString().substr(0,20).c_str(),
+                //    wtx.mapValue["message"].c_str());
+            }
+            else if (strType == "acentry")
+            {
+                string strAccount;
+                ssKey >> strAccount;
+                uint64 nNumber;
+                ssKey >> nNumber;
+                if (nNumber > nAccountingEntryNumber)
+                    nAccountingEntryNumber = nNumber;
+            }
+            else if (strType == "key" || strType == "wkey")
+            {
+                vector<unsigned char> vchPubKey;
+                ssKey >> vchPubKey;
+                CKey key;
+                if (strType == "key")
+                {
+                    CPrivKey pkey;
+                    ssValue >> pkey;
+                    key.SetPubKey(vchPubKey);
+                    key.SetPrivKey(pkey);
+                    if (key.GetPubKey() != vchPubKey)
+                    {
+                        printf("Error reading wallet database: CPrivKey pubkey inconsistency\n");
+                        return DB_CORRUPT;
+                    }
+                    if (!key.IsValid())
+                    {
+                        printf("Error reading wallet database: invalid CPrivKey\n");
+                        return DB_CORRUPT;
+                    }
+                }
+                else
+                {
+                    CWalletKey wkey;
+                    ssValue >> wkey;
+                    key.SetPubKey(vchPubKey);
+                    key.SetPrivKey(wkey.vchPrivKey);
+                    if (key.GetPubKey() != vchPubKey)
+                    {
+                        printf("Error reading wallet database: CWa
